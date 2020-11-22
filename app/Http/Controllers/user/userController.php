@@ -33,8 +33,7 @@ class userController extends Controller
         return view('store.product')
             ->with('product', $res)
             ->with('products', $res1)
-            ->with('cat', $cat)
-            ->with('colors',$colorList);   
+            ->with('cat', $cat);
     }
 
     public function search(Request $r){

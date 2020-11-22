@@ -15,7 +15,6 @@ class Product extends Model
         'name',
         'image_name',
         'description',
-        'colors',
         'price',
         'discount',
         'tag',

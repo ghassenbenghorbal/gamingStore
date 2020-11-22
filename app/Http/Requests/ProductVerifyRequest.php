@@ -29,8 +29,6 @@ class ProductVerifyRequest extends FormRequest
             'Description' => 'required',
             'Price' => 'required|numeric',
             'Discounted_Price' => 'required|numeric',
-            
-            'Colors' => 'required',
             'Tags' => 'required'
 
 

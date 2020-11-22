@@ -29,7 +29,6 @@ class ProductEditVerifyRequest extends FormRequest
             'Price' => 'required|numeric',
             'Discounted_Price' => 'required|numeric',
             
-            'Colors' => 'required',
             'Tags' => 'required'
         ];
     }

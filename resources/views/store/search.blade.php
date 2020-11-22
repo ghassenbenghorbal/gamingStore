@@ -23,7 +23,7 @@
                             </div>
                             <div class="product-body">
                                 <h3 class="product-name"><a href="product/{{$product->id}}">{{$product->name}}</a></h3>
-                                <h4 class="product-price">TK {{$product->discount}} <del class="product-old-price">TK {{$product->price}}</del></h4>
+                                <h4 class="product-price">TND {{$product->discount}} <del class="product-old-price">TND {{$product->price}}</del></h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>

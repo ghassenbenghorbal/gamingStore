@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>Electro</title>
+    <title>Gkeys</title>
 
     <link rel="shortcut icon" href="{{asset('favicon.png')}}" />
     <!-- Google font -->
@@ -64,7 +64,7 @@
             <div class="container">
                 <ul id="head_links" class="header-links pull-left">
                     <li><a href="#"><i class="fa fa-phone"></i> +000-00-00-00</a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> support@electro.com</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> support@Gkeys.com</a></li>
                     <li><a href="#"><i class="fa fa-map-marker"></i> Banani, Road 11</a></li>
                 </ul>
                 <ul class="header-links pull-right">

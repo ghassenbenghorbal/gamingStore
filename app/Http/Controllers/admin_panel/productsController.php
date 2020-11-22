@@ -57,7 +57,6 @@ class productsController extends Controller
             $prd->category_id = $request->Category;
             $prd->price = $request->Price;
             $prd->discount = $request->Discounted_Price;
-            $prd->colors = $request->Colors;
             $prd->tag = $request->Tags;
             $prd->save();
             
@@ -139,7 +138,6 @@ class productsController extends Controller
         $prdToUpdate->discount= $request->Discounted_Price;
         $prdToUpdate->category_id = $request->Category;
   
-        $prdToUpdate->colors = $request->Colors;
         $prdToUpdate->tag= $request->Tags;
         
         //NEW FILE UPLOADED

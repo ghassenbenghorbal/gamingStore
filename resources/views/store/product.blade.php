@@ -48,7 +48,7 @@ label.error {
                         </div>
                     </div>
                     <div>
-                        <h3 class="product-price">TK {{$product->discount}} <del class="product-old-price">TK {{$product->price}}</del></h3>
+                        <h3 class="product-price">TND {{$product->discount}} <del class="product-old-price">TND {{$product->price}}</del></h3>
                         <span class="product-available">In Stock</span>
                     </div>
                     <p>{!!$product->description!!}</p>
@@ -67,10 +67,6 @@ label.error {
                         </label>
                         
                         
-                        @foreach($colors as $c)
-                        <input type="radio" name="color"  value="{{$c}}">
-                        <div style="height:25px;width:25px;margin:5px;display:inline-block;background-color: {{$c}}"></div>
-                        @endforeach
                           
                     </div>
                         <div id="for_error"></div>
