@@ -58,7 +58,7 @@
                                             <input type="text" class="form-control" name="Price" value="{{$product->price}}">
                                         </div>
                                         <div class="form-group">
-                                            <label >Product Discounted Price</label>
+                                            <label >Price After Discount</label>
                                             <input type="text" class="form-control"  name="Discounted_Price" value="{{$product->discount}}">
                                         </div>
                                         <div class="form-group">
