@@ -15,7 +15,7 @@
                     <div class="col-md-4 col-xs-6">
                         <div class="product">
                             <div class="product-img">
-                                <img src="uploads/products/{{$product->id}}/{{$product->image_name}}" alt="">
+                                <img src="{{ asset('storage/' . $product->image)}}" alt="">
                                 <div class="product-label">
                                     <span class="sale">offer</span>
                                     <span class="new">{{$product->tag}}</span>

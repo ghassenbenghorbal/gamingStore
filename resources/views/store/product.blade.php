@@ -27,7 +27,7 @@ label.error {
             <div class="col-md-5 ">
                 <div id="product-main-img">
                     <div class="product-preview">
-                        <img src="../uploads/products/{{$product->id}}/{{$product->image_name}}" alt="">
+                        <img src="{{ asset('storage/' . $product->image)}}" alt="">
                     </div>
                 </div>
             </div>

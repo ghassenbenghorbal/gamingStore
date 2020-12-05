@@ -36,22 +36,9 @@ class productsController extends Controller
     public function store(ProductVerifyRequest $request)
     { 
         try {
-            $img = explode('|', $request->img);
- 
-            for ($i = 0; $i < count($img) - 1; $i++) {
-
-            if (strpos($img[$i], 'data:image/jpeg;base64,') === 0) {
-                $img[$i] = str_replace('data:image/jpeg;base64,', '', $img[$i]);  
-                $ext = '.jpg';
-            }
-            if (strpos($img[$i], 'data:image/png;base64,') === 0) { 
-                $img[$i] = str_replace('data:image/png;base64,', '', $img[$i]); 
-                $ext = '.png';
-            }
             
-    
             $prd = new Product();
-            $prd->image_name = "1".$ext;
+            $prd->image = $request->Image->store('uploads', 'public');
             $prd->name = $request->Name;
             $prd->description = $request->Description;
             $prd->category_id = $request->Category;
@@ -59,47 +46,6 @@ class productsController extends Controller
             $prd->discount = $request->Discounted_Price;
             $prd->tag = $request->Tags;
             $prd->save();
-            
-            
-
-            $img[$i] = str_replace(' ', '+', $img[$i]);
-            $data = base64_decode($img[$i]);
-            
-            $temp_string='/uploads/products/'.$prd->id;
-            $temp_string2='uploads/products/'.$prd->id;
-    
-            if (!file_exists(public_path().$temp_string)) {
-                mkdir( public_path().$temp_string, 0777, true);
-                
-                $file = $temp_string2.'/1'.$ext;
-                
-            if (file_put_contents($file, $data)) {
-                echo "<p>Image $i was saved as $file.</p>";
-            } else {
-                echo '<p>Image $i could not be saved.</p>';
-            } 
-            }
-                
-            
-
-        }
-            
-        /* $file = $request->file('myfile');
-            //$last_inc_id = DB::getPdo()->lastInsertId();
-            $extension=$file->getClientOriginalExtension();
-            
-            
-            
-            
-            
-            
-            $file->move(public_path().$temp_string."/","1.".$file->getClientOriginalExtension());
-            
-            
-        
-            */
-            
-            
         return redirect()->route('admin.products');
         } catch (\Throwable $th) {
             dd($th->getMessage());
@@ -143,66 +89,12 @@ class productsController extends Controller
         //NEW FILE UPLOADED
         if($request->img!="")
         {      
-            
-            $img = explode('|', $request->img);
- 
-        for ($i = 0; $i < count($img) - 1; $i++) {
-
-         if (strpos($img[$i], 'data:image/jpeg;base64,') === 0) {
-            $img[$i] = str_replace('data:image/jpeg;base64,', '', $img[$i]);  
-            $ext = '.jpg';
-         }
-         if (strpos($img[$i], 'data:image/png;base64,') === 0) { 
-            $img[$i] = str_replace('data:image/png;base64,', '', $img[$i]); 
-            $ext = '.png';
-         }
+            $prdToUpdate->image = $request->Image->store('uploads', 'public');
         
-   
-        
-        $prdToUpdate->image_name = "1".$ext;
-        $prdToUpdate->save();
-        
-        
-        
-
-         $img[$i] = str_replace(' ', '+', $img[$i]);
-         $data = base64_decode($img[$i]);
-        
-        
-        $temp_string2='uploads/products/'.$prdToUpdate->id;
-        $file = $temp_string2.'/1'.$ext;
-            
-         if (file_put_contents($file, $data)) {
-            echo "<p>Image $i was saved as $file.</p>";
-         } else {
-            echo '<p>Image $i could not be saved.</p>';
-         } 
-        
-            
-         
-
-      }
+            $prdToUpdate->save();
             
             return redirect()->route('admin.products');
             
-            
-            
-            /*$file = $request->file('myfile');
-            $extension=$file->getClientOriginalExtension();
-            if($extension=="jpg"|| $extension=="jpeg"|| $extension=="png"|| $extension=="JPG"|| $extension=="JPEG"|| $extension=="PNG" )
-            {
-            //$temp_for_same_file_name = Product::where('image_name',$file->getClientOriginalName())->first();
-
-            //$file_pointer = "uploads/products/".$product_image_ToUpdate->id."/".  $product_image_ToUpdate->image_name;
-            //unlink($file_pointer);
-            $temp_string='/uploads/products/'.$prdToUpdate->id;
-            $prdToUpdate->image_name = "1.".$file->getClientOriginalExtension();
-            $file->move(public_path().$temp_string."/","1.".$file->getClientOriginalExtension());
-                
-            $prdToUpdate->save();
-            }
-        
-            return redirect()->route('admin.products');*/
         }
         else
         {
@@ -265,6 +157,7 @@ class productsController extends Controller
        
         
     }
+
     
    
     

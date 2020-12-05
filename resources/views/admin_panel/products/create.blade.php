@@ -21,17 +21,10 @@
                                     <br>
                                     <br>
                                     <h4 >Create product</h4>
-                                    <br>
-                                    <img  id="imageHolder" src="" alt="add image" height="300" width="300"/>
-                                    <br>
-                                    <input  type="file" name="inp_files" id="inp_files" multiple="multiple" >
-                                    <br>
-                                    <div id="empty_image"> </div>
-                                    <form class="forms-sample" method="post"  id="product_form">
+                                    <form class="forms-sample" method="post"  id="product_form" enctype="multipart/form-data">
                                         {{csrf_field()}}
                                        
                                        
-                                        <input id="inp_img" name="img" type="hidden" value="">
                                         <br><br>
                                         <div id="for_extension_error"></div>
                                         <div class="form-group">
@@ -62,6 +55,9 @@
                                         <div class="form-group">
                                             <label >Product Tags<span style="color: red">*</span></label>
                                             <input type="text" class="form-control" id="Tags" name="Tags" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" name="Image" type="file">
                                         </div>
                                         <input type="submit" name="saveButton" class="btn btn-success mr-2" id="saveButton" value="Create"  />
                                     </form>
