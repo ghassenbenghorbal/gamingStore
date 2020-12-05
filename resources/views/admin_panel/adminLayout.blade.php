@@ -37,7 +37,7 @@
                     <li class="nav-item dropdown d-none d-xl-inline-block">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                             <span class="profile-text">{{session()->get('admin')->name}}</span>
-                            <img class="img-xs rounded-circle" src="{{asset('images/faces/face1.jpg')}}" alt="Profile image">
+                            <img class="img-xs rounded-circle" src="{{asset('storage/uploads/face1.jpg')}}" alt="Profile image">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <br>
@@ -62,7 +62,7 @@
                         <div class="nav-link">
                             <div class="user-wrapper">
                                 <div class="profile-image">
-                                    <img src="{{asset('images/faces/face1.jpg')}}" alt="profile image">
+                                    <img src="{{asset('storage/uploads/face1.jpg')}}" alt="profile image">
                                 </div>
                                 <div class="text-wrapper">
                                     <p class="profile-name">{{session()->get('admin')->name}}</p>

@@ -99,7 +99,7 @@ class userController extends Controller
             $total=Session::get('cart').",".$cd;
             Session::put('cart',$total);
         }
-        return redirect()->route('user.home');
+        return redirect()->route('user.cart');
     }
 
     public function cart(Request $r)

@@ -27,13 +27,15 @@
                                 <div class="product-img">
                                     <img src="{{asset('storage/' . $product->image)}}" width="95px" height="290px" alt="">
                                     <div class="product-label">
-                                        <span class="sale">Offer!!</span>
+                                        <span class="new">{{$product->tag}}</span>
                                     </div>
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">{{$product->category->name}}</p>
                                     <h3 class="product-name"><a href="{{route('user.view',['id'=>$product->id])}}">{{$product->name}}</a></h3>
-                                    <h4 class="product-price">TND {{$product->discount}} <del class="product-old-price">TND {{$product->price}}</del></h4>
+                                    <h4 class="product-price">TND {{$product->discount != null ? $product->discount : $product->price}} @if ($product->discount != null)
+                                        <del class="product-old-price">TND {{$product->price}}</del>
+                                    @endif</h4>
                                     <div class="product-rating">
                                     </div>
                                     
