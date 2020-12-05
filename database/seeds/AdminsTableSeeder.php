@@ -21,7 +21,7 @@ class AdminsTableSeeder extends Seeder
             array (
                 'username' => 'admin',
                 'name' => 'GKeys',
-                'password' => '12345',
+                'password' => 'admin',
                 'created_at' => '2018-08-28',
                 'updated_at' => '2018-08-28',
             ),
