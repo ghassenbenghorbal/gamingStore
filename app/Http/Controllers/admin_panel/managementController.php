@@ -47,7 +47,7 @@ class managementController extends Controller
          ->with('products',$product)
          ->with('sale',$res1)
          ->with('users',$users)
-         ->with('status',['Placed','On Process','Delivered','Cancel']);
+         ->with('status',['In Process','Delivered','Cancel']);
 
     }
     public function update(Request $r)

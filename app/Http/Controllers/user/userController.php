@@ -325,7 +325,7 @@ class userController extends Controller
                 $sales= new sale();
                 $sales->user_id=session('user')->id;
                 $sales->product_id=session('cart');
-                $sales->order_status='Placed';
+                $sales->order_status='In Progress';
                 $sales->price=session('price');
                
                 $sales->save();
