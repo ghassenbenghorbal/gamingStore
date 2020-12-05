@@ -26,34 +26,18 @@ class loginController extends Controller
     }
     public function adminPosted(AdminLoginVerifyRequest $request)
     {  
-        $admin = Admin::where('username',$request->Username)->first();
-        
-        if($admin==null)
+        $admin = Admin::where('username',$request->Username)->where('password',$request->Password)->first();
+        if($admin==null) // Wrong username or password
         {
             
-            $request->session()->flash('message', 'Invalid Username');
+            $request->session()->flash('message', 'Username or Password Incorrect');
             
             return redirect(route('admin.login'));
         }
-        
-        else
-        {
-            if($request->Password==$admin->password)
-            {
+        else{
                 session()->put('admin',$admin);
-                //$request->session()->put('username', $request->Username);
                 return redirect()->route('admin.dashboard');
-            }
-            
-            else if($request->Password!=$admin->password)
-            {
-                $request->session()->flash('message', 'Invalid Password');
-                return view('admin_panel.adminLogin');
-            }
         }
-        
-        
-        
     }
     
     public function userIndex()
