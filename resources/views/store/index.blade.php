@@ -25,7 +25,7 @@
                         <div class="col-md-3">
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="uploads/products/{{$product->id}}/{{$product->image_name}}" alt="">
+                                    <img src="uploads/products/{{$product->id}}/{{$product->image_name}}" width="95px" height="290px" alt="">
                                     <div class="product-label">
                                         <span class="sale">Offer!!</span>
                                     </div>

@@ -26,8 +26,8 @@ label.error {
             <!-- Product main img -->
             <div class="col-md-5 ">
                 <div id="product-main-img">
-                    <div class="product-preview">
-                        <img src="{{ asset('storage/' . $product->image)}}" alt="">
+                    <div>
+                        <img src="../uploads/products/{{$product->id}}/{{$product->image_name}}" alt="" width="430px" height="380px">
                     </div>
                 </div>
             </div>
