@@ -87,7 +87,7 @@ class productsController extends Controller
         $prdToUpdate->tag= $request->Tags;
         
         //NEW FILE UPLOADED
-        if($request->img!="")
+        if(!$request->img)
         {      
             $prdToUpdate->image = $request->Image->store('uploads', 'public');
         

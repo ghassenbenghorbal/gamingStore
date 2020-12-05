@@ -76,7 +76,7 @@ label.error {
                         <div  class="rTableRow" id="deleteItem_{{$c[3]}}">
                          
                             <div class="rTableCell"> {{--  <button type="button" id="delete_item"  value={{$c[3]}} name="delete_item"  class="delete_item">X</button> --}}<button id="delete_item" class="delete_item btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-trash"></i></button></div>
-							<div class="rTableCell"><img src="uploads/products/{{$p->id}}/{{$p->image_name}}" width="30px" height="30px"> {{$p->name}}</div>
+							<div class="rTableCell"><img src="{{asset('storage/' . $p->image)}}" width="30px" height="30px"> {{$p->name}}</div>
                             <div class="rTableCell"><div style="height:25px;display:inline-block;">{{$p->discount}} TND</div></div>
                             <div class="rTableCell">
                                 <button type="button" id="sub" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount}} class="sub">-</button>   
