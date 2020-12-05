@@ -92,7 +92,7 @@
                     <div class="col-md-3">
                         <div class="header-logo">
                             <a href="{{route('user.home')}}" class="logo">
-                                <img src="{{asset('img/logo.png')}}" alt="">
+                                <img src="{{asset('img/logo.png')}}" alt="" height="70" width="220">
                             </a>
                         </div>
                     </div>
