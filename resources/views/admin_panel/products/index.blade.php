@@ -1,6 +1,16 @@
 @extends('admin_panel.adminLayout') @section('content')
 <div class="content-wrapper">
     <div class="row">
+        @php
+         function shortOf($text, $length)
+            {
+                if(strlen($text) > $length) {
+                    $text = substr($text, 0, strpos($text, ' ', $length));
+                }
+
+                return $text;
+            }   
+        @endphp
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -49,7 +59,7 @@
                                         {{$prd->price}}
                                     </td>
                                     <td>
-                                        {{$prd->description}}
+                                        {{shortOf($prd->description, 40)}}...
                                     </td>
                                     <td>
                                         {{$prd->category->name}}

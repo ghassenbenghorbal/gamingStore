@@ -88,7 +88,7 @@
                                         {{$cat->created_at}}
                                     </td>
                                     <td>
-                                        {{$cat->updated_at}}
+                                        {{$cat->updated_at != null ? $cat->updated_at : "-"}}
                                     </td>
                                     <td>
                                         <a href="{{route('admin.categories.edit', ['id' => $cat->id])}}" class="btn btn-warning">Edit</a>

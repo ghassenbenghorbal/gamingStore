@@ -63,6 +63,7 @@ label.error {
                     @if($all != null)
                     <div class="rTable">
                         <div class="rTableRow">
+                            {{-- TODO change to bootstrap table --}}
                             <div class="rTableHead"><strong>Delete</strong></div>
                             <div class="rTableHead"><strong>PRODUCT</strong></div>
                             <div class="rTableHead"><strong>PRICE</strong></div>
@@ -75,7 +76,7 @@ label.error {
 					@if($c[0]==$p->id)
                         <div  class="rTableRow" id="deleteItem_{{$c[3]}}">
                          
-                            <div class="rTableCell"> {{--  <button type="button" id="delete_item"  value={{$c[3]}} name="delete_item"  class="delete_item">X</button> --}}<button id="delete_item" class="delete_item btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-trash"></i></button></div>
+                            <div class="rTableCell"> <button id="delete_item" class="delete_item btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-trash"></i></button></div>
 							<div class="rTableCell"><img src="{{asset('storage/' . $p->image)}}" width="30px" height="30px"> {{$p->name}}</div>
                             <div class="rTableCell"><div style="height:25px;display:inline-block;">{{$p->discount}} TND</div></div>
                             <div class="rTableCell">

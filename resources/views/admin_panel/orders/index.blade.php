@@ -85,7 +85,7 @@
                                             <input type="hidden" value="{{$s->id}}" name="orderId">
                                             <select name="stat">
                                                 @foreach($status as $x)
-                                                @if($s->    !=$x)
+                                                @if($s->order_status !=$x)
                                                 <option value="{{$x}}">{{$x}}</option>
 
                                                 @endif
