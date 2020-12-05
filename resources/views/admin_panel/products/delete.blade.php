@@ -27,7 +27,7 @@
                                             <textarea type="textarea" class="form-control" name="Description" disabled>{{$product->description}}</textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Large select</label>
+                                            <label for="exampleFormControlSelect1">Category</label>
                                             <select class="form-control form-control-md" id="exampleFormControlSelect1" name="Category" disabled>
                                                 <option>{{$product->category->name}}</option>
                                             </select>
@@ -39,15 +39,6 @@
                                         <div class="form-group">
                                             <label >Product Discounted Price</label>
                                             <input type="text" class="form-control"  name="Discounted_Price" value="{{$product->discount}}" disabled>
-                                        </div>
-                                        
-                                        <div class="form-group ">
-                                            <label >Product Colors</label>
-                                            <br>
-                                            <div id="colors" style="border:1px solid #eee"> 
-                                            </div>  
-                                            <br>            
-                                            <input type="text" class="form-control" id="color_list" name="Colors" value="{{$product->colors}}" hidden>
                                         </div>
                                         
                                         <div class="form-group">
