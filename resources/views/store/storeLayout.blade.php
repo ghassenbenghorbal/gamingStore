@@ -63,9 +63,9 @@
         <div id="top-header">
             <div class="container">
                 <ul id="head_links" class="header-links pull-left">
-                    <li><a href="#"><i class="fa fa-phone"></i> +000-00-00-00</a></li>
+                    <li><a href="#"><i class="fa fa-phone"></i> +216 20 000 000</a></li>
                     <li><a href="#"><i class="fa fa-envelope-o"></i> support@Gkeys.com</a></li>
-                    <li><a href="#"><i class="fa fa-map-marker"></i> Banani, Road 11</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker"></i> Radès, Ben Arous</a></li>
                 </ul>
                 <ul class="header-links pull-right">
                     @if(session()->has('user'))
@@ -267,9 +267,9 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut.</p>
                             <ul class="footer-links">
-                                <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                                <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+                                <li><a href="#"><i class="fa fa-map-marker"></i>2040 Radès, Ben Arous</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>+216 20 000 000</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>support@Gkeys.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -278,11 +278,11 @@
                         <div class="footer">
                             <h3 class="footer-title">Categories</h3>
                             <ul class="footer-links">
-                                <li><a href="#">Hot deals</a></li>
-                                <li><a href="#">Laptops</a></li>
-                                <li><a href="#">Smartphones</a></li>
-                                <li><a href="#">Cameras</a></li>
-                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">RPG Games</a></li>
+                                <li><a href="#">Action Games</a></li>
+                                <li><a href="#">Arcade Games</a></li>
+                                <li><a href="#">Adventure Games</a></li>
+                                <li><a href="#">Racing Games</a></li>
                             </ul>
                         </div>
                     </div>
