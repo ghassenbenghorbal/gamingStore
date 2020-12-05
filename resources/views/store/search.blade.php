@@ -12,18 +12,20 @@
                 <div class="row">
                     @foreach($products as $product)
                     <!-- product -->
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-3">
                         <div class="product">
                             <div class="product-img">
                                 <img src="{{asset('storage/' . $product->image)}}" width="95px" height="290px" alt="">
                                 <div class="product-label">
-                                    <span class="sale">offer</span>
                                     <span class="new">{{$product->tag}}</span>
                                 </div>
                             </div>
                             <div class="product-body">
                                 <h3 class="product-name"><a href="product/{{$product->id}}">{{$product->name}}</a></h3>
-                                <h4 class="product-price">TND {{$product->discount}} <del class="product-old-price">TND {{$product->price}}</del></h4>
+                                <h4 class="product-price">TND {{$product->discount != null ? $product->discount: $product->price}} @if ( $product->discount != null)
+                                    <del class="product-old-price">TND {{$product->price}}</del>
+                                @endif
+                                </h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>

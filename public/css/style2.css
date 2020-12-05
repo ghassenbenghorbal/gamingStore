@@ -1051,7 +1051,7 @@ textarea.input {
 .product .add-to-cart .add-to-cart-btn>i {
   position: absolute;
   left: 0;
-  top: 0;
+  top: -10px;
   width: 40px;
   height: 40px;
   line-height: 38px;

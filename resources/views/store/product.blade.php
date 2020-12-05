@@ -24,10 +24,10 @@ label.error {
         <!-- row -->
         <div class="row">
             <!-- Product main img -->
-            <div class="col-md-5 ">
+            <div class="col-md-4 ">
                 <div id="product-main-img">
                     <div>
-                        <img src="{{asset('storage/' . $product->image)}}" alt="" width="430px" height="380px">
+                        <img src="{{asset('storage/' . $product->image)}}" alt="" width="330px" height="380px">
                     </div>
                 </div>
             </div>
