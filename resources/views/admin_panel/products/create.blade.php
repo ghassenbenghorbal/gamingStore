@@ -59,7 +59,7 @@
                                             <input type="text" class="form-control" name="Price" id="Price" value="">
                                         </div>
                                         <div class="form-group">
-                                            <label  >Product Discounted Price<span style="color: red">*</span></label>
+                                            <label> Price After Discount<small> (Optional)</small></label>
                                             <input type="text" class="form-control" id="Discounted_Price"  name="Discounted_Price" value="">
                                         </div>
                                         
@@ -177,7 +177,7 @@
 					number: true
 				},
                 Discounted_Price: {
-					required: true,
+					required: false,
 					number: true
 				},
                 Tags: "required"
@@ -190,17 +190,16 @@
 			},
 			messages: {
 				
-				Name: "No Name is Entered",
-                inp_files:  "ERRRERRR",
-                Description: "No Description is Entered",
-                Category: "No Category is Selected",
+				Name: "Name is required",
+                inp_files:  "Image required",
+                Description: "Description is required",
+                Category: "Select a category",
                 
 				Price: {
-					required: "No Price is Entered",
+					required: "Enter a price",
 					number: "Invalid Price"
 				},
                 Discounted_Price: {
-					required: "No Price is Entered",
 					number: "Invalid Price"
 				},
                 Tags: "No Tags is Selected",
