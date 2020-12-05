@@ -79,7 +79,7 @@ class loginController extends Controller
 
         if($user==null)
         {
-            $request->session()->flash('message', 'Invalid User');
+            $request->session()->flash('message', 'Email or password incorrect!');
     		
             return redirect()->route('user.login');
         }
