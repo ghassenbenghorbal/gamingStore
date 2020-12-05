@@ -63,11 +63,11 @@ label.error {
                     @if($all != null)
                     <div class="rTable">
                         <div class="rTableRow">
-                            <div class="rTableHead"><strong>REMOVE</strong></div>
+                            <div class="rTableHead"><strong>Delete</strong></div>
                             <div class="rTableHead"><strong>PRODUCT</strong></div>
-                            <div class="rTableHead"><strong>QUANTITY</strong></div>
-                            <div class="rTableHead"><strong>COLOR</strong></div>
                             <div class="rTableHead"><strong>PRICE</strong></div>
+                            <div class="rTableHead"><strong>QUANTITY</strong></div>
+                            <div class="rTableHead"><strong>Subtotal</strong></div>
 
                         </div>
 					@foreach($all as $c)
@@ -75,26 +75,21 @@ label.error {
 					@if($c[0]==$p->id)
                         <div  class="rTableRow" id="deleteItem_{{$c[3]}}">
                          
-                          <div class="rTableCell">  <button type="button" id="delete_item"  value={{$c[3]}} name="delete_item"  class="delete_item">X</button></div>
-							<div class="rTableCell"><img src="uploads/products/{{$p->id}}/{{$p->image_name}}" height="50px" width="50px"> {{$p->name}}</div>
-                            
-                            <!--quantity-->
-                                                                <!--c[1] is pid and c[3] is order serial-->
+                            <div class="rTableCell"> {{--  <button type="button" id="delete_item"  value={{$c[3]}} name="delete_item"  class="delete_item">X</button> --}}<button id="delete_item" class="delete_item btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-trash"></i></button></div>
+							<div class="rTableCell"><img src="uploads/products/{{$p->id}}/{{$p->image_name}}" width="30px" height="30px"> {{$p->name}}</div>
+                            <div class="rTableCell"><div style="height:25px;display:inline-block;">{{$p->discount}} TND</div></div>
                             <div class="rTableCell">
-                           <button type="button" id="sub" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount}} class="sub">-</button>   
-                        <input type="number"  id="quantity" style="width:15%" name={{$p->id}} value={{$c[1]}} min="1" max="100" readonly/>
-                        <button type="button" id="add" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount}}  class="add">+</button></div>
-                            
-<!--                            -->
-							<div class="rTableCell"><div style="height:25px;width:25px;display:inline-block;background-color: {{$c[2]}}"></div></div>
-							
+                                <button type="button" id="sub" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount}} class="sub">-</button>   
+                                <input type="number"  id="quantity" style="width:30%" name={{$p->id}} value={{$c[1]}} min="1" max="100" readonly/>
+                                <button type="button" id="add" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount}}  class="add">+</button>
+                            </div>
 							<div class="rTableCell"><div id="individualPrice_{{$c[3]}}">
                                 @php
                                 $tot =$p->discount* $c[1];
                                 echo $tot;
                                 @endphp
                                 
-                                TK</div></div>
+                                TND</div></div>
                                 
 						</div>
                         
@@ -104,13 +99,10 @@ label.error {
 					@endforeach 
                     
                     </div>
-                    <div class="order-col">
-                        <div>Shiping</div>
-                        <div><strong>FREE</strong></div>
-                    </div>
+                    
                     <div class="order-col">
                         <div><strong>TOTAL</strong></div>
-                        <div ><strong class="order-total" id="totalCost">{{Session::get('price')}} TK</strong></div>
+                        <div ><strong class="order-total" id="totalCost">{{Session::get('price')}} TND</strong></div>
                     </div>
                     @else
                     <div class="order-col">
@@ -133,10 +125,10 @@ label.error {
                 </div>
                 @if(session('user'))
                     @if($all != null)
-                   <center> <form method="post" name="cart">
+                   <form method="post" name="cart">
                         {{csrf_field()}}
                         <input type="submit" id="confirm_order"  name="order" class="primary-btn order-submit" value="Confirm order">
-                    </form></center>
+                    </form>
 
                     @else
                         <a href="{{route('user.home')}}"><input type="button"  class="primary-btn order-submit" value="Order Now"></a>
@@ -226,8 +218,8 @@ label.error {
             data:{pid: product_id, newQ:x, oSerial:order_serial, _token: token},
             success:function(msg)
             {
-                document.getElementById("individualPrice_"+order_serial).innerHTML=x*product_price+" TK";
-                document.getElementById("totalCost").innerHTML = msg[2]+" TK";
+                document.getElementById("individualPrice_"+order_serial).innerHTML=x*product_price+" TND";
+                document.getElementById("totalCost").innerHTML = msg[2]+" TND";
             }
             });
         
@@ -254,8 +246,8 @@ label.error {
             data:{pid: product_id, newQ:x, oSerial:order_serial, _token: token},
             success:function(msg)
             {
-                document.getElementById("individualPrice_"+order_serial).innerHTML=x*product_price+" TK";
-                document.getElementById("totalCost").innerHTML = msg[2]+" TK";
+                document.getElementById("individualPrice_"+order_serial).innerHTML=x*product_price+" TND";
+                document.getElementById("totalCost").innerHTML = msg[2]+" TND";
 
             }
             });
