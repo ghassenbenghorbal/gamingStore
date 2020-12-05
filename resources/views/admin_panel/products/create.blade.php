@@ -21,9 +21,10 @@
                                     <br>
                                     <br>
                                     <h4 >Create product</h4>
+                                    <br>
                                     @if($errors->any())
 
-
+                                    <ul>
                                         <div class="alert alert-danger" role="alert">
                                             @foreach($errors->all() as $err)
                                             <tr>
@@ -33,6 +34,7 @@
                                             </tr>
                                             @endforeach
                                     @endif
+                                    </ul>
                                     <form class="forms-sample" method="post"  id="product_form" enctype="multipart/form-data">
                                         {{csrf_field()}}
                                        
