@@ -94,27 +94,7 @@ label.error {
 <script>
 	
     //////////////////////////////////////
-    $(document).ready(function() {
-		
-		$("#order_form").validate({
-			
-            submitHandler: function (form) {
-            if($('input[name=color]:checked').val()==undefined)
-            {
-                
-            document.getElementById("for_error").innerHTML = "<label class='error' style=' '>Invalid Variation Input</label>";
-
-            }
-                else
-                    {
-                        return true;
-                    }
-                
-         }
-		});
-
-		
-	});
+    
 	
     $('.add').click(function () {
         
