@@ -18,6 +18,21 @@
                                     <br>
                                     <h4 class="card-title">Edit product</h4>
                                     <br>
+                                    @if($errors->any())
+
+
+                                    <ul>
+                                        <div class="alert alert-danger" role="alert">
+                                        @foreach($errors->all() as $err)
+                                        <tr>
+                                            <td>
+                                                {{$err}}
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </div>
+                                    </ul>
+                                    @endif
                                     <img id="imageHolder" src="{{asset('storage/' . $product->image)}}" alt="add image" height="300" width="300"/>
                                     <br>
                                     <br>
@@ -55,19 +70,7 @@
                                         </div>
                                         <input type="submit" name="saveButton" class="btn btn-success mr-2" id="updateButton" value="UPDATE" />
                                     </form>
-                                    @if($errors->any())
-
-
-                                    <ul>
-                                        @foreach($errors->all() as $err)
-                                        <tr>
-                                            <td>
-                                                <li>{{$err}}</li>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </ul>
-                                    @endif
+                                    
                         </div>
                     </div>
                 </div>

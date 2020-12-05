@@ -21,6 +21,18 @@
                                     <br>
                                     <br>
                                     <h4 >Create product</h4>
+                                    @if($errors->any())
+
+
+                                        <div class="alert alert-danger" role="alert">
+                                            @foreach($errors->all() as $err)
+                                            <tr>
+                                                <td>
+                                                    {{$err}}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                    @endif
                                     <form class="forms-sample" method="post"  id="product_form" enctype="multipart/form-data">
                                         {{csrf_field()}}
                                        
@@ -61,19 +73,7 @@
                                         </div>
                                         <input type="submit" name="saveButton" class="btn btn-success mr-2" id="saveButton" value="Create"  />
                                     </form>
-                                    @if($errors->any())
-
-
-                                    <ul>
-                                        @foreach($errors->all() as $err)
-                                        <tr>
-                                            <td>
-                                                <li>{{$err}}</li>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </ul>
-                                    @endif
+                                    
                         </div>
                     </div>
                 </div>
