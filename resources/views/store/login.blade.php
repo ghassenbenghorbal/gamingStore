@@ -24,6 +24,14 @@ label.error {
                     <div class="section-title">
                         <h3 class="title">User Login</h3>
                     </div>
+                    @if(session('message'))
+                
+                <div class="alert alert-danger" role="alert">
+                    {{session('message')}}
+                </div>
+                
+		         
+                @endif 
                     <div class="form-group">
                         <input class="input" type="email" name="email" id="email" placeholder="Email" value="john@examle.com">
                     </div>
@@ -33,20 +41,7 @@ label.error {
                         <input type="submit"  name="signin" class="primary-btn order-submit" value="Sign In">
                 </form>
                
-                @if(session('message'))
-                
-                
-                <tr>
-                    <td>
-                        <li> {{session('message')}}</li>
-                    </td>
-                </tr>
-                
-                
-                
-                
-		         
-                @endif   
+                  
                 
                 @if($errors->any())
 
