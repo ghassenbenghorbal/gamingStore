@@ -33,10 +33,10 @@ label.error {
 		         
                 @endif 
                     <div class="form-group">
-                        <input class="input" type="email" name="email" id="email" placeholder="Email" value="john@examle.com">
+                        <input class="input" type="email" name="email" id="email" placeholder="Email">
                     </div>
                     <div class="form-group">
-                        <input class="input" type="password" name="pass" id="pass" placeholder="Password" value="12345">
+                        <input class="input" type="password" name="pass" id="pass" placeholder="Password">
                     </div>
                         <input type="submit"  name="signin" class="primary-btn order-submit" value="Sign In">
                 </form>

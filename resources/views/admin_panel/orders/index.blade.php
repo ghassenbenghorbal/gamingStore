@@ -26,7 +26,7 @@
                                         Quantity
                                     </th>
                                     <th>
-                                        Color
+                                        Plateform
                                     </th>
                                     <th>
                                         Placed at
@@ -70,7 +70,7 @@
                                         {{$c[2]}}
                                     </td>
                                     <td>
-                                        <div style="height:25px;width:25px;margin:5px;display:inline-block;background-color: {{$c[3]}}"></div>
+                                    <div style="height:25px;width:25px;margin:5px;display:inline-block;">{{$p->category->name}}</div>
                                     </td>
                                     
                                     <td>
