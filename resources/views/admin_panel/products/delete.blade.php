@@ -11,8 +11,20 @@
                                 < Back to List</a>
                                     <br>
                                     <br>
-                                    <h4 class="card-title">Edit product</h4>
+                                    <h4 class="card-title">Delete product</h4>
                                     <br>
+                                    @if($errors->any())
+
+
+                                        <div class="alert alert-danger" role="alert">
+                                            @foreach($errors->all() as $err)
+                                            <tr>
+                                                <td>
+                                                    {{$err}}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                    @endif
                                     <img id="imageHolder" src="{{asset('storage/' . $product->image)}}" alt="add image" height="300" width="300"
                                     />
                                     <form class="forms-sample" method="post" enctype="multipart/form-data">
@@ -47,19 +59,7 @@
                                         </div>
                                         <input type="submit" name="saveButton" class="btn btn-danger mr-2" id="updateButton" value="Delete" />
                                     </form>
-                                    @if($errors->any())
-
-
-                                    <ul>
-                                        @foreach($errors->all() as $err)
-                                        <tr>
-                                            <td>
-                                                <li>{{$err}}</li>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </ul>
-                                    @endif
+                                    
                         </div>
                     </div>
                 </div>

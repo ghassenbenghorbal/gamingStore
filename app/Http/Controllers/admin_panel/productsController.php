@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductVerifyRequest;
 use App\Http\Requests\ProductEditVerifyRequest;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use App\Product;
 use App\Category;
@@ -87,12 +87,15 @@ class productsController extends Controller
         $prdToUpdate->tag= $request->Tags;
         
         //NEW FILE UPLOADED
-        if(!$request->img)
-        {      
+        if(!$request->image)
+        {   
+            $image_path = "storage/".$prdToUpdate->image;  // Value is not URL but directory file path
+            if(File::exists($image_path)) {
+                File::delete($image_path);
+            }
             $prdToUpdate->image = $request->Image->store('uploads', 'public');
         
             $prdToUpdate->save();
-            
             return redirect()->route('admin.products');
             
         }
@@ -126,21 +129,25 @@ class productsController extends Controller
         
         //deleting image folder
         try{
-            $src='uploads/products/'.$prdToDelete->id.'/';
-            $dir = opendir($src);
-            while(false !== ( $file = readdir($dir)) ) {
-            if (( $file != '.' ) && ( $file != '..' )) {
-                $full = $src . '/' . $file;
-                if ( is_dir($full) ) {
-                    rrmdir($full);
-                }
-                else {
-                    unlink($full);
-                }
-                }
+            // $src='uploads/products/'.$prdToDelete->id.'/';
+            // $dir = opendir($src);
+            // while(false !== ( $file = readdir($dir)) ) {
+            // if (( $file != '.' ) && ( $file != '..' )) {
+            //     $full = $src . '/' . $file;
+            //     if ( is_dir($full) ) {
+            //         rrmdir($full);
+            //     }
+            //     else {
+            //         unlink($full);
+            //     }
+            //     }
+            // }
+            // closedir($dir);
+            // rmdir($src);
+            $image_path = "storage/".$prdToDelete->image;  // Value is not URL but directory file path
+            if(File::exists($image_path)) {
+                File::delete($image_path);
             }
-            closedir($dir);
-            rmdir($src);
         }
         catch(\Exception $e){
 
