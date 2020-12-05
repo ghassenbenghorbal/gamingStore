@@ -13,7 +13,7 @@
                                     <br>
                                     <h4 class="card-title">Edit product</h4>
                                     <br>
-                                    <img id="imageHolder" src="../../../uploads/products/{{$product->id}}/{{$product->image_name}}" alt="add image" height="300" width="300"
+                                    <img id="imageHolder" src="{{asset('storage/' . $product->image)}}" alt="add image" height="300" width="300"
                                     />
                                     <form class="forms-sample" method="post" enctype="multipart/form-data">
                                         {{csrf_field()}}

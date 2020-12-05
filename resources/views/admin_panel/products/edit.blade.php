@@ -18,14 +18,11 @@
                                     <br>
                                     <h4 class="card-title">Edit product</h4>
                                     <br>
-                                    <img id="imageHolder" src="../../../uploads/products/{{$product->id}}/{{$product->image_name}}" alt="add image" height="300" width="300"/>
+                                    <img id="imageHolder" src="{{asset('storage/' . $product->image)}}" alt="add image" height="300" width="300"/>
                                     <br>
-                                     <input  type="file" name="inp_files" id="inp_files" multiple="multiple" >
                                     <br>
                                     <form class="forms-sample" method="post" enctype="multipart/form-data">
                                         {{csrf_field()}}
-                                        
-                                       <input id="inp_img" name="img" type="hidden" value="">
                                         <div class="form-group">
                                             <label >Product Name</label>
                                             <input type="text" class="form-control" id="exampleInputEmail1" name="Name" value="{{$product->name}}">
@@ -52,6 +49,9 @@
                                         <div class="form-group">
                                             <label >Product Tags</label>
                                             <input type="text" class="form-control" id="exampleInputEmail1" name="Tags" value="{{$product->tag}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" name="Image" type="file">
                                         </div>
                                         <input type="submit" name="saveButton" class="btn btn-success mr-2" id="updateButton" value="UPDATE" />
                                     </form>
