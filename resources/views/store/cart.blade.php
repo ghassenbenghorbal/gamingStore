@@ -62,9 +62,9 @@ label.error {
                    
                     @if($all != null)
                     <table class="table table-hover">
-                        <thead class="thead-dark">
+                        <thead style="background-color:rgb(214, 214, 214);">
                         <tr>
-                            <th scope="col">Delete</th>
+                            <th scope="col"></th>
                             <th scope="col">Platform</th>
                             <th scope="col">PRODUCT</th>
                             <th scope="col">PRICE</th>
