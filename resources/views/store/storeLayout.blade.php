@@ -173,44 +173,6 @@
     </nav>
     <!-- /NAVIGATION -->
 
-    <!-- SECTION -->
-    <div class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            @if(Route::is('user.home'))
-            <div class="row">
-                <!-- shop -->
-                @php
-                $counter=0;
-                @endphp
-                @foreach($cat as $c)
-                 @php
-                $counter++;
-                if($counter==4)
-                break;
-               
-                @endphp
-                <div class="col-md-4 col-xs-6">
-                    <div class="shop">
-                        <div class="shop-img">
-                            <img src="./img/shop0{{$index++}}.png" alt="">
-                        </div>
-                        <div class="shop-body">
-                            <h3>{{$c->name}}</h3>
-                            <a href="search?c={{$c->id}}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /shop -->
-                @endforeach
-            </div>
-            @endif
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- SECTION -->
 
 
     @yield('content')
