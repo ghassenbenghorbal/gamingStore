@@ -35,9 +35,9 @@
                                         Status
                                     </th>
 
-                                    <th>
+                                    {{-- <th>
                                         Update
-                                    </th>
+                                    </th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,7 +79,7 @@
                                     <td>
                                     {{$s->order_status}}
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <form method="post" style="display:inline-block">
                                             {{csrf_field()}}
                                             <input type="hidden" value="{{$s->id}}" name="orderId">
@@ -94,7 +94,7 @@
                                             </select>
                                             <input type="submit" class="btn btn-sm btn-warning" value="Update">
                                         </form>
-                                    </td>
+                                    </td> --}}
                                     @break
                                     @endif
 
