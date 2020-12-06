@@ -6,7 +6,7 @@
 		@if($c[0]==$s->id)
 		    @foreach($products as $p)
 		    	@if($c[1]==$p->id)
-					<img src="/uploads/products/{{$p->id}}/{{$p->image_name}}" height="50px" width="50px">
+					<img src="{{asset('storage/' . $p->image)}}" height="50px" width="50px">
 					{{$p->name}}
 					@break
 		    	@endif

@@ -61,31 +61,34 @@ label.error {
                    
                    
                     @if($all != null)
-                    <div class="rTable">
-                        <div class="rTableRow">
-                            {{-- TODO change to bootstrap table --}}
-                            <div class="rTableHead"><strong>Delete</strong></div>
-                            <div class="rTableHead"><strong>PRODUCT</strong></div>
-                            <div class="rTableHead"><strong>PRICE</strong></div>
-                            <div class="rTableHead"><strong>QUANTITY</strong></div>
-                            <div class="rTableHead"><strong>Subtotal</strong></div>
-
-                        </div>
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Delete</th>
+                            <th scope="col">Platform</th>
+                            <th scope="col">PRODUCT</th>
+                            <th scope="col">PRICE</th>
+                            <th scope="col">QUANTITY</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 					@foreach($all as $c)
                     @php
                         $p = App\Product::find($c[0]); // getting product by id   
                     @endphp
-                        <div  class="rTableRow" id="deleteItem_{{$c[3]}}">
+                        <tr id="deleteItem_{{$c[3]}}">
                          
-                            <div class="rTableCell"> <button id="delete_item" class="delete_item btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-trash"></i></button></div>
-							<div class="rTableCell"><a class="add-to-cart-btn" href="{{route('user.view',['id'=>$p->id])}}"><img src="{{asset('storage/' . $p->image)}}" width="30px" height="30px"> <b>{{$p->name}}</b></a></div>
-                            <div class="rTableCell"><div style="height:30px;display:inline-block;"><b>{{$p->discount != null ? $p->discount : $p->price}} TND</b></div></div>
-                            <div class="rTableCell">
+                            <td> <button id="delete_item" class="delete_item btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-trash"></i></button></td>
+                            <td><b>{{$p->category->name}}</b></td>
+                            <td><a class="add-to-cart-btn" href="{{route('user.view',['id'=>$p->id])}}"><img src="{{asset('storage/' . $p->image)}}" width="30px" height="30px"> <b>{{$p->name}}</b></a></td>
+                            <td><div style="height:30px;display:inline-block;"><b>{{$p->discount != null ? $p->discount : $p->price}} TND</b></div></td>
+                            <td>
                                 <button type="button" id="sub" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount != null ? $p->discount : $p->price}} class="sub">-</button>   
                                 <input type="number"  id="quantity" style="width:30%" name={{$p->id}} value={{$c[1]}} min="1" max="100" readonly/>
                                 <button type="button" id="add" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount != null ? $p->discount : $p->price}}  class="add">+</button>
-                            </div>
-                            <div class="rTableCell"><div id="individualPrice_{{$c[3]}}">
+                            </td>
+                            <td><div id="individualPrice_{{$c[3]}}">
                                 
                                 <b>@php
                                 if($p->discount != null)
@@ -96,13 +99,13 @@ label.error {
                                 @endphp
 
                                 TND</b>
-                            </div></div>
+                                </div>
+                            </td>
                                 
-						</div>
-                        <br>
+						</tr>
 					@endforeach 
-                    
-                    </div>
+                    </tbody>
+                    </table>
                     <hr>
                     <div class="order-col text-right">
                         <strong class="">Total price : </strong>

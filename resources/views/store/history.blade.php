@@ -25,7 +25,7 @@
                                 @if($c[1]==$p->id)
                                 <tr>
                                 <td>{{$s->id}}</td>
-                                <td><img src="uploads/products/{{$p->id}}/{{$p->image_name}}" height="50px" width="50px"></td>
+                                <td><img src="{{asset('storage/' . $p->image)}}" height="50px" width="50px"></td>
                                 <td>{{$p->name}}</td>
                                 <td>{{$c[2]}}</td>
                                 <td><div style="height:25px;width:25px;margin:5px;display:inline-block;background-color: {{$c[3]}}"></div></td>      
