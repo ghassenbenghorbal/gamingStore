@@ -43,7 +43,8 @@ class productsController extends Controller
             $prd->description = $request->Description;
             $prd->category_id = $request->Category;
             $prd->price = $request->Price;
-            $prd->discount = $request->Discounted_Price;
+            if($request->Discounted_Price != null)
+                $prd->discount = $request->Discounted_Price;
             $prd->tag = $request->Tags;
             $prd->save();
         return redirect()->route('admin.products');
@@ -78,7 +79,8 @@ class productsController extends Controller
         $prdToUpdate->name = $request->Name;
         $prdToUpdate->description = $request->Description;
         $prdToUpdate->price = $request->Price;
-        $prdToUpdate->discount= $request->Discounted_Price;
+        if($request->Discounted_Price != null)
+            $prdToUpdate->discount= $request->Discounted_Price;
         $prdToUpdate->category_id = $request->Category;
   
         $prdToUpdate->tag= $request->Tags;
@@ -156,9 +158,6 @@ class productsController extends Controller
         $prdToDelete->delete();
         
         return redirect()->route('admin.products'); 
-    }
-    public function getProductById($id){
-        
     }
 
     

@@ -27,7 +27,7 @@ class ProductEditVerifyRequest extends FormRequest
             'Name' => 'required|max:50',
             'Description' => 'required',
             'Price' => 'required|numeric',
-            'Discounted_Price' => 'required|numeric',
+            'Discounted_Price' => 'nullable|numeric',
             'Tags' => 'required',
             'Image' => 'required|image'
         ];

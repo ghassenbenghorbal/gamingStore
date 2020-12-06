@@ -33,8 +33,9 @@
                                 <div class="product-body">
                                     <p class="product-category">{{$product->category->name}}</p>
                                     <h3 class="product-name"><a href="{{route('user.view',['id'=>$product->id])}}">{{$product->name}}</a></h3>
-                                    <h4 class="product-price">TND {{$product->discount != null ? $product->discount : $product->price}} @if ($product->discount != null)
-                                        <del class="product-old-price">TND {{$product->price}}</del>
+                                    <h4 class="product-price">{{$product->discount != null ? $product->discount : $product->price}} TND
+                                         @if ($product->discount != null)
+                                        <del class="product-old-price"> {{$product->price}} TND</del>
                                     @endif</h4>
                                     <div class="product-rating">
                                     </div>
