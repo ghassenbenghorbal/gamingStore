@@ -60,6 +60,8 @@ Route::post('/check_email', 'signupController@emailCheck')->name('user.signup.ch
 
 
 //user
+Route::get('/settings', 'user\userController@settings')->name('user.settings');
+
 Route::get('/', 'user\userController@index')->name('user.home');
 Route::get('/product/{id}', 'user\userController@view')->name('user.product');
 

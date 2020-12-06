@@ -411,5 +411,39 @@ class userController extends Controller
          ->with('prods',$product)
          ->with('sale',$res1);
     }
+
+    public function settings(Request $r){
+        $res1= sale::where('user_id', session('user')->id)->get();
+        if(!$res1)
+        {
+            return view('user.orderHistory')->with('all',[])
+                 ->with('products',[])
+                 ->with('sale',[]);
+        }
+        
+        $cart=[];
+        $product=[];
+        $id=[];
+        foreach($res1 as $r )
+        {
+             $totalCart = explode(',',$r->product_id);
+             foreach($totalCart as $c)
+             {
+                $cart[]=array_prepend(explode(':',$c), $r->id);
+                $a=explode(':',$c);
+                $res = Product::find($a[0]);
+                $product[]=$res;
+             }
+        }
+        $res = Product::all();
+        $cat = Category::all();
+          //dd($cart); 
+         return view('store.userSettings')
+         ->with('products', $res)
+         ->with("cat", $cat)
+         ->with('all',$cart)
+         ->with('prods',$product)
+         ->with('sale',$res1);
+    }
     
 }
