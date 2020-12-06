@@ -63,7 +63,7 @@ class loginController extends Controller
 
     }
 
-    public function userPosted(UserLoginVerifyRequest $request)
+    public function userLogin(UserLoginVerifyRequest $request)
     {
         $user = User::where('email',$request->email)
         ->where('password',$request->pass)
@@ -78,6 +78,9 @@ class loginController extends Controller
         else
         {
             $request->session()->put('user', $user);
+            if(isset($_GET["checkout"])){
+                return redirect()->route('user.cart');
+            }
             return redirect()->route('user.home');
         }
     }

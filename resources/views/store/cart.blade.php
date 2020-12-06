@@ -142,7 +142,7 @@ label.error {
                 <br>
                 @if($all != null)
                 <div class="order-col">
-                    <a class="text-center" href="{{route('user.login')}}"><input type="button"  class="primary-btn" value="PROCEED TO CHCKOUT"></a>
+                    <a class="text-center" href="{{route('user.login')}}?checkout=1"><input type="button"  class="primary-btn" value="PROCEED TO CHCKOUT"></a>
                 </div>  
                 @endif                
                 @endif

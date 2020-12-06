@@ -51,17 +51,15 @@ Route::group(['middleware' => 'admin'], function(){
 });
 
 Route::get('/login', 'loginController@userIndex')->name('user.login');
-Route::post('/login', 'loginController@userPosted');
+Route::post('/login', 'loginController@userLogin');
 
 //signup
 Route::get('/signup', 'signupController@userIndex')->name('user.signup');
-Route::post('/signup', 'signupController@userPosted');
+Route::post('/signup', 'signupController@userSignUp');
 Route::post('/check_email', 'signupController@emailCheck')->name('user.signup.check_email');
 
 
 //user
-Route::get('/settings', 'user\userController@settings')->name('user.settings');
-
 Route::get('/', 'user\userController@index')->name('user.home');
 Route::get('/product/{id}', 'user\userController@view')->name('user.product');
 

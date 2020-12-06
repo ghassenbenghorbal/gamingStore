@@ -32,13 +32,8 @@ class signupController extends Controller
         ->with("cat", $cat);
     }
     
-    public function userPosted(Request $r)
+    public function userSignUp(Request $r)
     {
-        
-        
-
-        
-            
             $validatedData = $r->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
