@@ -47,7 +47,7 @@ label.error {
 <!-- SECTION -->
 <div class="section">
     <!-- container -->
-    <div class="container">
+        <div class="container">
         <!-- row -->
         
 
@@ -72,121 +72,82 @@ label.error {
 
                         </div>
 					@foreach($all as $c)
-					@foreach($prod as $p)
-					@if($c[0]==$p->id)
+                    @php
+                        $p = App\Product::find($c[0]); // getting product by id   
+                    @endphp
                         <div  class="rTableRow" id="deleteItem_{{$c[3]}}">
                          
                             <div class="rTableCell"> <button id="delete_item" class="delete_item btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-trash"></i></button></div>
-							<div class="rTableCell"><img src="{{asset('storage/' . $p->image)}}" width="30px" height="30px"> {{$p->name}}</div>
-                            <div class="rTableCell"><div style="height:25px;display:inline-block;">{{$p->discount}} TND</div></div>
+							<div class="rTableCell"><a class="add-to-cart-btn" href="{{route('user.view',['id'=>$p->id])}}"><img src="{{asset('storage/' . $p->image)}}" width="30px" height="30px"> <b>{{$p->name}}</b></a></div>
+                            <div class="rTableCell"><div style="height:30px;display:inline-block;"><b>{{$p->discount != null ? $p->discount : $p->price}} TND</b></div></div>
                             <div class="rTableCell">
-                                <button type="button" id="sub" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount}} class="sub">-</button>   
+                                <button type="button" id="sub" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount != null ? $p->discount : $p->price}} class="sub">-</button>   
                                 <input type="number"  id="quantity" style="width:30%" name={{$p->id}} value={{$c[1]}} min="1" max="100" readonly/>
-                                <button type="button" id="add" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount}}  class="add">+</button>
+                                <button type="button" id="add" value={{$p->id}} data-rel={{$c[3]}} data-rel2={{$p->discount != null ? $p->discount : $p->price}}  class="add">+</button>
                             </div>
-							<div class="rTableCell"><div id="individualPrice_{{$c[3]}}">
-                                @php
-                                $tot =$p->discount* $c[1];
+                            <div class="rTableCell"><div id="individualPrice_{{$c[3]}}">
+                                
+                                <b>@php
+                                if($p->discount != null)
+                                    $tot =$p->discount* $c[1];
+                                else
+                                    $tot = $p->price * $c[1];
                                 echo $tot;
                                 @endphp
-                                
-                                TND</div></div>
+
+                                TND</b>
+                            </div></div>
                                 
 						</div>
-                        
-						@break
-					@endif
-					@endforeach 
+                        <br>
 					@endforeach 
                     
                     </div>
-                    
-                    <div class="order-col">
-                        <div><strong>TOTAL</strong></div>
-                        <div ><strong class="order-total" id="totalCost">{{Session::get('price')}} TND</strong></div>
+                    <hr>
+                    <div class="order-col text-right">
+                        <strong class="">Total price : </strong>
+                        <strong class="order-total" id="totalCost">{{Session::get('price')}} TND</strong>
                     </div>
                     @else
-                    <div class="order-col">
-                        <h1>Your Cart is Empty</h1>
+                    <div class="col-md-12 text-center">
+                        <h4 >Your cart is empty! Go ahead and add some cool stuff to it!</h4>
+                    @if(!session('user'))
+                        <small>Or <a style="color:blue;" href="{{route('user.login')}}">log in</a> to check if there's something in it already!</small>
+                    @endif
                     </div>
                     @endif
                     
-                </div>
-                <div class="payment-method">
-                    <div class="input-radio">
-                        <input type="radio" name="payment" id="payment-2" checked>
-                        <label for="payment-2">
-                            <span></span>
-                            Cash On Delivery
-                        </label>
-                        <div class="caption">
-                            <p>The product Will be delivered within 24 hour of confirmation. We accept only Cash on delivery at this moment.</p>
-                        </div>
-                    </div>
-                </div>
                 @if(session('user'))
                     @if($all != null)
                    <form method="post" name="cart">
                         {{csrf_field()}}
                         <input type="submit" id="confirm_order"  name="order" class="primary-btn order-submit" value="Confirm order">
                     </form>
-
                     @else
-                        <a href="{{route('user.home')}}"><input type="button"  class="primary-btn order-submit" value="Order Now"></a>
+                        <div class="col-md-13 text-center mt-3">
+                            <a class="text-center" href="{{route('user.home')}}"><input type="button"  class="primary-btn" value="Shop Now"></a>
+                        </div>
                     @endif
                 
                 @else
-                 @if(!session('user'))
-        <div class="row">
-        <form method="post" id="signupForm">
-            {{csrf_field()}}
-            <div class="col-md-7">
-                <!-- Billing Details -->
-                <div class="billing-details">
-                    <div class="section-title">
-                        <h3 class="title">Billing address</h3>
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" id="name" name="name" placeholder="Full Name">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="email" name="email" id="email" placeholder="Email" onkeyup="myFunction()">
-                    </div>
-                    <div id="for_duplicate-email"></div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="address" id="address" placeholder="Address">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="city" id="city" placeholder="City">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="text" name="zip" id="zip" placeholder="ZIP Code">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="tel" name="tel" id="tel" placeholder="Telephone">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="password" name="pass" id="pass" placeholder="Enter Your Password">
-                    </div>
-                    <div class="form-group">
-                        <input class="input" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
-                    </div>
+                <div class="row">
+                <form method="post" id="signupForm">
+                    {{csrf_field()}}
+                    </form>
                     
-                        
-                        <input type="submit"  name="signup" class="primary-btn order-submit" value="Sign Up">
-               
-                    </div>
-                <!-- /Billing Details -->
-            </div></form>
-               </div>      
-                
-            @endif  
-                    
+                </div>      
+                <br>
+                @if($all != null)
+                <div class="order-col">
+                    <a class="text-center" href="{{route('user.login')}}"><input type="button"  class="primary-btn" value="PROCEED TO CHCKOUT"></a>
+                </div>  
+                @endif                
                 @endif
                 
 
                 
-           
+        </div>
+
             <!-- /Order Details -->
         
         </div>
@@ -198,7 +159,7 @@ label.error {
 
 <script>
     
-   //TO DO: ajax will take place
+   //TO DO: ajax 
     
     $('.add').click(function () {
 
@@ -272,8 +233,10 @@ label.error {
                 {
                     if(msg=="Empty")
                         {
-                        document.getElementById("order_summary").innerHTML = "<div class='order-col'><h1>Your Cart is Empty</h1></div>";
-                        document.getElementById("confirm_order").style.visibility = "hidden";
+                            document.getElementById("order_summary").innerHTML = '<div class="col-md-12 text-center"><h4 >Your cart is empty! Go ahead and add some cool stuff to it!</h4></div>';
+                            document.getElementById("confirm_order").style.visibility = "hidden";
+                            document.getElementById("confirm_order").style.disabled = "true";
+                            document.getElementById("order_summary").innerHTML += '<div class="col-md-13 text-center mt-3"><a class="text-center" href="{{route('user.home')}}"><input type="button"  class="primary-btn" value="Shop Now"></a></div>';
                         }
                    
                     //$("#deleteItem_".$p->id").load(location.href+" #refresh_div","");
@@ -286,103 +249,7 @@ label.error {
     });
 	
     
-    //validation
     
-    $(document).ready(function() {
-		// validate the comment form when it is submitted
-		//$("#commentForm").validate();
-
-		// validate signup form on keyup and submit
-		$("#signupForm").validate({
-			rules: {
-				name: "required",
-				email: {
-					required: true,
-					email: true
-				},
-                address: "required",
-                city: "required",
-                zip: {
-					required: true,
-					number: true
-				},
-                tel: "required",
-				pass: {
-					required: true,
-					minlength: 5
-				},
-				confirm_password: {
-					required: true,
-					minlength: 5,
-					equalTo: "#pass"
-				}
-				
-				
-				
-			},
-			messages: {
-				name: "Please enter your Fullname",
-				email: "Please enter a valid email address",
-                address: "Please enter your Address",
-                city: "Please enter your City",
-                address: "Please enter your Address",
-				zip: {
-					required: "Please enter Zipcode",
-					number: "Invalid Zipcode"
-				},
-                tel: "Please enter your Phone number",
-				pass: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
-				},
-				confirm_password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long",
-					equalTo: "Please enter the same password as above"
-				}
-				
-				
-			}
-            
-            
-        
-		});
-
-		
-	});
-   
 </script>
-<script>
-function myFunction() {
-    //var token={{ csrf_token() }};
-    var email=$("#email").val();
-    var token=$("input[name=_token]").val();
-    var url="{{route('user.signup.check_email')}}";
-    
 
-            $.ajax({
-                type:'post',
-                url:url,
-                dataType: "JSON",
-                async: false,
-                data:{email: email, _token: token},
-                success:function(msg){
-                        
-                         
-                        if(msg == "1")
-                            {
-                                document.getElementById("for_duplicate-email").innerHTML = "<label class='error'>This Email Address is Already taken</label>";
-                                                    
-
-                            }
-                    else
-                        {
-                            document.getElementById("for_duplicate-email").innerHTML = "";
-
-                        }
-                    }
-             });
-    
-}
-</script>
 @endsection

@@ -1882,22 +1882,22 @@ textarea.input {
   clear: both;
 }
 
-.order-summary .order-col>div {
+/* .order-summary .order-col>div {
   display: table-cell;
   padding: 10px 0px;
-}
+} */
 
-.order-summary .order-col>div:first-child {
+/* .order-summary .order-col>div:first-child {
   width: calc(100% - 150px);
-}
+} */
 
-.order-summary .order-col>div:last-child {
+/* .order-summary .order-col>div:last-child {
   width: 150px;
   text-align: right;
-}
+} */
 
 .order-summary .order-col .order-total {
-  font-size: 24px;
+  font-size: 20px;
   color: #D10024;
 }
 

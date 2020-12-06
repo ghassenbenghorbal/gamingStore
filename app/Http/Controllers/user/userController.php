@@ -125,11 +125,14 @@ class userController extends Controller
             $a=explode(':',$c);
             $res = Product::find($a[0]);
             $product[]=$res;
-            $cost_after_quantity=$a[1]*$res->discount;
-            $cost+= $cost_after_quantity;
-            Session::put('price',$cost);
+            if($res->discount != null)
+                $cost_after_quantity=$a[1]*$res->discount;
+            else
+                $cost_after_quantity=$a[1]*$res->price;
+            $cost += $cost_after_quantity;
+            
         }
-
+        Session::put('price',$cost);
     	return view('store.cart')
             ->with('products', $res)
             ->with("cat", $cat)

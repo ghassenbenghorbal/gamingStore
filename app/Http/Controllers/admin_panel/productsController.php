@@ -74,9 +74,6 @@ class productsController extends Controller
 
     public function update(ProductEditVerifyRequest $request, $id)
     {
-      
-        
-        
         $prdToUpdate = Product::find($request->id);
         $prdToUpdate->name = $request->Name;
         $prdToUpdate->description = $request->Description;
@@ -158,10 +155,9 @@ class productsController extends Controller
         
         $prdToDelete->delete();
         
-        return redirect()->route('admin.products');
-
-        
-       
+        return redirect()->route('admin.products'); 
+    }
+    public function getProductById($id){
         
     }
 

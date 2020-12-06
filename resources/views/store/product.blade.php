@@ -48,7 +48,10 @@ label.error {
                         </div>
                     </div>
                     <div>
-                        <h3 class="product-price">TND {{$product->discount}} <del class="product-old-price">TND {{$product->price}}</del></h3>
+                        <h3 class="product-price">TND {{$product->discount != null ? $product->discount : $product->price}} @if($product->discount != null)
+                            <del class="product-old-price">TND {{$product->price}}</del>
+                            @endif
+                        </h3>
                         <span class="product-available">In Stock</span>
                     </div>
                     <p>{!!$product->description!!}</p>
