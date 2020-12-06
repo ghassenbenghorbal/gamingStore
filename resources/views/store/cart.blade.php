@@ -79,7 +79,7 @@ label.error {
                     @endphp
                         <tr id="deleteItem_{{$c[3]}}">
                          
-                            <td> <button id="delete_item" class="delete_item btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-trash"></i></button></td>
+                            <td> <button id="delete_item" class="delete_item btn btn-danger btn-xs rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete" value={{$c[3]}} name="delete_item"><i class="fa fa-xs fa-trash"></i></button></td>
                             <td><b>{{$p->category->name}}</b></td>
                             <td><a class="add-to-cart-btn" href="{{route('user.view',['id'=>$p->id])}}"><img src="{{asset('storage/' . $p->image)}}" width="30px" height="30px"> <b>{{$p->name}}</b></a></td>
                             <td><div style="height:30px;display:inline-block;"><b>{{$p->discount != null ? $p->discount : $p->price}} TND</b></div></td>

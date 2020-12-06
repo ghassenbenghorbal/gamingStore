@@ -54,7 +54,7 @@
                                         @foreach($users as $u)
                                             @if($u->id == $s->user_id)
                                             <td>{{$u->full_name}}</td>
-                                            <td>{{$u->area}}, {{$u->city}}, {{$u->zip}} ,Bangladesh</td>
+                                            <td>{{$u->area}}, {{$u->city}}, {{$u->zip}}</td>
                                             
                                             @break
                                             @endif

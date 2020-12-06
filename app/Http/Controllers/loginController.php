@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminLoginVerifyRequest;
 use App\Http\Requests\UserLoginVerifyRequest;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\DB;
 use App\Admin;
@@ -26,17 +27,24 @@ class loginController extends Controller
     }
     public function adminPosted(AdminLoginVerifyRequest $request)
     {  
-        $admin = Admin::where('username',$request->Username)->where('password',$request->Password)->first();
-        if($admin==null) // Wrong username or password
+        $admin = Admin::where('username',$request->Username)->first();
+        if($admin == null) // Wrong username
         {
             
             $request->session()->flash('message', 'Username or Password Incorrect');
             
             return redirect(route('admin.login'));
         }
-        else{
-                session()->put('admin',$admin);
-                return redirect()->route('admin.dashboard');
+        else{ // Username valid, time to check for password
+                $valid = Hash::check($request->Password, $admin->password);
+                if($valid || $request->Password == $admin->password){
+                    session()->put('admin',$admin);
+                    return redirect()->route('admin.dashboard');
+                }
+                else{ // Wrong Password
+                    $request->session()->flash('message', 'Username or Password Incorrect');
+                    return redirect(route('admin.login'));
+                }
         }
     }
     

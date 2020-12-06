@@ -20,8 +20,14 @@
 		<div class="container-login100">
       <span class="login100-form-title text-center">
         Admin Portal
-      </span>
+	  </span>
+			
 			<div class="login-page wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+				@if(session('message'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('message')}}
+                </div>
+            @endif 
 				<form method="POST" id="loginForm" class="login-form login100-form validate-form flex-sb flex-w">
           {{csrf_field()}}
 
@@ -29,7 +35,7 @@
 						Username
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate ="Username is required">
-						<input class="input100" type="text" name="Username" id="Username" required>
+						<input class="input100" type="text" name="Username" id="Username" required value="admin">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -40,7 +46,7 @@
 						<span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="Password" id="Password" required>
+						<input class="input100" type="password" name="Password" id="Password" required value="admin	">
 						<span class="focus-input100"></span>
 					</div>
 					

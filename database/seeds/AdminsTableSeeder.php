@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\Hash;
 class AdminsTableSeeder extends Seeder
 {
 
@@ -21,7 +21,7 @@ class AdminsTableSeeder extends Seeder
             array (
                 'username' => 'admin',
                 'name' => 'GKeys',
-                'password' => 'admin',
+                'password' => Hash::make('admin'),
                 'created_at' => '2018-08-28',
                 'updated_at' => '2018-08-28',
             ),
