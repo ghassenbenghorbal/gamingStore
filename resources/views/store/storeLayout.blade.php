@@ -70,8 +70,8 @@
                 </ul>
                 <ul class="header-links pull-right">
                     @if(session()->has('user'))
-                      <li><a style="color:white" href="{{route('user.settings')}}">{{session()->get('user')->full_name}} </a></li>  
-                      <li><a href="{{route('user.logout')}}"><i class="fa fa-user-o"></i> Logout</a></li>
+                      <li><a style="color:white" href="{{route('user.settings')}}"><i class="fa fa-user-o"></i> Account  </a></li>  
+                      <li><a href="{{route('user.logout')}}"> Logout</a></li>
                     @else
                     <li><a href="{{route('user.login')}}"><i class="fa fa-user-o"></i> Login</a></li>
                     
