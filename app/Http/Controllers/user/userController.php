@@ -196,7 +196,10 @@ class userController extends Controller
                 $a=explode(':',$c);
                 $res = Product::find($a[0]);
                 $product[]=$res;
-                $cost_after_quantity=$a[1]*$res->discount;
+                if($res->discount != null)
+                    $cost_after_quantity=$a[1]*$res->discount;
+                else
+                    $cost_after_quantity=$a[1]*$res->price;
                 $cost+= $cost_after_quantity;
                 Session::put('price',$cost);
                
@@ -297,7 +300,10 @@ class userController extends Controller
                 $a=explode(':',$c);
                 $res = Product::find($a[0]);
                 $product[]=$res;
-                $cost_after_quantity=$a[1]*$res->discount;
+                if($res->discount != null)
+                    $cost_after_quantity=$a[1]*$res->discount;
+                else
+                    $cost_after_quantity=$a[1]*$res->price;
                 $cost+= $cost_after_quantity;
                 Session::put('price',$cost);
                
