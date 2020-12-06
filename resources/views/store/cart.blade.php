@@ -210,7 +210,7 @@ label.error {
             data:{pid: product_id, newQ:x, oSerial:order_serial, _token: token},
             success:function(msg)
             {
-                document.getElementById("individualPrice_"+order_serial).innerHTML=x*product_price+" TND";
+                document.getElementById("individualPrice_"+order_serial).innerHTML="<b>"+x*product_price+" TND</b>";
                 document.getElementById("totalCost").innerHTML = msg[2]+" TND";
 
             }

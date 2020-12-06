@@ -69,7 +69,7 @@ Route::get('/search?c={id}', 'user\userController@view')->name('user.search.cat'
 
 
 Route::get('/view/{id}', 'user\userController@view')->name('user.view');
-Route::post('/view/{id}', 'user\userController@post');
+Route::post('/view/{id}', 'user\userController@addToCart');
 
 Route::get('/cart', 'user\userController@cart')->name('user.cart');
 Route::post('/cart', 'user\userController@confirm');

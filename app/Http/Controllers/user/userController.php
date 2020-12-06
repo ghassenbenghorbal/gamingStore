@@ -28,7 +28,6 @@ class userController extends Controller
         $res = Product::find($id);
         $res1 = Product::all();
         $cat=Category::find($res->category_id);
-        $colorList = explode(',',$res->colors);
     	$cat = Category::all();
         return view('store.product')
             ->with('product', $res)
@@ -82,20 +81,18 @@ class userController extends Controller
             ->with("a", $category);
     }
 
-    public function post($id,orderRequest $r)
+    public function addToCart($id,orderRequest $r)
     {
-        //dd($r->discount_price_holder);
-        
         if(!(Session::has('cart')))
         {
             Session::put('orderCounter',1);
-            $c=$id.":".$r->quantity.":".$r->color.":".Session::get('orderCounter');   //the order counter is added after color so that order serial can be obtained
+            $c=$id.":".$r->quantity."::".Session::get('orderCounter');   //the order counter is added after color so that order serial can be obtained
             Session::put('cart',$c);
         }
         else
         {
             Session::put('orderCounter',Session::get('orderCounter')+1);
-            $cd=$id.":".$r->quantity.":".$r->color.":".Session::get('orderCounter');
+            $cd=$id.":".$r->quantity."::".Session::get('orderCounter');
             $total=Session::get('cart').",".$cd;
             Session::put('cart',$total);
         }
