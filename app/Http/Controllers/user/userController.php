@@ -467,10 +467,10 @@ class userController extends Controller
         if ($request->has('form1')) {
 
             $rules = [
-                
-                'email' => 'email',
-                'zip' => 'numeric',
-                'phone' => 'numeric'
+
+                'email' => 'nullable|email',
+                'zip' => 'nullable|numeric',
+                'phone' => 'nullable|numeric'
             ];
 
             $validated = $request->validate($rules);
@@ -491,7 +491,12 @@ class userController extends Controller
                 if($request->zip != "" && $address->zip != $request->zip)
                     $address->zip = $request->zip;
 
-
+                $user->save();
+                $address->save();
+                session()->forget('user');
+                session()->put('user', $user);
+                session()->forget('address');
+                session()->put('address', $address);
                 return redirect(route('user.settings'));
             }
             else
@@ -502,7 +507,7 @@ class userController extends Controller
                 'password' => 'required|confirmed|min:8'
             ];
             $validation = $request->validate($rules);
-                        
+
             if(session()->has('user')){
                 $user = session()->get('user');
                 $user->password = Hash::make($request->password);
@@ -513,8 +518,8 @@ class userController extends Controller
             }
             else
                 return redirect(route('user.login'));
-        
+
         }
-        
+
     }
 }
