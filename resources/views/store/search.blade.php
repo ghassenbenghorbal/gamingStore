@@ -14,12 +14,14 @@
                     <!-- product -->
                     <div class="col-md-3">
                         <div class="product">
+                            <a class="add-to-cart-btn" href="{{route('user.view',['id'=>$product->id])}}">
                             <div class="product-img">
                                 <img src="{{asset('storage/' . $product->image)}}" width="95px" height="290px" alt="">
                                 <div class="product-label">
                                     <span class="new">{{$product->tag}}</span>
                                 </div>
                             </div>
+                            </a>
                             <div class="product-body">
                                 <h3 class="product-name"><a href="product/{{$product->id}}">{{$product->name}}</a></h3>
                                 <h4 class="product-price"> {{$product->discount != null ? $product->discount: $product->price}} TND
@@ -34,7 +36,7 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                
+
                             </div>
                             <div class="add-to-cart">
                                 <a class="add-to-cart-btn" href="{{route('user.view',['id'=>$product->id])}}"><i class="fa fa-shopping-cart"></i>Purchase</a>

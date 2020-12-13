@@ -29,7 +29,7 @@
 
                         <!-- Account tab pane -->
                         <div class="tab-pane active" id="account" role="tabpanel">
-                            
+
                             <div class="col-sm-5">
                                 <form>
                                     <div class="form-group">
@@ -54,7 +54,7 @@
 
                         <!-- Order history tab pane -->
                         <div class="tab-pane" id="order_history" role="tabpanel">
-                            
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table table-striped table-bordered mydatatable" id="historyTable">
@@ -74,12 +74,12 @@
                                                     @if($c[1]==$p->id)
                                                     <tr>
                                                     <td style="width: 10px">{{$s->id}}</td>
-                                                    <td><img src="{{asset('storage/' . $p->image)}}" height="50px" width="50px">&nbsp;{{$p->name}}</td>
+                                                    <td><img src="{{asset('storage/' . $p->image)}}" height="30px" width="30px">&nbsp;{{$p->name}}</td>
                                                     <td>{{$c[2]}}</td>
                                                     <td>{{$s->order_status}}</td>
                                                     <td><a href="#">View Key</a></td>
                                                     </tr>
-                                               
+
                                                     @break
                                                     @endif
                                                     @endif
@@ -99,7 +99,7 @@
                         <div class="tab-pane" id="deposit_history" role="tabpanel">
                             Deposit history
                         </div>
-                    </div>  
+                    </div>
                     </div>
 
                 </div>

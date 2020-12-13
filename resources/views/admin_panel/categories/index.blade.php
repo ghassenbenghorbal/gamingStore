@@ -91,7 +91,7 @@
                                         {{$cat->updated_at != null ? $cat->updated_at : "-"}}
                                     </td>
                                     <td>
-                                        <a href="{{route('admin.categories.edit', ['id' => $cat->id])}}" class="btn btn-warning">Edit</a>
+                                        <a href="{{route('admin.categories.edit', ['id' => $cat->id])}}" class="btn btn-warning2">Edit</a>
                                     </td>
                                     <td>
                                         <a href="{{route('admin.categories.delete', ['id' => $cat->id])}}" onclick="delete()" class="btn btn-danger">Delete</a>
@@ -110,25 +110,25 @@
 
 <!--JQUERY Validation-->
 <script>
-	
+
 	$(document).ready(function() {
-		
+
 		$("#cat_form").validate({
 			rules: {
 				Name: "required",
 				Type: "required",
-				
-				
-				
+
+
+
 			},
 			messages: {
 				Name: "Category Name is Required",
 				Type: "Category Type is Required",
-                	
+
 			}
 		});
 
-		
+
 	});
 	</script>
 <!--/JQUERY Validation-->

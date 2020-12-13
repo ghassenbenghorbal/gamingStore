@@ -1,4 +1,4 @@
-@extends('store.storeLayout') 
+@extends('store.storeLayout')
 @section('content')
     <div class="section">
         <!-- container -->
@@ -24,12 +24,14 @@
                         <!-- product -->
                         <div class="col-md-3">
                             <div class="product">
+                                <a class="add-to-cart-btn" href="{{route('user.view',['id'=>$product->id])}}">
                                 <div class="product-img">
                                     <img src="{{asset('storage/' . $product->image)}}" width="95px" height="290px" alt="">
                                     <div class="product-label">
                                         <span class="new">{{$product->tag}}</span>
                                     </div>
                                 </div>
+                            </a>
                                 <div class="product-body">
                                     <p class="product-category">{{$product->category->name}}</p>
                                     <h3 class="product-name"><a href="{{route('user.view',['id'=>$product->id])}}">{{$product->name}}</a></h3>
@@ -39,7 +41,7 @@
                                     @endif</h4>
                                     <div class="product-rating">
                                     </div>
-                                    
+
                                 </div>
                                 <div class="add-to-cart">
                                     <a class="add-to-cart-btn" href="{{route('user.view',['id'=>$product->id])}}"><i class="fa fa-shopping-cart"></i>Purchase</a>
@@ -49,7 +51,7 @@
                         <!-- /product -->
                         @endforeach
                     </div>
-                    
+
                 </div>
                 <!-- /row -->
             </div>

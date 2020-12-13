@@ -20,23 +20,23 @@ class productsController extends Controller
 
     	return view('admin_panel.products.index')
     		->with('prdlist', $result);
-        
+
     }
-    
+
      public function create()
     {
         $result = Category::all();
         return view('admin_panel.products.create')
             ->with('catlist', $result);
-        
+
     }
-    
-    
-    
+
+
+
     public function store(ProductVerifyRequest $request)
-    { 
+    {
         try {
-            
+
             $prd = new Product();
             $prd->image = $request->Image->store('uploads', 'public');
             $prd->name = $request->Name;
@@ -51,26 +51,26 @@ class productsController extends Controller
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }
-        
+
     }
-    
-    
+
+
     public function edit($id)
     {
         $cat = Category::all();
-        
-          
+
+
 
         $prd = Product::find($id);
-        
-        
-        
+
+
+
         return view('admin_panel.products.edit')
             ->with('product', $prd)
             ->with('catlist', $cat)
             ->with('select_attribute', '');
 
-            
+
     }
 
     public function update(ProductEditVerifyRequest $request, $id)
@@ -81,39 +81,40 @@ class productsController extends Controller
         $prdToUpdate->price = $request->Price;
         if($request->Discounted_Price != null)
             $prdToUpdate->discount= $request->Discounted_Price;
+        else
+            $prdToUpdate->discount= null;
         $prdToUpdate->category_id = $request->Category;
-  
+
         $prdToUpdate->tag= $request->Tags;
-        
+
         //NEW FILE UPLOADED
-        if(!$request->image)
-        {   
+        if($request->image)
+        {
             $image_path = "storage/".$prdToUpdate->image;  // Value is not URL but directory file path
             if(File::exists($image_path)) {
                 File::delete($image_path);
             }
             $prdToUpdate->image = $request->Image->store('uploads', 'public');
-        
+
             $prdToUpdate->save();
             return redirect()->route('admin.products');
-            
+
         }
         else
         {
-            
             $prdToUpdate->save();
             return redirect()->route('admin.products');
         }
-        
-        
-        
-        
-        
+
+
+
+
+
     }
-    
+
     public function delete($id)
     {
-       
+
         $prd = Product::find($id);
 
         return view('admin_panel.products.delete')
@@ -122,10 +123,10 @@ class productsController extends Controller
 
     public function destroy(Request $request)
     {
-        
-       
+
+
         $prdToDelete = Product::find($request->id);
-        
+
         //deleting image folder
         try{
             // $src='uploads/products/'.$prdToDelete->id.'/';
@@ -152,16 +153,16 @@ class productsController extends Controller
 
         }
         //deleting image folder done
-        
-       
-        
+
+
+
         $prdToDelete->delete();
-        
-        return redirect()->route('admin.products'); 
+
+        return redirect()->route('admin.products');
     }
 
-    
-   
-    
-    
+
+
+
+
 }

@@ -24,12 +24,10 @@ class ProductEditVerifyRequest extends FormRequest
     public function rules()
     {
         return [
-            'Name' => 'required|max:50',
-            'Description' => 'required',
-            'Price' => 'required|numeric',
+            'Name' => 'max:50',
+            'Price' => 'numeric',
             'Discounted_Price' => 'nullable|numeric',
-            'Tags' => 'required',
-            'Image' => 'required|image'
+            'Image' => 'image'
         ];
     }
 }

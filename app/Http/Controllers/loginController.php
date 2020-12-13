@@ -20,19 +20,25 @@ class loginController extends Controller
     {
     	return view('admin_panel.adminLogin');
     }
+    public function adminSettingsIndex(){
+
+    }
+    public function adminSettings(){
+
+    }
     public function adminLogout()
     {
-        session()->flush();   
+        session()->flush();
     	return redirect()->route('admin.login');
     }
     public function adminPosted(AdminLoginVerifyRequest $request)
-    {  
+    {
         $admin = Admin::where('username',$request->Username)->first();
         if($admin == null) // Wrong username
         {
-            
+
             $request->session()->flash('message', 'Username or Password Incorrect');
-            
+
             return redirect(route('admin.login'));
         }
         else{ // Username valid, time to check for password
@@ -47,7 +53,7 @@ class loginController extends Controller
                 }
         }
     }
-    
+
     public function userIndex()
     {
         if(session()->has('user')){
@@ -72,7 +78,7 @@ class loginController extends Controller
         if($user==null)
         {
             $request->session()->flash('message', 'Email or password incorrect!');
-    		
+
             return redirect()->route('user.login');
         }
         else

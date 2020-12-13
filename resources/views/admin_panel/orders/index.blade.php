@@ -5,7 +5,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Categories Table</h4>
+                    <h4 class="card-title">Orders</h4>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -17,7 +17,7 @@
                                         Name
                                     </th>
                                     <th>
-                                        Adress
+                                        Address
                                     </th>
                                     <th>
                                         Product Name
@@ -42,7 +42,7 @@
                             </thead>
                             <tbody>
                                 @foreach($sale as $s)
-                                
+
                                 @foreach($all as $c)
                                         @if($c[0]==$s->id)
                                         @foreach($products as $p)
@@ -50,21 +50,21 @@
                                         @if( $c[1]==$p->id)
                                 <tr>
                                 <td>{{$s->id}}</td>
-                                    
+
                                         @foreach($users as $u)
                                             @if($u->id == $s->user_id)
                                             <td>{{$u->full_name}}</td>
                                             <td>{{$u->area}}, {{$u->city}}, {{$u->zip}}</td>
-                                            
+
                                             @break
                                             @endif
                                         @endforeach
 
-                                   
+
                                     <td>
-                                       
-                                        {{$p->name}}
-                                       
+
+                                        <img src="{{asset('storage/' . $p->image)}}" style="border-radius:10%;" alt=""> <b>{{$p->name}}</b>
+
                                     </td>
                                    <td>
                                         {{$c[2]}}
@@ -72,7 +72,7 @@
                                     <td>
                                     <div style="height:25px;width:25px;margin:5px;display:inline-block;">{{$p->category->name}}</div>
                                     </td>
-                                    
+
                                     <td>
                                         {{$s->created_at}}
                                     </td>

@@ -9,7 +9,7 @@
                 }
 
                 return $text;
-            }   
+            }
         @endphp
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
@@ -38,11 +38,6 @@
                                     <th>
                                         Category
                                     </th>
-                                    
-                                    <th>
-                                        Update
-                                    </th>
-                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,7 +51,7 @@
                                     </td>
                                     <td><a href="{{route('admin.products.delete', ['id' => $prd->id])}}"class="btn btn-danger">Delete</a></td>
                                     <td>
-                                        {{$prd->price}}
+                                        <b>{{$prd->price}} TND</b>
                                     </td>
                                     <td>
                                         {{shortOf($prd->description, 40)}}...
@@ -64,9 +59,7 @@
                                     <td>
                                         {{$prd->category->name}}
                                     </td>
-                                    
-                                    <td><a href="{{route('admin.products.edit', ['id' => $prd->id])}}" class="btn btn-warning">Edit</a> </td>
-                                     
+
                                 </tr>
                             @endforeach
                             </tbody>

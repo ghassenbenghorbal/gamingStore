@@ -42,6 +42,9 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <br>
                             <br>
+                            <a class="dropdown-item" href="{{route('admin.settings')}}">
+                                Settings
+                            </a>
                             <a class="dropdown-item" href="{{route('admin.logout')}}">
                                 Sign Out
                             </a>
@@ -106,7 +109,7 @@
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
-                   
+
                 </footer>
                 <!-- partial -->
             </div>
@@ -132,7 +135,7 @@
 
     <script src="{{asset('js/dashboard.js')}}"></script>
     <script src="{{asset('js/chart.js')}}"></script>
-    
+
     <!--    Jquery Validation-->
     <script src="{{asset('js/lib/jquery.js')}}"></script>
     <script src="{{asset('js/dist/jquery.validate.js')}}"></script>

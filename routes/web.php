@@ -17,10 +17,12 @@ Route::post('admin', 'loginController@adminPosted');
 
 Route::group(['middleware' => 'admin'], function(){
 
- 
+
     Route::get("/admin_panel", 'admin_panel\dashboardController@index')->name('admin.dashboard');
 
     Route::get('admin/logout', 'loginController@adminLogout')->name('admin.logout');
+    Route::get('admin/settings', 'loginController@adminSettingsIndex')->name('admin.settings');
+    Route::post('admin/settings', 'loginController@adminSettings')->name('admin.settings');
     //categories
     Route::get('/admin_panel/categories', 'admin_panel\categoriesController@index')->name('admin.categories');
     Route::post('/admin_panel/categories', 'admin_panel\categoriesController@posted');
@@ -44,7 +46,7 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('/admin_panel/products/delete/{id}', 'admin_panel\productsController@delete')->name('admin.products.delete');
     Route::post('/admin_panel/products/delete/{id}', 'admin_panel\productsController@destroy');
 
-    //order management 
+    //order management
     Route::get('/admin_panel/management', 'admin_panel\managementController@manage')->name('admin.orderManagement');
     Route::post('/admin_panel/management', 'admin_panel\managementController@update')->name('admin.orderUpdate');
 
