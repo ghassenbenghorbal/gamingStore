@@ -428,7 +428,6 @@ class userController extends Controller
                     ->with('products',[])
                     ->with('sale',[]);
             }
-
             $cart=[];
             $product=[];
             $id=[];

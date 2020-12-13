@@ -12,21 +12,21 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('admins')->delete();
-        
+
         \DB::table('admins')->insert(array (
-            0 => 
+            0 =>
             array (
                 'username' => 'admin',
-                'name' => 'GKeys',
+                'name' => 'Administrator',
                 'password' => Hash::make('admin'),
                 'created_at' => '2018-08-28',
                 'updated_at' => '2018-08-28',
             ),
         ));
-        
-        
+
+
     }
 }

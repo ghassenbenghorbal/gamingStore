@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminLoginVerifyRequest;
 use App\Http\Requests\UserLoginVerifyRequest;
+use App\Http\Requests\adminSettingsRequest;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\DB;
@@ -26,11 +27,20 @@ class loginController extends Controller
             return view('admin_panel.adminSettings')->with('admin', $admin);
         }
         else{
-            return view('admin.login');
+            return redirect(route('admin.login'));
         }
     }
-    public function adminSettings(){
-
+    public function adminSettings(adminSettingsRequest $request){
+        $admin = session()->get('admin');
+        if($request->password != null){
+            $admin->password = Hash::make($request->password);
+        }
+        $admin->name = $request->name;
+        $admin->username = $request->username;
+        $admin->save();
+        session()->forget('admin');
+        session()->put('admin', $admin);
+        return redirect(route('admin.settings'));
     }
     public function adminLogout()
     {
