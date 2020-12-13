@@ -21,7 +21,13 @@ class loginController extends Controller
     	return view('admin_panel.adminLogin');
     }
     public function adminSettingsIndex(){
-
+        if(session()->has('admin')){
+            $admin = session()->get('admin');
+            return view('admin_panel.adminSettings')->with('admin', $admin);
+        }
+        else{
+            return view('admin.login');
+        }
     }
     public function adminSettings(){
 
@@ -66,7 +72,6 @@ class loginController extends Controller
         return view('store.login')
         ->with('products', $res)
         ->with("cat", $cat);
-
     }
 
     public function userLogin(UserLoginVerifyRequest $request)

@@ -5,7 +5,20 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin Dashboard</title>
+    <title>@php
+            if(Route::is('admin_panel'))
+                echo "Admin Dashboard";
+            else if(Route::is('admin.categories'))
+                echo "Categories";
+            else if(Route::is('admin.orderManagement'))
+                echo "Orders";
+            else if(Route::is('admin.settings'))
+                echo "Settings";
+            else if(Route::is('admin.products'))
+                echo "Products";
+            else
+                echo "Admin Dashboard";
+    @endphp</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
