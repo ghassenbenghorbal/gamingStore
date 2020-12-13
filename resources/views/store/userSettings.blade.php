@@ -8,7 +8,37 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<style>
+    .just-padding {
+  padding: 15px;
+}
 
+.list-group.list-group-root {
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-group.list-group-root .list-group {
+  margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+  border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 40px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 45px;
+}
+</style>
 <div class="section">
     <!-- container -->
     <div class="container">
@@ -16,44 +46,114 @@
                 <div class="row">
 
                     <div class="col-sm-2">
-                    <div class="list-group" id="myList" role="tablist">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account" role="tab">Account</a>
+                    <div class="list-group list-group-root well"  id="myList" role="tablist">
+                        <a class="list-group-item">Account</a>
+                        <div class="list-group" style="background-color: white" id="myList2" role="tablist">
+                            <a class="list-group-item list-group-item-action active"  data-toggle="list" href="#profile" role="tab">Profile</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">Password</a>
+
+                        </div>
                         <a class="list-group-item list-group-item-action" data-toggle="list" href="#order_history" role="tab">Order history</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list" href="#deposit" role="tab">Deposit</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list" href="#deposit_history" role="tab">Deposit history</a>
                     </div>
                     </div>
                     <!-- Tab panes -->
-                    <div class="col-sm-10">
+                    <div class="col-md-10">
                     <div class="tab-content">
 
                         <!-- Account tab pane -->
-                        <div class="tab-pane active" id="account" role="tabpanel">
+                                <!-- Profile tab pane -->
+                        <div class="tab-pane active" id="profile" role="tabpanel">
+                            <div class="col-md-8">
+                                <form method="POST">
+                                    {{csrf_field()}}
+                                    
+                                    @if($errors->any())
 
-                            <div class="col-sm-5">
-                                <form>
-                                    <div class="form-group">
-                                      <label for="exampleInputEmail1">Email address</label>
-                                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                        <ul>
+                                        @foreach($errors->all() as $err)
+                                        
+                                            <div class="alert alert-danger" role="alert">
+                                                <li>{{$err}}</li>
+                                            </div>      
+                                                
+                                        @endforeach
+                                        </ul>
+                                    @endif
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <label >Full name</label>
+                                            <input type="text" class="form-control" name="full_name" placeholder="{{session()->get('user')->full_name}}">
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="exampleInputEmail1">Email</label>
+                                            <input type="email" class="form-control" name="email" placeholder="{{session()->get('user')->email}}">
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="exampleInputEmail1">Phone number</label>
+                                            <input type="text" class="form-control" name="phone" placeholder="{{session()->get('user')->phone}}">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" name="form1">Submit</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <label >Address</label>
+                                            <input type="text" class="form-control" name="area" placeholder="{{session()->get('address')->area}}">
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="exampleInputEmail1">City</label>
+                                            <input type="text" class="form-control" name="city" placeholder="{{session()->get('address')->city}}">
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="exampleInputEmail1">ZIP Code</label>
+                                            <input type="text" class="form-control" name="zip" placeholder="{{session()->get('address')->zip}}">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                      <label for="exampleInputPassword1">Password</label>
-                                      <input type="password" class="form-control" id="exampleInputPassword1">
-                                    </div>
-                                    <div class="form-group form-check">
-                                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                  </form>
+                                </form>
                             </div>
-
-
                         </div>
 
+
+                                <!-- Password tab pane -->
+                                <div class="tab-pane" id="password" role="tabpane2">
+
+                                    <div class="col-sm-4">
+                                        <form method="POST">
+                                                        {{csrf_field()}}
+
+
+                                                        @if($errors->any())
+
+                                                            <ul>
+                                                            @foreach($errors->all() as $err)
+                                        
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <li>{{$err}}</li>
+                                                            </div>      
+                                                
+                                                            @endforeach
+                                                            </ul>
+                                                        @endif
+                                                    <div class="form-group">
+                                                        <label >Password</label>
+                                                        <input type="password" class="form-control" name="password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label >Confirm password</label>
+                                                        <input type="password" class="form-control" name="password_confirmation">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary" name="form2">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+
                         <!-- Order history tab pane -->
-                        <div class="tab-pane" id="order_history" role="tabpanel">
+                        <div class="tab-pane" id="order_history" role="tabpane3">
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -107,9 +207,14 @@
     </div>
     {{-- Tab pane script (vertical list) --}}
 <script>
-    $('#myList a').on('click', function (e) {
-        e.preventDefault()
-        $(this).tab('show')
+    var triggerTabList = [].slice.call(document.querySelectorAll('#myTab #myTab2 a'))
+    triggerTabList.forEach(function (triggerEl) {
+    var tabTrigger = new bootstrap.Tab(triggerEl)
+
+    triggerEl.addEventListener('click', function (event) {
+        event.preventDefault()
+        tabTrigger.show()
+    })
     })
 </script>
 {{-- Datatable script --}}

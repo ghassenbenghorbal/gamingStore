@@ -11,6 +11,7 @@ use App\Category;
 use App\sale;
 use App\User;
 use App\Address;
+use Illuminate\Support\Facades\Hash;
 
 
 class signupController extends Controller
@@ -54,7 +55,7 @@ class signupController extends Controller
 
         $u->full_name=$r->name;
         $u->email=$r->email;
-        $u->password=$r->pass;
+        $u->password=Hash::make($r->pass);
         $u->address_id=$add_id;
         $u->phone=$r->tel;
 

@@ -10,6 +10,12 @@ use App\sale;
 use App\User;
 use App\Address;
 use Session;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\PasswordResetVerifyRequest;
+use Illuminate\Support\Facades\Validator;
+
+
+
 
 class userController extends Controller
 {
@@ -455,5 +461,60 @@ class userController extends Controller
         else{
             return redirect(route('user.login'));
         }
-}
+    }
+
+    public function changePassword(Request $request){
+        if ($request->has('form1')) {
+
+            $rules = [
+                
+                'email' => 'email',
+                'zip' => 'numeric',
+                'phone' => 'numeric'
+            ];
+
+            $validated = $request->validate($rules);
+
+            if(session()->has('user')){
+                $user = session()->get('user');
+                $address = Address::find($user->id);
+                if($request->full_name != "" && $user->full_name != $request->full_name)
+                    $user->full_name = $request->full_name;
+                if($request->phone != "" && $user->phone != $request->phone)
+                    $user->phone = $request->phone;
+                if($request->email != "" && $user->email != $request->email)
+                    $user->email = $request->email;
+                if($request->area != "" && $address->area != $request->area)
+                    $address->area = $request->area;
+                if($request->city != "" && $address->city != $request->city)
+                    $address->city = $request->city;
+                if($request->zip != "" && $address->zip != $request->zip)
+                    $address->zip = $request->zip;
+
+
+                return redirect(route('user.settings'));
+            }
+            else
+                return redirect(route('user.login'));
+        }
+        if ($request->has('form2')) {
+            $rules = [
+                'password' => 'required|confirmed|min:8'
+            ];
+            $validation = $request->validate($rules);
+                        
+            if(session()->has('user')){
+                $user = session()->get('user');
+                $user->password = Hash::make($request->password);
+                $user->save();
+                session()->forget('user');
+                session()->put('user', $user);
+                return redirect(route('user.settings'));
+            }
+            else
+                return redirect(route('user.login'));
+        
+        }
+        
+    }
 }
