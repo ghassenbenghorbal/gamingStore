@@ -1,19 +1,15 @@
 <?php
 
 namespace Tests\Feature;
-use App\User;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
-class UserTest extends TestCase
+use App\User;
+class SignUpTest extends TestCase
 {
     use RefreshDatabase;
-    /** @test */
-    public function only_logged_in_users_can_access_settings(){
-        $response =$this->get('/settings')
-            ->assertRedirect('/login');
-    }
+
     /** @test */
     public function user_register_through_signup_form(){
         $this->withoutExceptionHandling();

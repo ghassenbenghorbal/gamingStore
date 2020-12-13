@@ -7,13 +7,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
-        $this->assertTrue(true);
+    /** @test */
+    public function only_logged_in_users_can_access_settings(){
+        $response =$this->get('/settings')
+            ->assertRedirect('/login');
     }
 }
