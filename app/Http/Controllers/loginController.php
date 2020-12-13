@@ -12,7 +12,7 @@ use App\Admin;
 use App\User;
 use App\Product;
 use App\Category;
-
+use App\Address;
 
 class loginController extends Controller
 {
@@ -77,10 +77,8 @@ class loginController extends Controller
     public function userLogin(UserLoginVerifyRequest $request)
     {
         $user = User::where('email',$request->email)
-        ->where('password',$request->pass)
         ->first();
-
-        if($user==null)
+        if($user == null || !Hash::check($request->pass, $user->password))
         {
             $request->session()->flash('message', 'Email or password incorrect!');
 
@@ -89,6 +87,11 @@ class loginController extends Controller
         else
         {
             $request->session()->put('user', $user);
+
+            $address = Address::find($user->id);
+
+            session()->put('address',$address);
+
             if(isset($_GET["checkout"])){
                 return redirect()->route('user.cart');
             }
