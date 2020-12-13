@@ -25,7 +25,7 @@ class adminSettingsRequest extends FormRequest
     {
         return [
             'name' => 'max:50',
-            'password' => 'confirmed'
+            'password' => 'nullable|min:5|confirmed'
         ];
     }
 }
