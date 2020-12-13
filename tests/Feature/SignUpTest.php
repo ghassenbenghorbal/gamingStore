@@ -28,6 +28,11 @@ class SignUpTest extends TestCase
         $response = $this->post('/signup', array_merge($this->getData(), ['password'=>'123', 'confirm_password' => '123']));
         $this->assertCount(0, User::all());
     }
+    /** @test */
+    public function confirm_password_must_match_password(){
+        $response = $this->post('/signup', array_merge($this->getData(), ['confirm_password' => '369852147B&']));
+        $this->assertCount(0, User::all());
+    }
     public function getData(){
         return [
             'name' => 'achraf',
