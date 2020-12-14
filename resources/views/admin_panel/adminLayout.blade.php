@@ -115,16 +115,16 @@
                         </a>
                     </li>
                 </li>
-                <li class="nav-item {{Route::is('competitis') ? 'active' : ''}}">
-                    <a class="nav-link" href="{{route('competitis')}}">
+                <li class="nav-item {{Route::is('comp') ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('comp')}}">
                         <i class="menu-icon mdi mdi-cart-outline"></i>
-                        <span class="menu-title">competitions</span>
+                        <span class="menu-title">Competitions</span>
                     </a>
                 </li>
                 <li class="nav-item {{Route::is('mettreajour') ? 'active' : ''}}">
                     <a class="nav-link" href="{{route('mettreajour')}}">
                         <i class="menu-icon mdi mdi-cart-outline"></i>
-                        <span class="menu-title">mettre a jour gangnat</span>
+                        <span class="menu-title">Update Winner</span>
                     </a>
                 </li>
                 </ul>

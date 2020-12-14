@@ -27,7 +27,7 @@ class CompetitionController extends Controller
             //dump($id);
             //dump($comps[0]->participants->all());
             $comps=[];
-           
+
             foreach($comps1 as $com){
                 $tab1=[];
                 foreach($com->participants as $part){
@@ -48,17 +48,17 @@ class CompetitionController extends Controller
         }else{
             $id=null;
         }*/
-        return View('store.competitions.index')->with('comps',$comps)->with('prods',$prods);//->with('user',$id); 
-    
-        
+        return View('store.competitions.index')->with('comps',$comps)->with('prods',$prods);//->with('user',$id);
+
+
     }
     public function indexA(request $request)
     {$comps=Competition::all();
-        
-      
-        return View('admin_panel.competitions.index')->with('comps',$comps);//->with('user',$id); 
-    
-        
+
+
+        return View('admin_panel.competitions.index')->with('comps',$comps);//->with('user',$id);
+
+
     }
 
     /**
@@ -81,9 +81,8 @@ class CompetitionController extends Controller
     public function store(Request $request){
         //dd($request->file('comp_image'));
      $filename=$request->comp_image->getClientOriginalName();
-     
      $request->comp_image->storeAs('images',$filename,'public');
-     $request->comp_image=$filename; 
+     $request->comp_image=$filename;
      $c=new Competition();
      $c->comp_nom=$request->input('comp_nom');
      $c->comp_lieu=$request->input('comp_lieu');
@@ -92,12 +91,8 @@ class CompetitionController extends Controller
      $c->description=$request->input('description');
      $c->product_id=$request->input('product_id');
      $c->comp_image=$filename;
-     
-     dump($request->all());
-     
         $c->save();
-    
-        
+        return redirect(route('comp'));
     }
 
     /**
@@ -114,8 +109,8 @@ class CompetitionController extends Controller
             //dd($id);
             //dump($id);
             //dump($comps[0]->participants->all());
-          
-           
+
+
                $tab1=[];
                 foreach($comp->participants as $part){
                     array_push($tab1,$part->id);
@@ -131,7 +126,7 @@ class CompetitionController extends Controller
                 $com->participants=$tab1;
 
 
-                
+
         //}
         return View('store.competitions.show')
 
@@ -148,7 +143,7 @@ class CompetitionController extends Controller
     {$c=Competition::find($id);
         $p=Product::all();
         return View('admin_panel.competitions.edit')->with('comp',$c)->with('prods',$p);
-        
+
     }
 
     /**
@@ -171,9 +166,9 @@ class CompetitionController extends Controller
 
         if($request->comp_image)
         {
-            $image_path = "storage/images/".$c->comp_image; 
+            $image_path = "storage/images/".$c->comp_image;
             //dump($image_path);
-            
+
             if(File::exists($image_path)) {
                 File::delete($image_path);
             }
@@ -182,7 +177,7 @@ class CompetitionController extends Controller
              $c->comp_image =$filename;
         }
         $c->save();
-        return redirect('/competitis');
+        return redirect(route('comp'));
     }
 
     /**
@@ -192,10 +187,10 @@ class CompetitionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    
+
     {
         Competition::destroy($id);
-        return redirect('/competitis');
+        return redirect(route('comp'));
     }
     public function amettreajour(){
         $c=Competition::all();
@@ -206,7 +201,7 @@ class CompetitionController extends Controller
       $com=Competition::find($request->input("id"));
       $com->nom_gagnant=$request->input("nom_gagnant");
       $com->save();
-      return redirect('/competitis');
+      return redirect(route('comp'));
     }
 
 }

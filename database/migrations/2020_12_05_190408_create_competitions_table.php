@@ -11,14 +11,14 @@ class CreateCompetitionsTable extends Migration
      *
      * @return void
      */
-   
+
     public function up()
     {
         Schema::create('competitions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('comp_lieu');
             $table->text('description');
-            $table->dateTime('comp_date');
+            $table->string('comp_date');
             $table->integer("nbr_participant");
             $table->integer('product_id');
             $table->timestamps();
@@ -35,7 +35,7 @@ class CreateCompetitionsTable extends Migration
         Schema::dropIfExists('competiton');
     }
 }
-  
 
-   
+
+
 

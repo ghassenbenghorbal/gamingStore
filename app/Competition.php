@@ -12,7 +12,7 @@ class Competition extends Model
     */
    protected $fillable = [
        'comp_image','comp_nom','comp_lieu','comp_date','nbr_participant','description',"product_id","nom_gagnant"];
-   protected $casts=['nbr_participant'=>'integer','comp_date'=>'dateTime'];
+   protected $casts=['nbr_participant'=>'integer'];
   public function participants(){
       return $this->belongsToMany('App\User');
   }
@@ -21,6 +21,6 @@ class Competition extends Model
       return $this->belongsTo('App\Product','product_id','id');
   }
 }
-   
+
 
 

@@ -53,14 +53,14 @@ Route::group(['middleware' => 'admin'], function(){
     //competitions
     Route::get('/admin_panel/competitions', 'admin_panel\CompetitionController@create')->name('admin.competitions');;
     Route::post('/admin_panel/competitions', 'admin_panel\CompetitionController@store');
-    
-    Route::get('/competitis', 'admin_panel\CompetitionController@indexA')->name('competitis');
-    Route::get('/competitisajour', 'admin_panel\CompetitionController@amettreajour')->name('mettreajour');
-    Route::post('/competitisajour', 'admin_panel\CompetitionController@misajour');
-    Route::get('/showpartic/{id}', 'admin_panel\ParticipantController@show');
-    Route::get('/editcom/{id}','admin_panel\CompetitionController@edit')->name('editcom');
-    Route::get('/destroy/{id}','admin_panel\CompetitionController@destroy')->name('destroy');
-    Route::post('/editcom/{id}','admin_panel\CompetitionController@update');
+
+    Route::get('/admin_panel/competition', 'admin_panel\CompetitionController@indexA')->name('comp');
+    Route::get('/admin_panel/compajour', 'admin_panel\CompetitionController@amettreajour')->name('mettreajour');
+    Route::post('/admin_panel/compajour', 'admin_panel\CompetitionController@misajour');
+    Route::get('/admin_panel/showpartic/{id}', 'admin_panel\ParticipantController@show')->name('compPartic');
+    Route::get('/admin_panel/editcom/{id}','admin_panel\CompetitionController@edit')->name('editcom');
+    Route::get('/admin_panel/destroy/{id}','admin_panel\CompetitionController@destroy')->name('destroy');
+    Route::post('/admin_panel/editcom/{id}','admin_panel\CompetitionController@update');
 });
 
 Route::get('/login', 'loginController@userIndex')->name('user.login');
@@ -110,7 +110,7 @@ Route::get('/competiti', 'admin_panel\CompetitionController@index');
 Route::post('/competiti', 'user\userController@searchcom');
 Route::get('/inscription/{id}', 'user\userController@participer');
 Route::get('/desinscription/{id}', 'user\userController@desincrir');
-Route::get('/showcompetition/{id}', 'admin_panel\CompetitionController@show');
+Route::get('/showcompetition/{id}', 'admin_panel\CompetitionController@show')->name('showComp');
 Route::get('/liste', 'user\userController@competitions');
 
 });
