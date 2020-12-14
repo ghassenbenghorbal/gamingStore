@@ -2,7 +2,7 @@
 <script src="{{asset('js/lib/jquery.js')}}"></script>
 <script src="{{asset('js/dist/jquery.validate.js')}}"></script>
 <script src="{{asset('js/dist/additional-methods.js')}}"></script>
-<form  method="POST" enctype="multipart/form-data"> 
+<form  method="POST" enctype="multipart/form-data">
     {{csrf_field()}}
     <label >nom competition<span style="color:red">*</span></label>
 <input type="text" placeholder="nom competition" name="comp_nom">
@@ -14,7 +14,7 @@
 <input type="text" placeholder="lieu competition" name="comp_lieu">
 <br>
 <label >date competition<span style="color:red">*</span></label>
-<input type="datetime" placeholder="date competition" name="comp_date">
+<input type="datetime-local" placeholder="date competition" name="comp_date">
 <br>
 <label  for="Product">jeu<span style="color: red">*</span></label>
 <select  id="Product" name="product_id">

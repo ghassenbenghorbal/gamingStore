@@ -14,7 +14,7 @@ class AddNomGagnantToCompetitionsTable extends Migration
     public function up()
     {
         Schema::table('competitions', function (Blueprint $table) {
-            $table->string('nom_gagnant');
+            $table->string('nom_gagnant')->nullable();
         });
     }
 

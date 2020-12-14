@@ -20,12 +20,12 @@
 <br>
 @foreach ($comps as $comp)
 @if ((\Carbon\Carbon::parse($comp->comp_date)->gt(\Carbon\Carbon::now())))
-    
+
 
 <div id=div>
 <figure id=com >
 <figcaption ><h3>{{$comp->comp_nom }}</h3></figcaption><img src="{{asset('storage/images/'.$comp->comp_image)}}"  alt="fif inexistant oll la"></figure>
-<a id=bo href="/showcompetition/{{$comp->id}}">voir detail</a>
+<a id=bo href="{{route('showComp', ['id'=>$comp->id])}}">voir detail</a>
 </div>
 @endif
 @endforeach
