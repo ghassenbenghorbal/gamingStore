@@ -50,6 +50,17 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('/admin_panel/management', 'admin_panel\managementController@manage')->name('admin.orderManagement');
     Route::post('/admin_panel/management', 'admin_panel\managementController@update')->name('admin.orderUpdate');
 
+    //competitions
+    Route::get('/admin_panel/competitions', 'admin_panel\CompetitionController@create')->name('admin.competitions');;
+    Route::post('/admin_panel/competitions', 'admin_panel\CompetitionController@store');
+    
+    Route::get('/competitis', 'admin_panel\CompetitionController@indexA')->name('competitis');
+    Route::get('/competitisajour', 'admin_panel\CompetitionController@amettreajour')->name('mettreajour');
+    Route::post('/competitisajour', 'admin_panel\CompetitionController@misajour');
+    Route::get('/showpartic/{id}', 'admin_panel\ParticipantController@show');
+    Route::get('/editcom/{id}','admin_panel\CompetitionController@edit')->name('editcom');
+    Route::get('/destroy/{id}','admin_panel\CompetitionController@destroy')->name('destroy');
+    Route::post('/editcom/{id}','admin_panel\CompetitionController@update');
 });
 
 Route::get('/login', 'loginController@userIndex')->name('user.login');
@@ -94,4 +105,12 @@ Route::get('/logout', 'loginController@userLogout')->name('user.logout');
 
 Route::group(['middleware' => 'user'], function(){
 Route::get('/history', 'user\userController@history')->name('user.history');
+
+Route::get('/competiti', 'admin_panel\CompetitionController@index');
+Route::post('/competiti', 'user\userController@searchcom');
+Route::get('/inscription/{id}', 'user\userController@participer');
+Route::get('/desinscription/{id}', 'user\userController@desincrir');
+Route::get('/showcompetition/{id}', 'admin_panel\CompetitionController@show');
+Route::get('/liste', 'user\userController@competitions');
+
 });

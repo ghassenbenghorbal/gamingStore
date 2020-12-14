@@ -114,6 +114,19 @@
                             <span class="menu-title">Order Management</span>
                         </a>
                     </li>
+                </li>
+                <li class="nav-item {{Route::is('competitis') ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('competitis')}}">
+                        <i class="menu-icon mdi mdi-cart-outline"></i>
+                        <span class="menu-title">competitions</span>
+                    </a>
+                </li>
+                <li class="nav-item {{Route::is('mettreajour') ? 'active' : ''}}">
+                    <a class="nav-link" href="{{route('mettreajour')}}">
+                        <i class="menu-icon mdi mdi-cart-outline"></i>
+                        <span class="menu-title">mettre a jour gangnat</span>
+                    </a>
+                </li>
                 </ul>
             </nav>
             <!-- partial -->
