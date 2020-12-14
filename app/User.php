@@ -24,4 +24,8 @@ class User extends Model
     {
     	return $this->hasMany('App\Address', 'id', 'address_id');
     }
+    public function competitions(){
+        return $this->belongsToMany('App\Competition')
+        ->withTimestamps();
+    } 
 }

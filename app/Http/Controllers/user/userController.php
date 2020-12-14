@@ -522,4 +522,68 @@ class userController extends Controller
         }
 
     }
+    public function participer(request $request ,$id){
+        //$user=Auth::user();
+        $user=$request->session()->get('user');
+        //echo($user);
+        $user->competitions()->attach($id);
+        return redirect('/competiti');
+      
+    }
+    public function desincrir(request $request ,$id){
+        //$user=Auth::user();
+        $user=$request->session()->get('user');
+        //echo($user);
+        $user->competitions()->detach($id);
+        return redirect('/competiti');
+      
+    }
+    public function competitions(request $request){
+        
+        $id=$request->session()->get('user')->id;
+        $user=User::find($id);
+        //dump($user->competitions);
+        
+        return View('store.competitions.liste')->with("comps",$user->competitions);
+    
+    }
+    public function searchcom(Request $r){
+        
+        $prod = $r->input("c");
+    
+        $name = $r->input("n");
+        $prods=Product::all();
+    
+    
+    
+    if(isset($prod) && isset($name)){
+        $name = strtolower($name);
+        $sRes = DB::select( DB::raw("SELECT * FROM `competitions` WHERE lower(description) like '%$name%' and product_id = $prod" ) );
+        //dd("SELECT * FROM `products` WHERE lower(name) like '%$name%' and prod_id = $prod" );
+        //$a = 0;
+    }
+    else if(isset($name)){
+        $name = strtolower($name);
+        $sRes = DB::select( DB::raw("SELECT * FROM `competitions` WHERE lower(description) like '%$name%'" ) );
+      //dd("SELECT * FROM `products` WHERE lower(name) like '%$name%'" );
+       // $a = 1;
+    }
+    else if(isset($prod)){
+        $sRes = DB::table('competitions')
+        ->where("product_id" , $prod)
+        ->get();
+        //$a = 2;
+    }
+    else{
+        $sRes = DB::table('competitions')
+        ->get();
+       // $a= 3;
+    }
+    
+    
+    //dd($sRes);
+    return view('store.competitions.index')
+        ->with('comps', $sRes)
+        ->with('prods',$prods);
+    }
 }
