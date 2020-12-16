@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->foreign('address_id')
                 ->references('id')->on('addresses')
                 ->onDelete('cascade');
+            $table->float('balance')->default(0);
             $table->timestamps();
         });
     }
