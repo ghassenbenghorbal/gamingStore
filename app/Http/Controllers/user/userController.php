@@ -92,7 +92,7 @@ class userController extends Controller
         if(!(Session::has('cart')))
         {
             Session::put('orderCounter',1);
-            $c=$id.":".$r->quantity."::".Session::get('orderCounter');   //the order counter is added after color so that order serial can be obtained
+            $c=$id.":".$r->quantity."::".Session::get('orderCounter');
             Session::put('cart',$c);
         }
         else
@@ -528,7 +528,7 @@ class userController extends Controller
         //echo($user);
         $user->competitions()->attach($id);
         return redirect('/competiti');
-      
+
     }
     public function desincrir(request $request ,$id){
         //$user=Auth::user();
@@ -536,26 +536,26 @@ class userController extends Controller
         //echo($user);
         $user->competitions()->detach($id);
         return redirect('/competiti');
-      
+
     }
     public function competitions(request $request){
-        
+
         $id=$request->session()->get('user')->id;
         $user=User::find($id);
         //dump($user->competitions);
-        
+
         return View('store.competitions.liste')->with("comps",$user->competitions);
-    
+
     }
     public function searchcom(Request $r){
-        
+
         $prod = $r->input("c");
-    
+
         $name = $r->input("n");
         $prods=Product::all();
-    
-    
-    
+
+
+
     if(isset($prod) && isset($name)){
         $name = strtolower($name);
         $sRes = DB::select( DB::raw("SELECT * FROM `competitions` WHERE lower(description) like '%$name%' and product_id = $prod" ) );
@@ -579,8 +579,8 @@ class userController extends Controller
         ->get();
        // $a= 3;
     }
-    
-    
+
+
     //dd($sRes);
     return view('store.competitions.index')
         ->with('comps', $sRes)

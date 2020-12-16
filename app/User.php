@@ -17,9 +17,11 @@ class User extends Model
         'email',
         'password',
         'phone',
-        'address_id'
+        'address_id',
+        'balance',
+        'deposit_id'
     ];
-    
+
     public function addresses()
     {
     	return $this->hasMany('App\Address', 'id', 'address_id');
@@ -27,5 +29,9 @@ class User extends Model
     public function competitions(){
         return $this->belongsToMany('App\Competition')
         ->withTimestamps();
-    } 
+    }
+    public function deposits()
+    {
+        return $this->hasMany('App\Deposit', 'id', 'deposit_id');
+    }
 }
