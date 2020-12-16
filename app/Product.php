@@ -25,6 +25,10 @@ class Product extends Model
     {
     	return $this->belongsTo('App\Category','category_id','id');
     }
-    
-    
+    public function keys()
+    {
+        return $this->hasMany('App\Key', 'id', 'product_id');
+    }
+
+
 }

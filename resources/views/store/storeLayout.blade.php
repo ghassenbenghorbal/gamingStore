@@ -54,7 +54,7 @@
             }
         }
         </style>
-
+        <script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -70,10 +70,11 @@
                 </ul>
                 <ul class="header-links pull-right">
                     @if(session()->has('user'))
+                      <li><a href="{{route('user.settings')}}"><i class="fas fa-credit-card"></i>  <small>{{number_format((float)session()->get('user')->balance, 2, '.', '')}} TND</small>   </a></li>
                       <li><a href="{{route('user.settings')}}"><i class="fa fa-user-o"></i> Account  </a></li>
                       <li><a href="{{route('user.logout')}}"> Logout</a></li>
                     @else
-                    <li><a href="{{route('user.login')}}"><i class="fa fa-user-o"></i> Login</a></li>
+                    <li><a href="{{route('user.login')}}"><i class="fa fa-user-o"></i>Login</a></li>
 
                     <li><a href="{{route('user.signup')}}"><i class="fa fa-user-o"></i> SignUp</a></li>
                     @endif
