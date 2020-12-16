@@ -48,7 +48,7 @@
                     <div class="list-group list-group-root well" id="myList"  role="tablist">
                         <div class="list-group-item">Account</div>
                         <div class="list-group" role="tablist">
-                            <a class="list-group-item list-group-item-action active" data-toggle="list" id="prof" href="#profile" role="tab">Profile</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" id="prof" href="#profile" role="tab">Profile</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" id="pass" href="#password" role="tab">Password</a>
 
                         </div>
