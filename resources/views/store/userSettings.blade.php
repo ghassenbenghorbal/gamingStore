@@ -48,13 +48,13 @@
                     <div class="list-group list-group-root well" id="myList"  role="tablist">
                         <a class="list-group-item">Account</a>
                         <div class="list-group" role="tablist">
-                            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#profile" role="tab">Profile</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">Password</a>
+                            <a class="list-group-item list-group-item-action active" data-toggle="list" id="prof" href="#profile" role="tab">Profile</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" id="pass" href="#password" role="tab">Password</a>
 
                         </div>
-                        <a class="list-group-item list-group-item-action"  data-toggle="list" href="#order_history" role="tab">Order history</a>
-                        <a class="list-group-item list-group-item-action"  data-toggle="list" href="#deposit" role="tab">Deposit</a>
-                        <a class="list-group-item list-group-item-action"  data-toggle="list" href="#deposit_history" role="tab">Deposit history</a>
+                        <a class="list-group-item list-group-item-action"  data-toggle="list" id="ordh" href="#order_history" role="tab">Order history</a>
+                        <a class="list-group-item list-group-item-action"  data-toggle="list" id="dep" href="#deposit" role="tab">Deposit</a>
+                        <a class="list-group-item list-group-item-action"  data-toggle="list" id="deph" href="#deposit_history" role="tab">Deposit history</a>
                     </div>
                     </div>
                     <!-- Tab panes -->
@@ -205,6 +205,28 @@
         </div>
     </div>
     {{-- Tab pane script (vertical list) --}}
+    @isset($_GET['tab'])
+        <script>
+            var elems = document.querySelectorAll("#myList a");
+        [].forEach.call(elems, function(el) {
+            el.classList.remove("active")
+        });
+        var elems = document.querySelectorAll("#myList a");
+        [].forEach.call(elems, function(el) {
+            el.classList.remove("active")
+        });
+            $("#{{$_GET['tab']}}").click().on('click', function (e) {
+        e.preventDefault()
+        var elems = document.querySelectorAll("#myList a");
+        [].forEach.call(elems, function(el) {
+            el.classList.remove("active")
+        });
+        // console.log(elems)    
+
+    })
+
+        </script>
+    @endisset
     <script>
         $('#myList a').on('click', function (e) {
         e.preventDefault()
@@ -213,7 +235,9 @@
             el.classList.remove("active")
         });
         // console.log(elems)
-      $(this).tab('show')
+       $(this).tab('show')
+    
+
     })
     </script>
 {{-- Datatable script --}}
