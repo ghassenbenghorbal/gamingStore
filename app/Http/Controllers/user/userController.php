@@ -9,6 +9,8 @@ use App\Category;
 use App\sale;
 use App\User;
 use App\Address;
+use App\Deposit;
+use App\Income;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordResetVerifyRequest;
@@ -518,6 +520,33 @@ class userController extends Controller
             }
             else
                 return redirect(route('user.login'));
+
+        }
+        if ($request->has('form3')) {
+            $rules = [
+                'code' => 'required',
+                'amount'=>'required'
+            ];
+            $request->validate($rules);
+            $dep = new Deposit();
+            if($request->type == "1"){ // D17
+                $dep->type = 1;
+            }else{ // bank
+                $dep->type = 0;
+            }
+            $dep->code = $request->code;
+            $dep->amount = $request->amount;
+            $inc = Income::where('code', $request->code)->first();
+            if($inc != null){ // code exists in database
+                $dep->status = 1; // approved
+                $inc->user_id = session('user')->id;
+                $inc->save();
+            }else{
+                $dep->status = 0;
+            }
+            $dep->user_id = session('user')->id;
+            $dep->save();
+            return redirect(route('user.settings').'?tab=deph');
 
         }
 

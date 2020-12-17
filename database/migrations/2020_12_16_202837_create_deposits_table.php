@@ -16,6 +16,7 @@ class CreateDepositsTable extends Migration
         Schema::create('deposits', function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('type'); // 0 bank, 1 D17
+            $table->tinyInteger('status'); // 0 pending, 1 approved, -1 ignored
             $table->integer('amount');
             $table->string('code', 100);
             $table->integer('user_id')->unsigned();
