@@ -200,6 +200,11 @@
                                     <div class="col-md-4">
                                     <form method="POST">
                                         {{csrf_field()}}
+                                        @if(Session::has('message'))
+                                        <div class="alert alert-danger" role="alert">
+                                                {{Session::get('message')}}
+                                        </div>
+                                        @endif
                                         @if($errors->any())
 
                                         <ul>

@@ -527,7 +527,7 @@ class userController extends Controller
                 'code' => 'required',
                 'amount'=>'required'
             ];
-            $request->validate($rules);
+            $validator = $request->validate($rules);
             $dep = new Deposit();
             if($request->type == "1"){ // D17
                 $dep->type = 1;
@@ -535,17 +535,28 @@ class userController extends Controller
                 $dep->type = 0;
             }
             $dep->code = $request->code;
-            $dep->amount = $request->amount;
             $inc = Income::where('code', $request->code)->first();
             if($inc != null){ // code exists in database
-                $dep->status = 1; // approved
-                $inc->user_id = session('user')->id;
-                $inc->save();
+                if($inc->deposit_id == null){ // Code not used
+                    $dep->status = 1; // approved
+                    $user = session('user');
+                    $dep->amount = $inc->amount;
+                    $dep->user_id = session('user')->id;
+                    $dep->save();
+                    // balance update
+                    $user->balance += $inc->amount;
+                    $user->save();
+                    session()->forget('user');
+                    session()->put('user', $user);
+                    $inc->deposit_id = $dep->id;
+                    $inc->save();
+                }else{ // TODO: flush error message Code Already used
+                    $request->session()->flash('message', 'Code Already Used');
+                    return redirect(route('user.settings').'?tab=dep');
+                }
             }else{
                 $dep->status = 0;
             }
-            $dep->user_id = session('user')->id;
-            $dep->save();
             return redirect(route('user.settings').'?tab=deph');
 
         }
