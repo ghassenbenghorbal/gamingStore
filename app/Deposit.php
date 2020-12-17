@@ -11,6 +11,7 @@ class Deposit extends Model
         'amount',
         'status',
         'code',
+        'created_at',
         'user_id',
     ];
 }
