@@ -272,7 +272,11 @@
                                             @foreach ($depositHistory as $item)
                                                 <td>{{$item->code}}</td>
                                                 <td>{{$item->amount}}</td>
-                                                <td>{{$item->type}}</td>
+                                                <td>@if ($item->type == 0)
+                                                    Bank Transfer
+                                                @else
+                                                    D17
+                                                @endif</td>
                                                 <td>{{$item->created_at}}</td>
                                             @endforeach
                                         </tbody>
