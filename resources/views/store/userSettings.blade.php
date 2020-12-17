@@ -193,7 +193,28 @@
 
                         </div>
                         <div class="tab-pane" id="deposit" role="tabpanel">
-                            Deposit
+                            <h4 style="display:inline">Current Balance : </h4> <b style="font-size: 105%;color:{{session('user')->balance > 0 ? 'rgb(81, 241, 81)' : 'red'}};">{{number_format((float)session()->get('user')->balance, 2, '.', '')}} TND</b>
+                            <hr>
+                            {{-- Deposit Form --}}
+                            <form>
+                                <div class="form-group">
+                                  <label for="exampleFormControlSelect1">Payment Method</label>
+                                  <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Bank Transfer</option>
+                                    <option>D17</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Code</label>
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="TT............">
+                                  </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Amount</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Amount In Dinars">
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Deposit</button>
+                              </form>
+                            {{-- End Deposit Form --}}
                         </div>
                         <div class="tab-pane" id="deposit_history" role="tabpanel">
                             Deposit history
@@ -221,7 +242,7 @@
         [].forEach.call(elems, function(el) {
             el.classList.remove("active")
         });
-        // console.log(elems)    
+        // console.log(elems)
 
     })
 
@@ -236,7 +257,7 @@
         });
         // console.log(elems)
        $(this).tab('show')
-    
+
 
     })
     </script>

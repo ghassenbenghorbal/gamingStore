@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
+@php
+    if(session()->has('user')){ // update user info if changed
+        $user_ = App\User::find(session('user')->id);
+        if(session('user') != $user_){
+            session()->forget('user');
+            session()->put('user', $user_);
+        }
+    }
+@endphp
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
