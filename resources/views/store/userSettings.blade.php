@@ -63,7 +63,7 @@
 
                         <!-- Account tab pane -->
                                 <!-- Profile tab pane -->
-                        <div class="tab-pane active" id="profile" role="tabpanel">
+                        <div class="tab-pane" id="profile" role="tabpanel">
                             <div class="col-md-8">
                                 <form method="POST">
                                     {{csrf_field()}}
