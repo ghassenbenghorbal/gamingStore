@@ -10,10 +10,7 @@ use App\sale;
 use App\User;
 use App\Address;
 use App\Deposit;
-<<<<<<< HEAD
-=======
 use App\Income;
->>>>>>> af8959ff8dfe4ea681a8368a1a4f07161e6c1bba
 use Session;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordResetVerifyRequest;
