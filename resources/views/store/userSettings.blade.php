@@ -239,7 +239,29 @@
                             {{-- End Deposit Form --}}
                         </div>
                         <div class="tab-pane" id="deposit_history" role="tabpanel">
-                            Deposit history
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped table-bordered mydatatable" id="historyTable2">
+                                        <thead>
+                                            <th>Code</th>
+                                            <th>Amount</th>
+                                            <th>Type</th>
+                                            <th>Date</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($depositHistory as $item)
+                                                <td>{{$item->code}}</td>
+                                                <td>{{$item->amount}}</td>
+                                                <td>{{$item->type}}</td>
+                                                <td>{{$item->created_at}}</td>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                     </div>
@@ -285,7 +307,7 @@
     </script>
 {{-- Datatable script --}}
 <script>
-       $('#historyTable').DataTable({
+       $('#historyTable,#historyTable2').DataTable({
            lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]
        });
 

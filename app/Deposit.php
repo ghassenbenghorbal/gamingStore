@@ -10,6 +10,7 @@ class Deposit extends Model
         'type',
         'amount',
         'code',
+        'created_at',
         'user_id',
     ];
 }

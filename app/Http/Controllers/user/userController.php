@@ -9,6 +9,7 @@ use App\Category;
 use App\sale;
 use App\User;
 use App\Address;
+use App\Deposit;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordResetVerifyRequest;
@@ -427,6 +428,8 @@ class userController extends Controller
 
     public function settings(Request $r){
         if(session()->has('user')){
+  
+            $user = session()->get('user');
             $res1= sale::where('user_id', session('user')->id)->get();
             if(!$res1)
             {
@@ -451,12 +454,15 @@ class userController extends Controller
             $res = Product::all();
             $cat = Category::all();
             //dd($cart);
+
+            $depositHistory = $this->getDepositHistory($user->id);
             return view('store.userSettings')
             ->with('products', $res)
             ->with("cat", $cat)
             ->with('all',$cart)
             ->with('prods',$product)
-            ->with('sale',$res1);
+            ->with('sale',$res1)
+            ->with('depositHistory',$depositHistory);
         }
         else{
             return redirect(route('user.login'));
@@ -585,5 +591,11 @@ class userController extends Controller
     return view('store.competitions.index')
         ->with('comps', $sRes)
         ->with('prods',$prods);
+    }
+
+
+    public function getDepositHistory($id){
+        $depositHistory = Deposit::where('user_id',$id)->get();
+        return $depositHistory;
     }
 }
