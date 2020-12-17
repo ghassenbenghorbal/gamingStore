@@ -20,6 +20,6 @@ class sale extends Model
 
     public function sales()
     {
-    	
+
     }
 }
