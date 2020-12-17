@@ -3,7 +3,10 @@
 @php
     if(session()->has('user')){ // update user info if changed
         $user_ = App\User::find(session('user')->id);
-        if(session('user') != $user_){
+        if($user_ == null){ // disconnect user if account not found
+            session()->forget('user');
+        }
+        else if(session('user') != $user_){
             session()->forget('user');
             session()->put('user', $user_);
         }
