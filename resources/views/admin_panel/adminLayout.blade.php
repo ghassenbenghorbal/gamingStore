@@ -16,6 +16,8 @@
                 echo "Settings";
             else if(Route::is('admin.products'))
                 echo "Products";
+            else if(Route::is('admin.deposits'))
+                echo "Deposits";
             else
                 echo "Admin Dashboard";
     @endphp</title>
@@ -96,6 +98,12 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
+                    <li class="nav-item {{Route::is('admin.deposits') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('admin.deposits')}}">
+                            <i class="menu-icon mdi mdi-bank"></i>
+                            <span class="menu-title">Deposits</span>
+                        </a>
+                    </li>
                     <li class="nav-item {{Route::is('admin.products') ? 'active' : ''}}">
                         <a class="nav-link" href="{{route('admin.products')}}">
                             <i class="menu-icon mdi mdi-cart-outline"></i>
@@ -108,7 +116,7 @@
                             <span class="menu-title">Categories</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{Route::is('admin.orderManagement') ? 'active' : ''}}">
                         <a class="nav-link" href="{{route('admin.orderManagement')}}">
                             <i class="menu-icon mdi mdi-content-paste"></i>
                             <span class="menu-title">Order Management</span>
@@ -117,13 +125,13 @@
                 </li>
                 <li class="nav-item {{Route::is('comp') ? 'active' : ''}}">
                     <a class="nav-link" href="{{route('comp')}}">
-                        <i class="menu-icon mdi mdi-cart-outline"></i>
+                        <i class="menu-icon mdi mdi-trophy-variant"></i>
                         <span class="menu-title">Competitions</span>
                     </a>
                 </li>
                 <li class="nav-item {{Route::is('mettreajour') ? 'active' : ''}}">
                     <a class="nav-link" href="{{route('mettreajour')}}">
-                        <i class="menu-icon mdi mdi-cart-outline"></i>
+                        <i class="menu-icon mdi mdi-trophy-award"></i>
                         <span class="menu-title">Update Winner</span>
                     </a>
                 </li>
