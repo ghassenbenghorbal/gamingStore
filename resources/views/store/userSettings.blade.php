@@ -196,24 +196,46 @@
                             <h4 style="display:inline">Current Balance : </h4> <b style="font-size: 105%;color:{{session('user')->balance > 0 ? 'rgb(81, 241, 81)' : 'red'}};">{{number_format((float)session()->get('user')->balance, 2, '.', '')}} TND</b>
                             <hr>
                             {{-- Deposit Form --}}
-                            <form>
-                                <div class="form-group">
-                                  <label for="exampleFormControlSelect1">Payment Method</label>
-                                  <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Bank Transfer</option>
-                                    <option>D17</option>
-                                  </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlInput1">Code</label>
-                                    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="TT............">
-                                  </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlInput1">Amount</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Amount In Dinars">
-                                  </div>
-                                  <button type="submit" class="btn btn-primary">Deposit</button>
-                              </form>
+                            <div class="row">
+                                    <div class="col-md-4">
+                                    <form>
+                                        <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Payment Method</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>Bank Transfer</option>
+                                            <option>D17</option>
+                                        </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Code</label>
+                                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="TT............">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Amount</label>
+                                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Amount In Dinars">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Deposit</button>
+                                    </form>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Special title treatment</h5>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <h5 class="card-title text-success">Banque Zitouna</h5>
+                                        <p class="card-text"><b>RIB :</b> <span class="badge badge-secondary">25 000 0000000000000 00</span><br>
+                                            <br><b>Compte : GKeys</b>
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
                             {{-- End Deposit Form --}}
                         </div>
                         <div class="tab-pane" id="deposit_history" role="tabpanel">
