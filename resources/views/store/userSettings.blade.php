@@ -275,6 +275,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($depositHistory as $item)
+                                            <tr>
                                                 <td>{{$item->code}}</td>
                                                 <td>{{$item->amount}}</td>
                                                 <td>@if ($item->type == 0)
@@ -283,6 +284,7 @@
                                                     D17
                                                 @endif</td>
                                                 <td>{{$item->created_at}}</td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>

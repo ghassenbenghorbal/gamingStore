@@ -429,7 +429,7 @@ class userController extends Controller
 
     public function settings(Request $r){
         if(session()->has('user')){
-  
+
             $user = session()->get('user');
             $res1= sale::where('user_id', session('user')->id)->get();
             if(!$res1)
