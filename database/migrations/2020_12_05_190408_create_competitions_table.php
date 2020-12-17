@@ -18,7 +18,10 @@ class CreateCompetitionsTable extends Migration
             $table->increments('id');
             $table->string('comp_lieu');
             $table->text('description');
+            $table->string('comp_nom');
+            $table->string('nom_gagnant')->nullable();
             $table->string('comp_date');
+            $table->string('comp_image')->nullable();
             $table->integer("nbr_participant");
             $table->integer('product_id');
             $table->timestamps();
