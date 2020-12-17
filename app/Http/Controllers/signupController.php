@@ -66,15 +66,7 @@ class signupController extends Controller
         $user=User::find($u->id);
 
         $r->session()->put('user',$user);
-<<<<<<< HEAD
-        
-        $address = Address::find($user->id);
-
-        session()->put('address',$address);
-
-=======
         session()->put('address',$add);
->>>>>>> 59e2aa96ab8544c0723b0ff14b71326b09417d16
         return redirect()->route('user.home');
     }
 
