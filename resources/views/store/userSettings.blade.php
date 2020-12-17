@@ -198,30 +198,48 @@
                             {{-- Deposit Form --}}
                             <div class="row">
                                     <div class="col-md-4">
-                                    <form>
+                                    <form method="POST">
+                                        {{csrf_field()}}
+                                        @if($errors->any())
+
+                                        <ul>
+                                        @foreach($errors->all() as $err)
+
+                                        <div class="alert alert-danger" role="alert">
+                                            <li>{{$err}}</li>
+                                        </div>
+
+                                        @endforeach
+                                        </ul>
+                                    @endif
                                         <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Payment Method</label>
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                            <option>Bank Transfer</option>
-                                            <option>D17</option>
+                                        <select class="form-control" name="payment_method" id="exampleFormControlSelect1">
+                                            <option value="0">Bank Transfer</option>
+                                            <option value="1">D17</option>
                                         </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Code</label>
-                                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="TT............">
+                                            <input type="text" name="code" class="form-control" id="exampleFormControlInput1" placeholder="Transaction code">
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleFormControlInput1">Amount</label>
-                                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Amount In Dinars">
+                                            <input type="text" name="amount" class="form-control" id="exampleFormControlInput1" placeholder="Amount in dinars">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Deposit</button>
+                                        <button type="submit" name="form3" class="btn btn-success">Deposit</button>
                                     </form>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class="card-title">Special title treatment</h5>
-                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                                <h5 class="card-title text-info">D17</h5>
+                                                <p class="card-text"><b>Phone Number :</b> <span class="badge badge-secondary">25 000 000</span><br>
+                                                    <div class="alert alert-info" role="alert">
+                                                    <b>Note : </b>Send money to the phone number above using D17 app
+                                                    . You'll receive transaction code via SMS
+                                                    , put it in the form to add money to your balance.
+
+                                                </div>
+                                                </p>
+
                                             </div>
                                         </div>
                                     </div>
@@ -230,7 +248,8 @@
                                         <div class="card-body">
                                         <h5 class="card-title text-success">Banque Zitouna</h5>
                                         <p class="card-text"><b>RIB :</b> <span class="badge badge-secondary">25 000 0000000000000 00</span><br>
-                                            <br><b>Compte : GKeys</b>
+                                            <b>Account : <span class="text-danger">G</span>Keys</b><br>
+                                            <div class="alert alert-info" role="alert"><b>Note :</b> Send money to this bank account and put transaction code in the form to add money to your balance.</div>
                                         </p>
                                         </div>
                                     </div>
