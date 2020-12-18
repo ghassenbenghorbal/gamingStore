@@ -562,7 +562,7 @@ class userController extends Controller
     public function changePassword(Request $request){
         if ($request->has('form2')) {
             $rules = [
-                'password' => 'required|confirmed|min:8'
+                'password' => 'required|confirmed|min:6'
             ];
             $validation = $request->validate($rules);
 
