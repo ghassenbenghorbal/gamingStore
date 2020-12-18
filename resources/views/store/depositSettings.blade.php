@@ -1,6 +1,6 @@
 @extends('store.userSettings')
 @section('deposit')
-    
+
 <div class="tab-pane active" id="deposit" role="tabpanel">
     <h4 style="display:inline">Current Balance : </h4> <b style="font-size: 105%;color:{{session('user')->balance > 0 ? 'rgb(81, 241, 81)' : 'red'}};">{{number_format((float)session()->get('user')->balance, 2, '.', '')}} TND</b>
     <hr>
@@ -21,7 +21,7 @@
                 <div class="alert alert-danger" role="alert">
                     <li>{{$err}}</li>
                 </div>
-
+                @break
                 @endforeach
                 </ul>
             @endif
@@ -44,7 +44,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-info">D17</h5>
-                        <p class="card-text"><b>Phone Number :</b> <span class="badge badge-secondary">25 000 000</span><br>
+                        <p class="card-text"><b>Phone Number :</b> <span class="badge badge-secondary">20 000 000</span><br>
                             <div class="alert alert-info" role="alert">
                             <b>Note : </b>Send money to the phone number above using D17 app
                             . You'll receive transaction code via SMS
@@ -70,5 +70,5 @@
     </div>
     {{-- End Deposit Form --}}
 </div>
-    
+
 @endsection

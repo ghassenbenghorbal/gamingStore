@@ -10,19 +10,49 @@
                     <th>Code</th>
                     <th>Amount</th>
                     <th>Type</th>
+                    <th>Status</th>
                     <th>Date</th>
                 </thead>
                 <tbody>
                     @foreach ($depositHistory as $item)
                     <tr>
-                        <td>{{$item->code}}</td>
-                        <td>{{$item->amount}}</td>
-                        <td>@if ($item->type == 0)
+                        <td><b class="badge badge-success">{{$item->code}}</b></td>
+                        <td><b class="text-success">{{$item->amount}} TND</b></td>
+                        <td><b>@if ($item->type == 0)
                             Bank Transfer
                         @else
                             D17
-                        @endif</td>
-                        <td>{{$item->created_at}}</td>
+                        @endif</b></td>
+                        <td><span class="@php
+                            switch ($item->status) {
+                                case 0:
+                                    echo "badge badge-warning";
+                                    break;
+                                case 1:
+                                    echo "badge badge-success";
+                                    break;
+                                default:
+                                    echo "badge badge-danger";
+                                    # code...
+                                    break;
+                            }
+                        @endphp">
+                        @php
+                            switch ($item->status) {
+                            case 0:
+                                echo "Pending";
+                                break;
+                            case 1:
+                                echo "Approved";
+                                break;
+                            default:
+                                echo "Ignored";
+                                # code...
+                                break;
+                            }
+                        @endphp
+                        </span></td>
+                        <td><b>{{$item->created_at}}</b></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -32,5 +62,5 @@
 
 
 </div>
-    
+
 @endsection

@@ -459,7 +459,7 @@ class userController extends Controller
             $depositHistory = $this->getDepositHistory($user->id);
 
             switch(strtolower($tab)){
-                case 'password': 
+                case 'password':
                         return view('store.passwordSettings')
                         ->with('products', $res)
                         ->with("cat", $cat)
@@ -515,7 +515,7 @@ class userController extends Controller
             return redirect(route('user.login'));
         }
     }
-    
+
     public function changeProfile(Request $request){
         if ($request->has('form1')) {
 
@@ -555,7 +555,7 @@ class userController extends Controller
             else
                 return redirect(route('user.login'));
         }
-        
+
 
     }
 
@@ -617,6 +617,9 @@ class userController extends Controller
                 }
             }else{
                 $dep->status = 0;
+                $dep->amount = $request->amount;
+                $dep->user_id = session('user')->id;
+                $dep->save();
             }
             return redirect(route('user.settings', 'depositHistory'));
 
