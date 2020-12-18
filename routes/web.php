@@ -19,6 +19,7 @@ Route::group(['middleware' => 'admin'], function(){
 
 
     Route::get("/admin_panel", 'admin_panel\dashboardController@index')->name('admin.dashboard');
+    Route::get("admin/receivedDeposits", 'admin_panel\depositsController@index')->name('admin.deposits');
 
     Route::get('admin/logout', 'loginController@adminLogout')->name('admin.logout');
     Route::get('admin/settings', 'loginController@adminSettingsIndex')->name('admin.settings');
