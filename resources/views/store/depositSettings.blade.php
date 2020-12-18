@@ -9,7 +9,7 @@
             <form method="POST">
                 {{csrf_field()}}
                 @if(Session::has('message'))
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger" role="alert" style="font-weight: 500;">
                         {{Session::get('message')}}
                 </div>
                 @endif
@@ -18,8 +18,8 @@
                 <ul>
                 @foreach($errors->all() as $err)
 
-                <div class="alert alert-danger" role="alert">
-                    <li>{{$err}}</li>
+                <div class="alert alert-danger" role="alert" style="font-weight: 500;">
+                    <li><b>{{$err}}</b></li>
                 </div>
                 @break
                 @endforeach
