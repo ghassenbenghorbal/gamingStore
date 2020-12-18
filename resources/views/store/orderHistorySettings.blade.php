@@ -11,6 +11,7 @@
                     <th>Name</th>
                     <th>Quanity</th>
                     <th>Status</th>
+                    <th>Date</th>
                     <th>Key</th>
                 </thead>
                 <tbody>
@@ -22,10 +23,39 @@
                             @if($c[1]==$p->id)
                             <tr>
                             <td style="width: 10px">{{$s->id}}</td>
-                            <td><img src="{{asset('storage/' . $p->image)}}" height="30px" width="30px">&nbsp;{{$p->name}}</td>
-                            <td>{{$c[2]}}</td>
-                            <td>{{$s->order_status}}</td>
-                            <td><a href="#">View Key</a></td>
+                            <td><img src="{{asset('storage/' . $p->image)}}" height="30px" width="30px">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$p->name}}</b></td>
+                            <td style="padding-top: 13px;"><span><b>{{$c[2]}}</b></span></td>
+                            <td class="text-center" style="padding-top: 13px;"><span class="@php
+                                switch ($s->order_status) {
+                                    case 0:
+                                        echo "badge badge-warning";
+                                        break;
+                                    case 1:
+                                        echo "badge badge-success";
+                                        break;
+                                    default:
+                                        echo "badge badge-danger";
+                                        # code...
+                                        break;
+                                }
+                            @endphp">
+                            @php
+                            switch ($s->order_status) {
+                            case 0:
+                                echo "Pending";
+                                break;
+                            case 1:
+                                echo "Approved";
+                                break;
+                            default:
+                                echo "Ignored";
+                                # code...
+                                break;
+                            }
+                        @endphp
+                        </span></td>
+                            <td><b>{{$s->created_at}}</b></td>
+                            <td class="text-center"><a class="btn btn-dark btn-sm" style="color: white;background-color:rgb(97, 161, 177)" href="#"><b>Get Key</b></a></td>
                             </tr>
 
                             @break

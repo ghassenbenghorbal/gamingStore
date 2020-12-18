@@ -14,7 +14,7 @@
                     <div class="alert alert-danger" role="alert">
                         <li>{{$err}}</li>
                     </div>
-
+                    @break
                 @endforeach
                 </ul>
             @endif

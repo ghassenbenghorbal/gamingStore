@@ -568,10 +568,14 @@ class userController extends Controller
 
             if(session()->has('user')){
                 $user = session()->get('user');
+                if(Hash::check($request->current_password, $user->password)){
                 $user->password = Hash::make($request->password);
                 $user->save();
                 session()->forget('user');
                 session()->put('user', $user);
+                return redirect(route('user.settings', 'password'));
+                }
+                $request->session()->flash('message', 'Current password incorrect');
                 return redirect(route('user.settings', 'password'));
             }
             else
@@ -694,7 +698,7 @@ class userController extends Controller
 
 
     public function getDepositHistory($id){
-        $depositHistory = Deposit::where('user_id',$id)->get();
+        $depositHistory = Deposit::where('user_id',$id)->orderBy('created_at','DESC')->get();
         return $depositHistory;
     }
 }

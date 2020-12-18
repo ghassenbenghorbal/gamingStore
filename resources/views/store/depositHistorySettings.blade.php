@@ -23,7 +23,7 @@
                         @else
                             D17
                         @endif</b></td>
-                        <td><span class="@php
+                        <td class="text-center"><span class="@php
                             switch ($item->status) {
                                 case 0:
                                     echo "badge badge-warning";

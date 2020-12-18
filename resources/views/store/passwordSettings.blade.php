@@ -7,7 +7,11 @@
         <form method="POST">
                         {{csrf_field()}}
 
-
+                        @if(Session::has('message'))
+                            <div class="alert alert-danger" role="alert" style="font-weight: 500;">
+                                {{Session::get('message')}}
+                            </div>
+                        @endif
                         @if($errors->any())
 
                             <ul>
@@ -16,12 +20,16 @@
                             <div class="alert alert-danger" role="alert">
                                 <li>{{$err}}</li>
                             </div>
-
+                            @break
                             @endforeach
                             </ul>
                         @endif
                     <div class="form-group">
-                        <label >Password</label>
+                        <label >Current Password</label>
+                        <input type="password" class="form-control" name="current_password">
+                    </div>
+                    <div class="form-group">
+                        <label >New Password</label>
                         <input type="password" class="form-control" name="password">
                     </div>
                     <div class="form-group">
