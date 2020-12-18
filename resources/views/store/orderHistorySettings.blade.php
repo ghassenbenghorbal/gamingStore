@@ -22,7 +22,7 @@
                         @if(session('user')->id == $s->user_id)
                             @if($c[1]==$p->id)
                             <tr>
-                            <td style="width: 10px">{{$s->id}}</td>
+                            <td style="width: 10px;padding-top:13px;"><b>{{$s->id}}</b></td>
                             <td><img src="{{asset('storage/' . $p->image)}}" height="30px" width="30px">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$p->name}}</b></td>
                             <td style="padding-top: 13px;"><span><b>{{$c[2]}}</b></span></td>
                             <td class="text-center" style="padding-top: 13px;"><span class="@php
@@ -42,7 +42,7 @@
                             @php
                             switch ($s->order_status) {
                             case 0:
-                                echo "Pending";
+                                echo "In Progress";
                                 break;
                             case 1:
                                 echo "Approved";
@@ -55,7 +55,7 @@
                         @endphp
                         </span></td>
                             <td style="padding-top: 13px;"><b>{{$s->created_at}}</b></td>
-                            <td class="text-center"><a class="btn btn-dark btn-sm" style="color: white;background-color:rgb(66 214 132)" href="#"><b>Get Key</b></a></td>
+                            <td class="text-center"><a class="btn btn-dark btn-sm" style="color: white;background-color:rgb(22 193 99)" href="#"><b>Get Key</b></a></td>
                             </tr>
 
                             @break
