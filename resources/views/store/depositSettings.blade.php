@@ -2,7 +2,7 @@
 @section('deposit')
 
 <div class="tab-pane active" id="deposit" role="tabpanel">
-    <h4 style="display:inline">Current Balance : </h4> <b style="font-size: 105%;color:{{session('user')->balance > 0 ? 'rgb(81, 241, 81)' : 'red'}};">{{number_format((float)session()->get('user')->balance, 2, '.', '')}} TND</b>
+    <h4 style="display:inline">Current Balance : </h4> <b style="font-size: 105%;color:{{session('user')->balance > 0 ? '#00c106' : 'red'}};">{{number_format((float)session()->get('user')->balance, 2, '.', '')}} TND</b>
     <hr>
     <div class="row">
             <div class="col-md-4">
@@ -59,7 +59,7 @@
             <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                <h5 class="card-title text-success">Banque Zitouna</h5>
+                <h5 class="card-title" style="color:#0e963e;">Banque Zitouna</h5>
                 <p class="card-text"><b>RIB :</b> <span class="badge badge-secondary">25 000 0000000000000 00</span><br>
                     <b>Account : <span class="text-danger">G</span>Keys</b><br>
                     <div class="alert alert-info" role="alert"><b>Note :</b> Send money to this bank account and put transaction code in the form to add money to your balance.</div>

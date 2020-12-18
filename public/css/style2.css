@@ -55,6 +55,70 @@ Table OF Contents
 	Typography
 \*----------------------------*/
 
+.badge-primary {
+    color: #fff;
+    background-color: #308ee0; }
+    .badge-primary[href]:hover, .badge-primary[href]:focus {
+      color: #fff;
+      text-decoration: none;
+      background-color: #1d74c0; }
+
+  .badge-secondary {
+    color: #212529;
+    background-color: #e5e5e5; }
+    .badge-secondary[href]:hover, .badge-secondary[href]:focus {
+      color: #212529;
+      text-decoration: none;
+      background-color: #cccccc; }
+
+  .badge-success, .preview-list .preview-item .preview-thumbnail .badge.badge-online {
+    color: #fff;
+    background-color: #00ce68; }
+    .badge-success[href]:hover, .preview-list .preview-item .preview-thumbnail [href].badge.badge-online:hover, .badge-success[href]:focus, .preview-list .preview-item .preview-thumbnail [href].badge.badge-online:focus {
+      color: #fff;
+      text-decoration: none;
+      background-color: #009b4e; }
+
+  .badge-info, .preview-list .preview-item .preview-thumbnail .badge.badge-offline {
+    color: #fff;
+    background-color: #8862e0; }
+    .badge-info[href]:hover, .preview-list .preview-item .preview-thumbnail [href].badge.badge-offline:hover, .badge-info[href]:focus, .preview-list .preview-item .preview-thumbnail [href].badge.badge-offline:focus {
+      color: #fff;
+      text-decoration: none;
+      background-color: #6837d8; }
+
+  .badge-warning, .preview-list .preview-item .preview-thumbnail .badge.badge-busy {
+    color: #212529;
+    background-color: #ffaf00; }
+    .badge-warning[href]:hover, .preview-list .preview-item .preview-thumbnail [href].badge.badge-busy:hover, .badge-warning[href]:focus, .preview-list .preview-item .preview-thumbnail [href].badge.badge-busy:focus {
+      color: #212529;
+      text-decoration: none;
+      background-color: #cc8c00; }
+
+  .badge-danger {
+    color: #fff;
+    background-color: #e65251; }
+    .badge-danger[href]:hover, .badge-danger[href]:focus {
+      color: #fff;
+      text-decoration: none;
+      background-color: #e02624; }
+
+  .badge-light {
+    color: #212529;
+    background-color: #f3f5f6; }
+    .badge-light[href]:hover, .badge-light[href]:focus {
+      color: #212529;
+      text-decoration: none;
+      background-color: #d6dde0; }
+
+  .badge-dark {
+    color: #fff;
+    background-color: #424964; }
+    .badge-dark[href]:hover, .badge-dark[href]:focus {
+      color: #fff;
+      text-decoration: none;
+      background-color: #2e3345; }
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;

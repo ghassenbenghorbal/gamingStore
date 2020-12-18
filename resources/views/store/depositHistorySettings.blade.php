@@ -16,8 +16,8 @@
                 <tbody>
                     @foreach ($depositHistory as $item)
                     <tr>
-                        <td><b class="badge badge-success">{{$item->code}}</b></td>
-                        <td><b class="text-success">{{$item->amount}} TND</b></td>
+                        <td><b class="badge badge-primary">{{$item->code}}</b></td>
+                        <td><b style="color:#00c106;">{{$item->amount}} TND</b></td>
                         <td><b>@if ($item->type == 0)
                             Bank Transfer
                         @else
