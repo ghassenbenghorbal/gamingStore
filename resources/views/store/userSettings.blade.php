@@ -48,13 +48,13 @@
                     <div class="list-group list-group-root well" id="myList"  role="tablist">
                         <div class="list-group-item">Account</div>
                         <div class="list-group" role="tablist">
-                            <a class="list-group-item list-group-item-action {!! $tab == 'profile' ? 'active' : '' !!}"  id="prof" href="{{ route('user.settings').'/profile'}}" >Profile</a>
-                            <a class="list-group-item list-group-item-action {!! $tab == 'password' ? 'active' : '' !!}"  id="pass" href="{{ route('user.settings').'/password'}}" >Password</a>
+                            <a class="list-group-item list-group-item-action {!! $tab == 'profile' ? 'active' : '' !!}"  id="prof" href="{{ route('user.settings', 'profile')}}" >Profile</a>
+                            <a class="list-group-item list-group-item-action {!! $tab == 'password' ? 'active' : '' !!}"  id="pass" href="{{ route('user.settings',  'password')}}" >Password</a>
 
                         </div>
-                        <a class="list-group-item list-group-item-action {!! $tab == 'orderHistory' ? 'active' : '' !!}"   id="ordh" href="{{ route('user.settings').'/orderHistory'}}" >Order history</a>
-                        <a class="list-group-item list-group-item-action {!! $tab == 'deposit' ? 'active' : '' !!}"   id="dep" href="{{ route('user.settings').'/deposit'}}" >Deposit</a>
-                        <a class="list-group-item list-group-item-action {!! $tab == 'depositHistory' ? 'active' : '' !!}"   id="deph" href="{{ route('user.settings').'/depositHistory'}}" >Deposit history</a>
+                        <a class="list-group-item list-group-item-action {!! $tab == 'orderHistory' ? 'active' : '' !!}"   id="ordh" href="{{ route('user.settings','orderHistory')}}" >Order history</a>
+                        <a class="list-group-item list-group-item-action {!! $tab == 'deposit' ? 'active' : '' !!}"   id="dep" href="{{ route('user.settings','deposit')}}" >Deposit</a>
+                        <a class="list-group-item list-group-item-action {!! $tab == 'depositHistory' ? 'active' : '' !!}"   id="deph" href="{{ route('user.settings', 'depositHistory')}}" >Deposit history</a>
                     </div>
                     </div>
                     <!-- Tab panes -->

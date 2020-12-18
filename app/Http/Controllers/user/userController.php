@@ -427,7 +427,7 @@ class userController extends Controller
             return view('store.login');
     }
 
-    public function settings(Request $r,$tab){
+    public function settings($tab, Request $r){
         if(session()->has('user')){
 
             $user = session()->get('user');
@@ -510,20 +510,13 @@ class userController extends Controller
                     ->with('tab', $tab);
                     break;
             }
-            return view('store.userSettings')
-            ->with('products', $res)
-            ->with("cat", $cat)
-            ->with('all',$cart)
-            ->with('prods',$product)
-            ->with('sale',$res1)
-            ->with('depositHistory',$depositHistory);
         }
         else{
             return redirect(route('user.login'));
         }
     }
-
-    public function changePassword(Request $request){
+    
+    public function changeProfile(Request $request){
         if ($request->has('form1')) {
 
             $rules = [
@@ -557,11 +550,16 @@ class userController extends Controller
                 session()->put('user', $user);
                 session()->forget('address');
                 session()->put('address', $address);
-                return redirect(route('user.settings'));
+                return redirect(route('user.settings', 'profile'));
             }
             else
                 return redirect(route('user.login'));
         }
+        
+
+    }
+
+    public function changePassword(Request $request){
         if ($request->has('form2')) {
             $rules = [
                 'password' => 'required|confirmed|min:8'
@@ -574,12 +572,17 @@ class userController extends Controller
                 $user->save();
                 session()->forget('user');
                 session()->put('user', $user);
-                return redirect(route('user.settings'));
+                return redirect(route('user.settings', 'password'));
             }
             else
                 return redirect(route('user.login'));
 
         }
+
+    }
+
+    public function deposit(Request $request){
+
         if ($request->has('form3')) {
             $rules = [
                 'code' => 'required',
@@ -610,16 +613,17 @@ class userController extends Controller
                     $inc->save();
                 }else{ // TODO: flush error message Code Already used
                     $request->session()->flash('message', 'Code Already Used');
-                    return redirect(route('user.settings').'?tab=dep');
+                    return redirect(route('user.settings', 'deposit'));
                 }
             }else{
                 $dep->status = 0;
             }
-            return redirect(route('user.settings').'?tab=deph');
+            return redirect(route('user.settings', 'depositHistory'));
 
         }
 
     }
+
     public function participer(request $request ,$id){
         //$user=Auth::user();
         $user=$request->session()->get('user');

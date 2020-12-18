@@ -33,9 +33,7 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('/admin_panel/categories/delete/{id}', 'admin_panel\categoriesController@delete')->name('admin.categories.delete');
     Route::post('/admin_panel/categories/delete/{id}', 'admin_panel\categoriesController@destroy');
 
-    //admin deposits
-    Route::get('/admin_panel/income', 'admin_panel\depositsController@index')->name('admin.deposits');
-    Route::get('/admin_panel/deposits', 'admin_panel\depositsController@index')->name('admin.user_deposits');
+
     //products
     Route::get('/admin_panel/products', 'admin_panel\productsController@index')->name('admin.products');
 
@@ -90,7 +88,9 @@ Route::get('/settings/{tab}', 'user\userController@settings')->name('user.settin
 
 
 //user settings
-Route::post('/settings', 'user\userController@changePassword')->name('user.settings');
+Route::post('/settings/profile', 'user\userController@changeProfile');
+Route::post('/settings/password', 'user\userController@changePassword');
+Route::post('/settings/deposit', 'user\userController@deposit');
 
 
 
