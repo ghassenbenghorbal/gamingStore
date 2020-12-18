@@ -10,6 +10,8 @@ class Key extends Model
         'code',
         'product_id',
         'user_id',
+        'buying_price',
+        'selling_price'
     ];
 
 }

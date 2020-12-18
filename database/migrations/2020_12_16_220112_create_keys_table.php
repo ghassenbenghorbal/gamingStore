@@ -16,12 +16,14 @@ class CreateKeysTable extends Migration
         Schema::create('keys', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code', 100);
+            $table->float('buying_price');
+            $table->float('selling_price');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')
                 ->references('id')->on('products');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')
-                ->references('id')->on('products');
+                ->references('id')->on('users');
             $table->timestamps();
         });
     }

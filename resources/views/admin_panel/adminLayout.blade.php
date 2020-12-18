@@ -22,6 +22,7 @@
                 echo "Admin Dashboard";
     @endphp</title>
     <!-- plugins:css -->
+
     <link rel="stylesheet" href="{{asset('vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
     <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.addons.css')}}">
