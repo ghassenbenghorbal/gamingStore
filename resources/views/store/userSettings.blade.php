@@ -46,8 +46,8 @@
                             <a class="list-group-item list-group-item-action {!! $tab == 'password' ? 'active' : '' !!}"  id="pass" href="{{ route('user.settings',  'password')}}" style="padding-left: 40px;">Password</a>
                         </div>
                         <a class="list-group-item list-group-item-action {!! $tab == 'deposit' ? 'active' : '' !!}"   id="dep" href="{{ route('user.settings','deposit')}}" >Deposit</a>
-                        <a class="list-group-item list-group-item-action {!! $tab == 'orderHistory' ? 'active' : '' !!}"   id="ordh" href="{{ route('user.settings','orderHistory')}}" >Order history <span class="badge badge-primary badge-pill">14</span></a>
-                        <a class="list-group-item list-group-item-action {!! $tab == 'depositHistory' ? 'active' : '' !!}"   id="deph" href="{{ route('user.settings', 'depositHistory')}}" >Deposit history<span class="badge badge-primary badge-pill">14</span></a>
+                        <a class="list-group-item list-group-item-action {!! $tab == 'orderHistory' ? 'active' : '' !!}"   id="ordh" href="{{ route('user.settings','orderHistory')}}" >Order history <span class="badge badge-primary badge-pill">{{$sale->count()}}</span></a>
+                        <a class="list-group-item list-group-item-action {!! $tab == 'depositHistory' ? 'active' : '' !!}"   id="deph" href="{{ route('user.settings', 'depositHistory')}}" >Deposit history<span class="badge badge-primary badge-pill">{{$depositHistory->count()}}</span></a>
                     </div>
                     </div>
                     <!-- Tab panes -->
@@ -112,10 +112,5 @@
     })
     </script> --}}
 {{-- Datatable script --}}
-<script>
-       $('#historyTable,#historyTable2').DataTable({
-           lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]
-       });
 
-</script>
 @endsection

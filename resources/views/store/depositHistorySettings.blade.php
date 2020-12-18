@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-striped table-bordered mydatatable" id="historyTable2">
+            <table class="table table-striped table-bordered mydatatable" id="historyTable">
                 <thead>
                     <th>Code</th>
                     <th>Amount</th>
@@ -62,5 +62,10 @@
 
 
 </div>
-
+<script>
+    $('#historyTable').DataTable({
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]
+    });
+    
+</script>
 @endsection
