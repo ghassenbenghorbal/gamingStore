@@ -427,7 +427,7 @@ class userController extends Controller
             return view('store.login');
     }
 
-    public function settings(Request $r){
+    public function settings(Request $r,$tab){
         if(session()->has('user')){
 
             $user = session()->get('user');
@@ -457,6 +457,59 @@ class userController extends Controller
             //dd($cart);
 
             $depositHistory = $this->getDepositHistory($user->id);
+
+            switch(strtolower($tab)){
+                case 'password': 
+                        return view('store.passwordSettings')
+                        ->with('products', $res)
+                        ->with("cat", $cat)
+                        ->with('all',$cart)
+                        ->with('prods',$product)
+                        ->with('sale',$res1)
+                        ->with('depositHistory',$depositHistory)
+                        ->with('tab', $tab);
+                        break;
+                case 'profile':
+                        return view('store.profileSettings')
+                        ->with('products', $res)
+                        ->with("cat", $cat)
+                        ->with('all',$cart)
+                        ->with('prods',$product)
+                        ->with('sale',$res1)
+                        ->with('depositHistory',$depositHistory)
+                        ->with('tab', $tab);
+                        break;
+                case 'orderhistory':
+                    return view('store.orderHistorySettings')
+                    ->with('products', $res)
+                    ->with("cat", $cat)
+                    ->with('all',$cart)
+                    ->with('prods',$product)
+                    ->with('sale',$res1)
+                    ->with('depositHistory',$depositHistory)
+                    ->with('tab', $tab);
+                    break;
+                case 'deposit':
+                    return view('store.depositSettings')
+                    ->with('products', $res)
+                    ->with("cat", $cat)
+                    ->with('all',$cart)
+                    ->with('prods',$product)
+                    ->with('sale',$res1)
+                    ->with('depositHistory',$depositHistory)
+                    ->with('tab', $tab);
+                    break;
+                case 'deposithistory':
+                    return view('store.depositHistorySettings')
+                    ->with('products', $res)
+                    ->with("cat", $cat)
+                    ->with('all',$cart)
+                    ->with('prods',$product)
+                    ->with('sale',$res1)
+                    ->with('depositHistory',$depositHistory)
+                    ->with('tab', $tab);
+                    break;
+            }
             return view('store.userSettings')
             ->with('products', $res)
             ->with("cat", $cat)
