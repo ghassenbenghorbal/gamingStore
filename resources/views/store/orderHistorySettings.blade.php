@@ -1,6 +1,6 @@
 @extends('store.userSettings')
 @section('orderHistory')
-    
+
 <div class="tab-pane active" id="order_history" role="tabpane3">
 
     <div class="row">
@@ -54,8 +54,8 @@
                             }
                         @endphp
                         </span></td>
-                            <td><b>{{$s->created_at}}</b></td>
-                            <td class="text-center"><a class="btn btn-dark btn-sm" style="color: white;background-color:rgb(97, 161, 177)" href="#"><b>Get Key</b></a></td>
+                            <td style="padding-top: 13px;"><b>{{$s->created_at}}</b></td>
+                            <td class="text-center"><a class="btn btn-dark btn-sm" style="color: white;background-color:rgb(66 214 132)" href="#"><b>Get Key</b></a></td>
                             </tr>
 
                             @break
