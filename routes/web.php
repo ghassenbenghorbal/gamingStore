@@ -84,8 +84,9 @@ Route::get('/search?c={id}', 'user\userController@view')->name('user.search.cat'
 
 // Route::get('/settings', 'user\userController@settings')->name('user.settings');
 
-Route::get('/settings', 'user\userController@settings')->name('user.settings');
+// Route::get('/settings', 'user\userController@settings')->name('user.settings');
 
+Route::get('/settings/{tab}', 'user\userController@settings')->name('user.settings');
 
 
 //user settings
