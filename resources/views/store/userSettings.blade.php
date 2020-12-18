@@ -30,13 +30,7 @@
   border-top-width: 0;
 }
 
-.list-group.list-group-root > .list-group > .list-group-item {
-  padding-left: 40px;
-}
 
-.list-group.list-group-root > .list-group > .list-group > .list-group-item {
-  padding-left: 45px;
-}
 </style>
 <div class="section">
     <!-- container -->
@@ -44,21 +38,20 @@
                 <!-- List group -->
                 <div class="row">
 
-                    <div class="col-sm-2">
-                    <div class="list-group list-group-root well" id="myList"  role="tablist">
+                    <div class="col-md-2" style="width: 20%">
+                    <div class="list-group" id="myList"  role="tablist">
                         <div class="list-group-item">Account</div>
                         <div class="list-group" role="tablist">
-                            <a class="list-group-item list-group-item-action {!! $tab == 'profile' ? 'active' : '' !!}"  id="prof" href="{{ route('user.settings', 'profile')}}" >Profile</a>
-                            <a class="list-group-item list-group-item-action {!! $tab == 'password' ? 'active' : '' !!}"  id="pass" href="{{ route('user.settings',  'password')}}" >Password</a>
-
+                            <a class="list-group-item list-group-item-action {!! $tab == 'profile' ? 'active' : '' !!}"  id="prof" href="{{ route('user.settings', 'profile')}}" style="padding-left: 40px;">Profile</a>
+                            <a class="list-group-item list-group-item-action {!! $tab == 'password' ? 'active' : '' !!}"  id="pass" href="{{ route('user.settings',  'password')}}" style="padding-left: 40px;">Password</a>
                         </div>
-                        <a class="list-group-item list-group-item-action {!! $tab == 'orderHistory' ? 'active' : '' !!}"   id="ordh" href="{{ route('user.settings','orderHistory')}}" >Order history</a>
                         <a class="list-group-item list-group-item-action {!! $tab == 'deposit' ? 'active' : '' !!}"   id="dep" href="{{ route('user.settings','deposit')}}" >Deposit</a>
-                        <a class="list-group-item list-group-item-action {!! $tab == 'depositHistory' ? 'active' : '' !!}"   id="deph" href="{{ route('user.settings', 'depositHistory')}}" >Deposit history</a>
+                        <a class="list-group-item list-group-item-action {!! $tab == 'orderHistory' ? 'active' : '' !!}"   id="ordh" href="{{ route('user.settings','orderHistory')}}" >Order history <span class="badge badge-primary badge-pill">14</span></a>
+                        <a class="list-group-item list-group-item-action {!! $tab == 'depositHistory' ? 'active' : '' !!}"   id="deph" href="{{ route('user.settings', 'depositHistory')}}" >Deposit history<span class="badge badge-primary badge-pill">14</span></a>
                     </div>
                     </div>
                     <!-- Tab panes -->
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                     <div class="tab-content">
 
                         <!-- Account tab pane -->
@@ -67,7 +60,7 @@
 
                                 <!-- Password tab pane -->
                                 @yield('password')
-                        
+
                                 <!-- Order history tab pane -->
                                 @yield('orderHistory')
                                 {{-- Deposit tab pane --}}
