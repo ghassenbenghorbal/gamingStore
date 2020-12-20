@@ -19,9 +19,7 @@
                                     <th>
                                         Code
                                     </th>
-                                    <th>
-                                        Delete
-                                    </th>
+
                                     <th>
                                         Amount
                                     </th>
@@ -30,6 +28,9 @@
                                     </th>
                                     <th>
                                         Type
+                                    </th>
+                                    <th>
+                                        Delete
                                     </th>
                                 </tr>
                             </thead>
