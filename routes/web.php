@@ -103,7 +103,7 @@ Route::post('/settings/password', 'user\userController@changePassword');
 Route::post('/settings/deposit', 'user\userController@deposit');
 
 //Key
-Route::get('/key/{id}', 'keyController@displayKey');
+Route::get('/key/{id}', 'keyController@displayKey')->name('user.key');
 
 //Product
 Route::get('/view/{id}', 'user\userController@view')->name('user.view');

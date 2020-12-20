@@ -55,7 +55,7 @@
                         @endphp
                         </span></td>
                             <td style="padding-top: 13px;"><b>{{$s->created_at}}</b></td>
-                            <td class="text-center"><a class="btn btn-dark btn-sm" style="color: white;background-color:rgb(22 193 99)" href="#"><b>Get Key</b></a></td>
+                            <td class="text-center"><a class="btn btn-dark btn-sm" style="color: white;background-color:rgb(22 193 99)" href="{{route('user.key', $p->id)}}"><b>Get Key</b></a></td>
                             </tr>
 
                             @break
