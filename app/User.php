@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use app\Deposit;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
@@ -22,16 +22,12 @@ class User extends Model
         'deposit_id'
     ];
 
-    public function addresses()
-    {
-    	return $this->hasMany('App\Address', 'id', 'address_id');
-    }
     public function competitions(){
         return $this->belongsToMany('App\Competition')
         ->withTimestamps();
     }
     public function deposits()
     {
-        return $this->hasMany('App\Deposit', 'id', 'deposit_id');
+        return $this->hasMany(Deposit::class);
     }
 }

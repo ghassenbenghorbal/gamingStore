@@ -20,7 +20,7 @@
                                         Address
                                     </th>
                                     <th>
-                                        Product Name
+                                        Product
                                     </th>
                                     <th>
                                         Quantity
@@ -43,64 +43,62 @@
                             <tbody>
                                 @foreach($sale as $s)
 
-                                @foreach($all as $c)
-                                        @if($c[0]==$s->id)
-                                        @foreach($products as $p)
-                                        @if($p)
-                                        @if( $c[1]==$p->id)
+                                @foreach($s->commands as $c)
                                 <tr>
-                                <td>{{$s->id}}</td>
+                                <td>{{$c->id}}</td>
+                                    @php
+                                        $u = App\User::find($s->user_id);
+                                        $p = App\Product::find($c->product_id);
+                                        $add = App\Address::find($u->address_id);
+                                    @endphp
+                                        <td>{{$u->full_name}}</td>
+                                        <td>{{$add->area}}, {{$add->city}}, {{$add->zip}}</td>
+                                <td>
 
-                                        @foreach($users as $u)
-                                            @if($u->id == $s->user_id)
-                                            <td>{{$u->full_name}}</td>
-                                            <td>{{$u->area}}, {{$u->city}}, {{$u->zip}}</td>
+                                <img src="{{asset('storage/' . $p->image)}}" style="border-radius:10%;" alt=""> <b>{{$p->name}}</b>
 
-                                            @break
-                                            @endif
-                                        @endforeach
-
-
-                                    <td>
-
-                                        <img src="{{asset('storage/' . $p->image)}}" style="border-radius:10%;" alt=""> <b>{{$p->name}}</b>
-
-                                    </td>
+                                </td>
                                    <td>
-                                        {{$c[2]}}
+                                        {{$c->quantity}}
                                     </td>
                                     <td>
                                     <div style="height:25px;width:25px;margin:5px;display:inline-block;">{{$p->category->name}}</div>
                                     </td>
 
                                     <td>
-                                        {{$s->created_at}}
+                                        {{$c->created_at}}
                                     </td>
                                     <td>
-                                    {{$s->order_status}}
+                                        <span class="@php
+                                        switch ($c->order_status) {
+                                            case 0:
+                                                echo "badge badge-warning";
+                                                break;
+                                            case 1:
+                                                echo "badge badge-success";
+                                                break;
+                                            default:
+                                                echo "badge badge-danger";
+                                                # code...
+                                                break;
+                                        }
+                                    @endphp">
+                                    @php
+                                    switch ($c->order_status) {
+                                    case 0:
+                                        echo "In Progress";
+                                        break;
+                                    case 1:
+                                        echo "Approved";
+                                        break;
+                                    default:
+                                        echo "Ignored";
+                                        # code...
+                                        break;
+                                    }
+                                @endphp
+                                </span>
                                     </td>
-                                    {{-- <td>
-                                        <form method="post" style="display:inline-block">
-                                            {{csrf_field()}}
-                                            <input type="hidden" value="{{$s->id}}" name="orderId">
-                                            <select name="stat">
-                                                @foreach($status as $x)
-                                                @if($s->order_status !=$x)
-                                                <option value="{{$x}}">{{$x}}</option>
-
-                                                @endif
-
-                                                @endforeach
-                                            </select>
-                                            <input type="submit" class="btn btn-sm btn-warning" value="Update">
-                                        </form>
-                                    </td> --}}
-                                    @break
-                                    @endif
-
-                                    @endif
-                                    @endforeach
-                                    @endif
                                     @endforeach
                                     @endforeach
                                 </tr>

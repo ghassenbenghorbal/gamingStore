@@ -16,9 +16,4 @@ class Address extends Model
         'city',
         'zip',
     ];
-
-    public function user()
-    {
-    	return $this->belongsTo('App\User','id','address_id');
-    }
 }

@@ -19,8 +19,6 @@ class CreateSalesTable extends Migration
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->text('product_id');
-            $table->text('order_status');
             $table->bigInteger('price');
             $table->timestamps();
         });
