@@ -46,7 +46,15 @@
                             <a class="list-group-item list-group-item-action {!! $tab == 'password' ? 'active' : '' !!}"  id="pass" href="{{ route('user.settings',  'password')}}" style="padding-left: 40px;">Password</a>
                         </div>
                         <a class="list-group-item list-group-item-action {!! $tab == 'deposit' ? 'active' : '' !!}"   id="dep" href="{{ route('user.settings','deposit')}}" >Deposit</a>
-                        <a class="list-group-item list-group-item-action {!! $tab == 'orderHistory' ? 'active' : '' !!}"   id="ordh" href="{{ route('user.settings','orderHistory')}}" >Order history <span class="badge badge-primary badge-pill">{{App\sale::where('user_id', session('user')->id)->count()}}</span></a>
+                        <a class="list-group-item list-group-item-action {!! $tab == 'orderHistory' ? 'active' : '' !!}"   id="ordh" href="{{ route('user.settings','orderHistory')}}" >Order history <span class="badge badge-primary badge-pill">
+                            @php
+                                $sales = App\sale::where('user_id', session('user')->id)->get();
+                                $tot = 0;
+                                foreach ($sales as $sale) {
+                                    $tot += $sale->commands->count();
+                                }
+                                echo $tot;
+                        @endphp</span></a>
                         <a class="list-group-item list-group-item-action {!! $tab == 'depositHistory' ? 'active' : '' !!}"   id="deph" href="{{ route('user.settings', 'depositHistory')}}" >Deposit history<span class="badge badge-primary badge-pill">{{App\Deposit::where('user_id', session('user')->id)->count()}}</span></a>
                     </div>
                     </div>
