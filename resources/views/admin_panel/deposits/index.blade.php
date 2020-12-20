@@ -1,4 +1,6 @@
 @extends('admin_panel.adminLayout')
+<script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
+
 @section('content')
 <div class="content-wrapper">
     <div class="row">
@@ -29,12 +31,6 @@
                                     <th>
                                         Type
                                     </th>
-                                    <th>
-                                        Created At
-                                    </th>
-                                    <th>
-                                        Updated At
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,8 +42,29 @@
                                     <td>
                                        <span class="badge badge-primary text-center pt-1" style="width:200px;height:25px; font-size:13px;">{{$dep->code}}</span>
                                     </td>
+                                    <td>
+                                        <b>{{$dep->amount}} TND</b>
+                                    </td>
+                                    <td>
+                                        <span class="@php
+                                            if($dep->deposit_id == null)
+                                                echo "badge badge-warning";
+                                            else
+                                                echo "badge badge-success";
+                                        @endphp">
+                                        @php
+                                            if($dep->deposit_id == null)
+                                                echo "Pending";
+                                            else
+                                                echo "Redeemed";
+                                        @endphp
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{$dep->type == 0 ? "Bank Transfer" : "D17"}}
+                                    </td>
                                     <td>@if ($dep->deposit_id == null)
-                                        <a class="btn btn-danger" href="" data-toggle="modal" data-target="#exampleModal">Delete</a></td>
+                                        <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></a>
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
@@ -70,34 +87,7 @@
                                         @else
                                             <span>-</span>
                                         @endif
-                                    <td>
-                                        <b>{{$dep->amount}} TND</b>
                                     </td>
-                                    <td>
-                                        <span class="@php
-                                            if($dep->deposit_id == null)
-                                                echo "badge badge-warning";
-                                            else
-                                                echo "badge badge-success";
-                                        @endphp">
-                                        @php
-                                            if($dep->deposit_id == null)
-                                                echo "Pending";
-                                            else
-                                                echo "Redeemed";
-                                        @endphp
-                                        </span>
-                                    </td>
-                                    <td>
-                                        {{$dep->type == 0 ? "Bank Transfer" : "D17"}}
-                                    </td>
-                                    <td>
-                                        {{$dep->created_at}}
-                                    </td>
-                                    <td>
-                                        {{$dep->updated_at}}
-                                    </td>
-
                                 </tr>
                             @endforeach
                             </tbody>

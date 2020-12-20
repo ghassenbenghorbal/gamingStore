@@ -71,7 +71,7 @@
                                         Edit
                                     </th>
                                     <th>
-                                        Update
+                                        Delete
                                     </th>
                                 </tr>
                             </thead>
@@ -91,10 +91,10 @@
                                         {{$cat->updated_at != null ? $cat->updated_at : "-"}}
                                     </td>
                                     <td>
-                                        <a href="{{route('admin.categories.edit', ['id' => $cat->id])}}" class="btn btn-warning2">Edit</a>
+                                        <a href="{{route('admin.categories.edit', ['id' => $cat->id])}}" class="btn btn-warning2 btn-sm"><i class="far fa-edit"></i></a>
                                     </td>
                                     <td>
-                                        <a href="{{route('admin.categories.delete', ['id' => $cat->id])}}" onclick="delete()" class="btn btn-danger">Delete</a>
+                                        <a href="{{route('admin.categories.delete', ['id' => $cat->id])}}" onclick="delete()" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

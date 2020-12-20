@@ -26,9 +26,7 @@
                                     <th>
                                         Name
                                     </th>
-                                    <th>
-                                        Delete
-                                    </th>
+
                                     <th>
                                         Price
                                     </th>
@@ -37,6 +35,9 @@
                                     </th>
                                     <th>
                                         Category
+                                    </th>
+                                    <th>
+                                        Delete
                                     </th>
                                 </tr>
                             </thead>
@@ -49,7 +50,6 @@
                                     <td>
                                        <a href="{{route('admin.products.edit', ['id' => $prd->id])}}" class="btn btn-warning">{{$prd->name}}</a>
                                     </td>
-                                    <td><a href="{{route('admin.products.delete', ['id' => $prd->id])}}"class="btn btn-danger">Delete</a></td>
                                     <td>
                                         <b>{{$prd->price}} TND</b>
                                     </td>
@@ -59,6 +59,7 @@
                                     <td>
                                         {{$prd->category->name}}
                                     </td>
+                                    <td><a href="{{route('admin.products.delete', ['id' => $prd->id])}}"class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a></td>
 
                                 </tr>
                             @endforeach

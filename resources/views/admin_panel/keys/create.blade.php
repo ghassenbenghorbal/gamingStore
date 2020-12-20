@@ -27,15 +27,16 @@
                                     @if($errors->any())
 
                                     <ul>
+                                        @foreach($errors->all() as $err)
                                         <div class="alert alert-danger" role="alert">
-                                            @foreach($errors->all() as $err)
                                             <tr>
                                                 <td>
                                                     {{$err}}
                                                 </td>
                                             </tr>
                                         </div>
-                                            @endforeach
+                                        @break
+                                        @endforeach
                                         </ul>
                                     @endif
                                     <form class="forms-sample" method="post"  id="product_form" enctype="multipart/form-data">
@@ -46,7 +47,7 @@
                                         <div id="for_extension_error"></div>
                                         <div class="form-group">
                                             <label  >Product Name<span style="color: red">*</span></label>
-                                            <select type="text" class="form-control" id="Name" name="product_id">
+                                            <select type="text" class="form-control" id="Name" name="product_name">
                                                 <option value=""></option>
                                                 @foreach ($products as $product)
                                                     <option value="{{$product->id}}">{{ $product->name }}</option>
@@ -58,16 +59,11 @@
                                             <input type="text" class="form-control" name="buying_price" id="buying_price" value="">
                                         </div>
                                         <div class="form-group">
-                                            <label  >Selling Price<span style="color: red">*</span></label>
-                                            <input type="text" class="form-control" name="selling_price" id="selling_price" value="">
-                                        </div>
-                                        <div class="form-group">
                                             <label >Code(s)<span style="color: red">*</span></label>
                                             <textarea class="form-control" id="Code" name="codes" value="" rows="10"></textarea>
                                         </div>
                                         <input type="submit" name="saveButton" class="btn btn-success mr-2" id="saveButton" value="Create"  />
                                     </form>
-
                         </div>
                     </div>
                 </div>
@@ -76,66 +72,4 @@
         </div>
     </div>
 </div>
-
-<!--JQUERY Validation-->
-<script>
-
-	$(document).ready(function() {
-
-
-
-		$("#key_form").validate({
-
-			rules: {
-
-                Name: "required",
-                inp_files: "required",
-
-                Description: "required",
-                Category: "required",
-                Price: {
-					required: true,
-					number: true
-				},
-                Discounted_Price: {
-					required: false,
-					number: true
-				},
-                Tags: "required"
-
-
-
-
-
-
-			},
-			messages: {
-
-				Name: "Name is required",
-                inp_files:  "Image required",
-                Description: "Description is required",
-                Category: "Select a category",
-
-				Price: {
-					required: "Enter a price",
-					number: "Invalid Price"
-				},
-                Discounted_Price: {
-					number: "Invalid Price"
-				},
-                Tags: "No Tags is Selected",
-
-
-			}
-
-
-
-		});
-
-
-
-
-	});
-	</script>
-<!--/JQUERY Validation-->
 @endsection

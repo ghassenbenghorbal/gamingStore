@@ -41,6 +41,8 @@
     border-color: rgb(131, 131, 131);
 }
     </style>
+    <script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>

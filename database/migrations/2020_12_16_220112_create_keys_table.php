@@ -17,7 +17,7 @@ class CreateKeysTable extends Migration
             $table->increments('id');
             $table->string('code', 100);
             $table->float('buying_price');
-            $table->float('selling_price');
+            $table->float('selling_price')->nullable();
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')
                 ->references('id')->on('products');

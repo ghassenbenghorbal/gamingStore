@@ -32,15 +32,20 @@ class keysController extends Controller
 
     public function store(Request $request)
     {
+        $rules = [
+            'product_name' => 'required',
+            'codes' => 'required',
+            'buying_price'=>'required'
+        ];
+        $validator = $request->validate($rules);
         try {
             $codes = $request->codes;
             $codes = preg_split('/\R/', $codes);            ;
             foreach($codes as $code){
                 $key = new Key;
                 $key->code = $code;
-                $key->product_id = $request->product_id;
+                $key->product_id = $request->product_name;
                 $key->buying_price = $request->buying_price;
-                $key->selling_price = $request->selling_price;
                 $key->save();
             }
             return redirect()->route('admin.keys');
