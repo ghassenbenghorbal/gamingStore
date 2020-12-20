@@ -27,16 +27,17 @@
                                     @if($errors->any())
 
                                     <ul>
+                                        @foreach($errors->all() as $err)
                                         <div class="alert alert-danger" role="alert">
-                                            @foreach($errors->all() as $err)
                                             <tr>
                                                 <td>
                                                     {{$err}}
                                                 </td>
                                             </tr>
                                         </div>
-                                            @endforeach
-                                        </ul>
+                                        @break
+                                        @endforeach
+                                    </ul>
                                     @endif
                                     <form class="forms-sample" method="post"  id="product_form" enctype="multipart/form-data">
                                         {{csrf_field()}}
