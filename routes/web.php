@@ -47,6 +47,15 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('/admin_panel/products/delete/{id}', 'admin_panel\productsController@delete')->name('admin.products.delete');
     Route::post('/admin_panel/products/delete/{id}', 'admin_panel\productsController@destroy');
 
+    //Keys
+    Route::get('/admin_panel/keys', 'admin_panel\keysController@index')->name('admin.keys');
+
+    Route::get('/admin_panel/keys/create', 'admin_panel\keysController@create')->name('admin.keys.create');
+    Route::post('/admin_panel/keys/create', 'admin_panel\keysController@store');
+
+    Route::get('/admin_panel/keys/delete/{id}', 'admin_panel\keysController@destroy')->name('admin.keys.delete');
+
+
     //order management
     Route::get('/admin_panel/management', 'admin_panel\managementController@manage')->name('admin.orderManagement');
     Route::post('/admin_panel/management', 'admin_panel\managementController@update')->name('admin.orderUpdate');
@@ -93,8 +102,10 @@ Route::post('/settings/profile', 'user\userController@changeProfile');
 Route::post('/settings/password', 'user\userController@changePassword');
 Route::post('/settings/deposit', 'user\userController@deposit');
 
+//Key
+Route::get('/key/{id}', 'keyController@displayKey');
 
-
+//Product
 Route::get('/view/{id}', 'user\userController@view')->name('user.view');
 Route::post('/view/{id}', 'user\userController@addToCart');
 

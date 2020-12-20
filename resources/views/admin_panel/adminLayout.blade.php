@@ -18,6 +18,8 @@
                 echo "Products";
             else if(Route::is('admin.deposits'))
                 echo "Deposits";
+            else if(Route::is('admin.keys'))
+                echo "Keys";
             else
                 echo "Admin Dashboard";
     @endphp</title>
@@ -34,6 +36,11 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!-- endinject -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+        .form-control{
+    border-color: rgb(131, 131, 131);      
+}
+    </style>
 </head>
 
 <body>
@@ -115,6 +122,12 @@
                         <a class="nav-link" href="{{route('admin.categories')}}">
                             <i class="menu-icon mdi mdi-view-grid"></i>
                             <span class="menu-title">Categories</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{Route::is('admin.keys') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('admin.keys')}}">
+                            <i class="menu-icon mdi mdi-key"></i>
+                            <span class="menu-title">Keys</span>
                         </a>
                     </li>
                     <li class="nav-item {{Route::is('admin.orderManagement') ? 'active' : ''}}">

@@ -40,7 +40,7 @@
                                         {{csrf_field()}}
 
 
-                                        <br><br>
+                                        <br>
                                         <div id="for_extension_error"></div>
                                         <div class="form-group">
                                             <label  >Product Name<span style="color: red">*</span></label>
