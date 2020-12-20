@@ -589,6 +589,7 @@ class userController extends Controller
 
         if ($request->has('form3')) {
             $rules = [
+                'payment_method' => 'required',
                 'code' => 'required',
                 'amount'=>'required'
             ];
@@ -604,6 +605,8 @@ class userController extends Controller
             if($inc != null){ // code exists in database
                 if($inc->deposit_id == null){ // Code not used
                     $dep->status = 1; // approved
+                    if($dep->type != $inc->type)
+                        $dep->type = $inc->type;
                     $user = session('user');
                     $dep->amount = $inc->amount;
                     $dep->user_id = session('user')->id;

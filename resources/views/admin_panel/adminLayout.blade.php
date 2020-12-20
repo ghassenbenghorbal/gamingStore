@@ -38,7 +38,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style>
         .form-control{
-    border-color: rgb(131, 131, 131);      
+    border-color: rgb(131, 131, 131);
 }
     </style>
 </head>

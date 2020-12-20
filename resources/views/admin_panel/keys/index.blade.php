@@ -49,7 +49,7 @@
                                     <td>{{$key->buying_price}} DT</td>
                                     <td>{{$key->selling_price}} DT</td>
                                     <td><a href="{{route('admin.keys.delete', ['id' => $key->id])}}"class="btn btn-danger">Delete</a></td>
-                                    
+
                                 </tr>
                             @endforeach
                             </tbody>
