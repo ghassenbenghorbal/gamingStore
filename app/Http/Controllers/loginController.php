@@ -98,9 +98,9 @@ class loginController extends Controller
         {
             $request->session()->put('user', $user);
 
-            $address = Address::find($user->id);
+            $address = Address::find($user->address_id)->first();
 
-            session()->put('address',$address);
+            session()->put('address', $address);
 
             if(isset($_GET["checkout"])){
                 return redirect()->route('user.cart');

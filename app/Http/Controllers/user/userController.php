@@ -11,6 +11,7 @@ use App\User;
 use App\Address;
 use App\Deposit;
 use App\Income;
+use App\Command;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordResetVerifyRequest;
@@ -114,7 +115,6 @@ class userController extends Controller
         if(!Session::has('cart'))
         {
             return view('store.cart')->with('all',null)
-            ->with('products',[])
             ->with('products', $res)
             ->with("cat", $cat);
         }
@@ -331,97 +331,45 @@ class userController extends Controller
 
     public function confirm(Request $r)
     {
-        if($r->has('order'))
+        if(Session::has('user'))
         {
-            if(Session::has('user'))
-            {
-
-                $sales= new sale();
-                $sales->user_id=session('user')->id;
-                $sales->product_id=session('cart');
-                $sales->order_status='In Progress';
-                $sales->price=session('price');
-
-                $sales->save();
-           // dd(1);
-            Session::forget('cart');
-            Session::forget('price');
-            Session::forget('orderCounter');
-            //dd( $r->session());
-            return redirect()->route('user.cart');
+            $sales= new sale();
+            $sales->user_id=session('user')->id;
+            $sales->price=session('price');
+            $sales->save();
+            $id = $sales->id;
+            $all = explode(',', session('cart'));
+            foreach ($all as $key) {
+                $commande = new Command();
+                $commande->sale_id = $id;
+                $commande->product_id = $key[0];
+                $commande->quantity = $key[2];
+                $commande->order_status = 0;
+                $prod = Product::where('id', $key[0])->first();
+                if($prod->discount != null)
+                    $commande->subtotal = (int)$key[2] * $prod->discount;
+                else
+                    $commande->subtotal = (int)$key[2] * $prod->price;
+                $commande->save();
             }
-            else{
-                return redirect()->route('user.cart');
-            }
 
+        // dd(1);
+        Session::forget('cart');
+        Session::forget('price');
+        Session::forget('orderCounter');
+        //dd( $r->session());
+        return redirect()->route('user.cart');
         }
-
-        if($r->has('signup'))
-        {
-            $validatedData = $r->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'address' => 'required',
-            'city' => 'required',
-            'zip' => 'required|numeric',
-            'tel' => 'required|numeric',
-            'pass' => 'required|min:5'
-            ]);
-            //dd($validatedData);
-            $u=new User();
-            $add=new Address();
-            $add->area=$r->address;
-            $add->city=$r->city;
-            $add->zip=$r->zip;
-            $add->save();
-            $add_id=$add->id;
-            $u->full_name=$r->name;
-            $u->email=$r->email;
-            $u->password=$r->pass;
-            $u->address_id=$add_id;
-            $u->phone=$r->tel;
-            //dd($u);
-            $u->save();
-            $user=User::find($u->id);
-            Session::put('user',$user);
+        else{
             return redirect()->route('user.cart');
         }
-
     }
     public function history(Request $r)
     {
         if(session()->has('user')){
-            $res1= sale::where('user_id', session('user')->id)->get();
-            if(!$res1)
-            {
-                return view('user.orderHistory')->with('all',[])
-                    ->with('products',[])
-                    ->with('sale',[]);
-            }
-
-            $cart=[];
-            $product=[];
-            $id=[];
-            foreach($res1 as $r )
-            {
-                $totalCart = explode(',',$r->product_id);
-                foreach($totalCart as $c)
-                {
-                    $cart[]=array_prepend(explode(':',$c), $r->id);
-                    $a=explode(':',$c);
-                    $res = Product::find($a[0]);
-                    $product[]=$res;
-                }
-            }
-            $res = Product::all();
-            $cat = Category::all();
-            //dd($cart);
+            $res = sale::where('user_id', session('user')->id)->first();
             return view('store.history')
-            ->with('products', $res)
-            ->with("cat", $cat)
-            ->with('all',$cart)
-            ->with('prods',$product)
-            ->with('sale',$res1);
+            ->with('sales',$res);
         }
         else
             return view('store.login');
@@ -438,23 +386,9 @@ class userController extends Controller
                     ->with('products',[])
                     ->with('sale',[]);
             }
-            $cart=[];
-            $product=[];
-            $id=[];
-            foreach($res1 as $r )
-            {
-                $totalCart = explode(',',$r->product_id);
-                foreach($totalCart as $c)
-                {
-                    $cart[]=array_prepend(explode(':',$c), $r->id);
-                    $a=explode(':',$c);
-                    $res = Product::find($a[0]);
-                    $product[]=$res;
-                }
-            }
+
             $res = Product::all();
             $cat = Category::all();
-            //dd($cart);
 
             $depositHistory = $this->getDepositHistory($user->id);
 
@@ -463,8 +397,6 @@ class userController extends Controller
                         return view('store.passwordSettings')
                         ->with('products', $res)
                         ->with("cat", $cat)
-                        ->with('all',$cart)
-                        ->with('prods',$product)
                         ->with('sale',$res1)
                         ->with('depositHistory',$depositHistory)
                         ->with('tab', $tab);
@@ -473,8 +405,6 @@ class userController extends Controller
                         return view('store.profileSettings')
                         ->with('products', $res)
                         ->with("cat", $cat)
-                        ->with('all',$cart)
-                        ->with('prods',$product)
                         ->with('sale',$res1)
                         ->with('depositHistory',$depositHistory)
                         ->with('tab', $tab);
@@ -483,8 +413,6 @@ class userController extends Controller
                     return view('store.orderHistorySettings')
                     ->with('products', $res)
                     ->with("cat", $cat)
-                    ->with('all',$cart)
-                    ->with('prods',$product)
                     ->with('sale',$res1)
                     ->with('depositHistory',$depositHistory)
                     ->with('tab', $tab);
@@ -493,8 +421,6 @@ class userController extends Controller
                     return view('store.depositSettings')
                     ->with('products', $res)
                     ->with("cat", $cat)
-                    ->with('all',$cart)
-                    ->with('prods',$product)
                     ->with('sale',$res1)
                     ->with('depositHistory',$depositHistory)
                     ->with('tab', $tab);
@@ -503,8 +429,6 @@ class userController extends Controller
                     return view('store.depositHistorySettings')
                     ->with('products', $res)
                     ->with("cat", $cat)
-                    ->with('all',$cart)
-                    ->with('prods',$product)
                     ->with('sale',$res1)
                     ->with('depositHistory',$depositHistory)
                     ->with('tab', $tab);
@@ -530,7 +454,7 @@ class userController extends Controller
 
             if(session()->has('user')){
                 $user = session()->get('user');
-                $address = Address::find($user->id);
+                $address = Address::find($user->address_id)->first();
                 if($request->full_name != "" && $user->full_name != $request->full_name)
                     $user->full_name = $request->full_name;
                 if($request->phone != "" && $user->phone != $request->phone)

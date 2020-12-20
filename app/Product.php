@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use app\Key;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -27,7 +27,7 @@ class Product extends Model
     }
     public function keys()
     {
-        return $this->hasMany('App\Key', 'id', 'product_id');
+        return $this->hasMany(Key::class);
     }
 
 

@@ -62,7 +62,6 @@ Route::group(['middleware' => 'admin'], function(){
 
     //order management
     Route::get('/admin_panel/management', 'admin_panel\managementController@manage')->name('admin.orderManagement');
-    Route::post('/admin_panel/management', 'admin_panel\managementController@update')->name('admin.orderUpdate');
 
     //competitions
     Route::get('/admin_panel/competitions', 'admin_panel\CompetitionController@create')->name('admin.competitions');;

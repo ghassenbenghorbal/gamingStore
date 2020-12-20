@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\command;
 use Illuminate\Database\Eloquent\Model;
 
 class sale extends Model
@@ -13,13 +13,11 @@ class sale extends Model
      */
     protected $fillable = [
         'user_id',
-        'product_id',
-        'order_status',
         'price'
     ];
 
-    public function sales()
+    public function commands()
     {
-
+    	return $this->hasMany(Command::class);
     }
 }
