@@ -356,10 +356,11 @@ class userController extends Controller
                 $sales->save();
                 $id = $sales->id;
                 foreach ($all as $key) {
+                    $key = explode(':', $key);
                     $commande = new Command();
                     $commande->sale_id = $id;
                     $commande->product_id = $key[0];
-                    $commande->quantity = $key[2];
+                    $commande->quantity = $key[1];
                     $commande->order_status = 1;
                     $latestOrder = Command::orderBy('created_at','DESC')->first();
                     if($latestOrder != null)
@@ -368,10 +369,10 @@ class userController extends Controller
                         $commande->order_id = '#'.str_pad(1, 8, "0", STR_PAD_LEFT);
                     $prod = Product::where('id', $key[0])->first();
                     if($prod->discount != null){
-                        $commande->subtotal = (int)$key[2] * $prod->discount;
+                        $commande->subtotal = (int)$key[1] * $prod->discount;
                     }
                     else{
-                        $commande->subtotal = (int)$key[2] * $prod->price;
+                        $commande->subtotal = (int)$key[1] * $prod->price;
 
                     }
                     $commande->save();
@@ -379,9 +380,18 @@ class userController extends Controller
                         $available_key = $prod->keys->where('command_id', null)->first();
                         if($available_key != null){
                             $available_key->command_id = $commande->id;
+                            if($prod->discount == null)
+                                $available_key->selling_price = $prod->price;
+                            else
+                                $available_key->selling_price = $prod->discount;
                             $available_key->save();
                         }else{
-                            $commande->order_status = 0; // no keys in stock
+                            if($i > 0){ // at least 1 key in stock
+                                $commande->quantity = $i;
+                                $commande->order_status = 1; // ship only available keys
+                            }else{
+                                $commande->order_status = 0;
+                            }
                             $commande->save();
                             break;
                         }
