@@ -137,7 +137,7 @@ label.error {
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                    You don't have enough balance to complete this order<br><small>Fill up your balance and try again!</small>
+                                    <b>You don't have enough balance to complete this order</b><br><small>Add money to your balance and try again!</small>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

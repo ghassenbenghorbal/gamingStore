@@ -335,12 +335,26 @@ class userController extends Controller
         {
             $user = session('user');
             if(session('price') <= $user->balance){
+                $all = explode(',', session('cart'));
+                $total = 0;
+                foreach ($all as $key) { // double checking if price <= balance in case sm1 manually changed the session price
+                    $prod = Product::where('id', $key[0])->first();
+                    if($prod->discount != null){
+                        $total += (int)$key[2] * $prod->discount;
+                    }
+                    else{
+                        $total += (int)$key[2] * $prod->price;
+                    }
+                }
+                if($total > $user->balance){
+                    $r->session()->flash('message', 'Nice try kid');
+                    return redirect()->route('user.cart');
+                }
                 $sales= new sale();
                 $sales->user_id=session('user')->id;
                 $sales->price=session('price');
                 $sales->save();
                 $id = $sales->id;
-                $all = explode(',', session('cart'));
                 foreach ($all as $key) {
                     $commande = new Command();
                     $commande->sale_id = $id;
@@ -348,10 +362,13 @@ class userController extends Controller
                     $commande->quantity = $key[2];
                     $commande->order_status = 0;
                     $prod = Product::where('id', $key[0])->first();
-                    if($prod->discount != null)
+                    if($prod->discount != null){
                         $commande->subtotal = (int)$key[2] * $prod->discount;
-                    else
+                    }
+                    else{
                         $commande->subtotal = (int)$key[2] * $prod->price;
+
+                    }
                     $commande->save();
                 }
                 $user->balance -= $sales->price;
