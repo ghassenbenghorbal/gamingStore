@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <title>Admin Login</title>
-        
+
   </head>
 
 <body style="font-family: sans-serif !important;">
@@ -21,13 +21,13 @@
       <span class="login100-form-title text-center">
         Admin Portal
 	  </span>
-			
+
 			<div class="login-page wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 				@if(session('message'))
                 <div class="alert alert-danger" role="alert">
                     {{session('message')}}
                 </div>
-            @endif 
+                @endif
 				<form method="POST" id="loginForm" class="login-form login100-form validate-form flex-sb flex-w">
           {{csrf_field()}}
 
@@ -38,7 +38,7 @@
 						<input class="input100" type="text" name="Username" id="Username" required value="admin">
 						<span class="focus-input100"></span>
 					</div>
-					
+
 					<span class="txt1 p-b-11">
 						Password
 					</span>
@@ -49,7 +49,7 @@
 						<input class="input100" type="password" name="Password" id="Password" required value="admin	">
 						<span class="focus-input100"></span>
 					</div>
-					
+
 					<div class="flex-sb-m w-full p-b-48">
 						<div>
 							<a href="#" class="txt3">
@@ -68,9 +68,9 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
-  
+
 </body>
 </html>

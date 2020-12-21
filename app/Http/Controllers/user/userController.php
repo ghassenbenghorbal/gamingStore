@@ -333,32 +333,39 @@ class userController extends Controller
     {
         if(Session::has('user'))
         {
-            $sales= new sale();
-            $sales->user_id=session('user')->id;
-            $sales->price=session('price');
-            $sales->save();
-            $id = $sales->id;
-            $all = explode(',', session('cart'));
-            foreach ($all as $key) {
-                $commande = new Command();
-                $commande->sale_id = $id;
-                $commande->product_id = $key[0];
-                $commande->quantity = $key[2];
-                $commande->order_status = 0;
-                $prod = Product::where('id', $key[0])->first();
-                if($prod->discount != null)
-                    $commande->subtotal = (int)$key[2] * $prod->discount;
-                else
-                    $commande->subtotal = (int)$key[2] * $prod->price;
-                $commande->save();
+            $user = session('user');
+            if(session('price') <= $user->balance){
+                $sales= new sale();
+                $sales->user_id=session('user')->id;
+                $sales->price=session('price');
+                $sales->save();
+                $id = $sales->id;
+                $all = explode(',', session('cart'));
+                foreach ($all as $key) {
+                    $commande = new Command();
+                    $commande->sale_id = $id;
+                    $commande->product_id = $key[0];
+                    $commande->quantity = $key[2];
+                    $commande->order_status = 0;
+                    $prod = Product::where('id', $key[0])->first();
+                    if($prod->discount != null)
+                        $commande->subtotal = (int)$key[2] * $prod->discount;
+                    else
+                        $commande->subtotal = (int)$key[2] * $prod->price;
+                    $commande->save();
+                }
+                $user->balance -= $sales->price;
+                $user->save();
+                // dd(1);
+                Session::forget('cart');
+                Session::forget('price');
+                Session::forget('orderCounter');
+                //dd( $r->session());
+                return redirect()->route('user.cart');
+            }else{ // balance not enough
+                $r->session()->flash('message', 'Not enough balance');
+                return redirect()->route('user.cart');
             }
-
-        // dd(1);
-        Session::forget('cart');
-        Session::forget('price');
-        Session::forget('orderCounter');
-        //dd( $r->session());
-        return redirect()->route('user.cart');
         }
         else{
             return redirect()->route('user.cart');
