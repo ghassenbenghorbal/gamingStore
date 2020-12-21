@@ -14,6 +14,7 @@ use App\Address;
 use App\Deposit;
 use App\Income;
 use App\Key;
+use App\Command;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordResetVerifyRequest;
@@ -23,10 +24,11 @@ class keyController extends Controller
 {
     public function displayKey(Request $r, $id){
         if(session()->has('user')){
-            $res = Product::find($id);
+            $command = Command::find($id);
+            $keys = $command->keys;
+            $res = Product::find($command->product_id);
             $res1 = Product::all();
             $cat = Category::all();
-            $keys = $res->keys()->where('user_id',session()->get('user')->id)->get();
             return view('store.key')
             ->with('product', $res)
             ->with('products', $res1)

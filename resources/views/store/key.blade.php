@@ -69,7 +69,7 @@ label.error {
 
             </div>
             <div class="col-md-6" style="width: 35%">                   
-
+                <h4 class="text-center text-success">How to redeem a key</h4>
                     @switch($product->category->name)
                     @case("Steam")
                         

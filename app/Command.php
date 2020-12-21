@@ -1,8 +1,8 @@
 <?php
 
 namespace App;
-use app\sale;
-use app\Key;
+use App\sale;
+use App\Key;
 use Illuminate\Database\Eloquent\Model;
 
 class Command extends Model

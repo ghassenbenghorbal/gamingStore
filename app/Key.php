@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-use app\Product;
+use App\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Key extends Model
