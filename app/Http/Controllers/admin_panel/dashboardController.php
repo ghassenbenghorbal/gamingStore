@@ -27,7 +27,7 @@ class dashboardController extends Controller
         ]);
 
         $earnings = Key::select(\DB::raw("SUM(selling_price)-SUM(buying_price) as monthEarning"))
-        ->where('user_id', '!=', null)
+        ->where('command_id', '!=', null)
         ->whereYear('updated_at', Carbon::now()->year)
         ->groupBy(\DB::raw("Month(updated_at)"))
         ->pluck('monthEarning');
@@ -47,18 +47,18 @@ class dashboardController extends Controller
     }
 
     function TotalProductSold(){
-        return Key::where('user_id', '!=', null)->count();
+        return Key::where('command_id', '!=', null)->count();
     }
     function earningMonthly(){
         $data = Key::select(\DB::raw("SUM(selling_price)-SUM(buying_price) as monthEarning"))
-            ->where('user_id', '!=', null)
+            ->where('command_id', '!=', null)
             ->whereMonth('updated_at', Carbon::now()->month)
             ->first();
         return $data->monthEarning;
     }
     function earningThisYear(){
         $data = Key::select(\DB::raw("SUM(selling_price)-SUM(buying_price) as yearEarning"))
-            ->where('user_id', '!=', null)
+            ->where('command_id', '!=', null)
             ->whereYear('updated_at', Carbon::now()->year)
             ->first();
         return $data->yearEarning;

@@ -269,7 +269,7 @@ label.error {
 
                     //$("#deleteItem_".$p->id").load(location.href+" #refresh_div","");
                     document.getElementById(id_holder).innerHTML  = "";
-                    document.getElementById("totalCost").innerHTML = msg[2];
+                    document.getElementById("totalCost").innerHTML = msg[2] + " TND";
                 }
                 });
 

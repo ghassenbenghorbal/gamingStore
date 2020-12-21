@@ -24,6 +24,7 @@ class CreateCommandsTable extends Migration
             $table->tinyInteger('order_status'); // 0 in progress, 1 accepted, -1 rejected
             $table->integer('subtotal');
             $table->integer('quantity');
+            $table->string('order_id', 50);
             $table->timestamps();
         });
     }

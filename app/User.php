@@ -28,6 +28,6 @@ class User extends Model
     }
     public function deposits()
     {
-        return $this->hasMany(Deposit::class);
+        return $this->hasMany('App\Deposit', 'user_id', 'id');
     }
 }
