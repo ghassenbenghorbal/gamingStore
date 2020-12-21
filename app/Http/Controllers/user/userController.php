@@ -360,7 +360,12 @@ class userController extends Controller
                     $commande->sale_id = $id;
                     $commande->product_id = $key[0];
                     $commande->quantity = $key[2];
-                    $commande->order_status = 0;
+                    $commande->order_status = 1;
+                    $latestOrder = Command::orderBy('created_at','DESC')->first();
+                    if($latestOrder != null)
+                        $commande->order_id = '#'.str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
+                    else
+                        $commande->order_id = '#'.str_pad(1, 8, "0", STR_PAD_LEFT);
                     $prod = Product::where('id', $key[0])->first();
                     if($prod->discount != null){
                         $commande->subtotal = (int)$key[2] * $prod->discount;
@@ -370,6 +375,17 @@ class userController extends Controller
 
                     }
                     $commande->save();
+                    for ($i=0; $i < $commande->quantity; $i++) { // assigning keys to user
+                        $available_key = $prod->keys->where('command_id', null)->first();
+                        if($available_key != null){
+                            $available_key->command_id = $commande->id;
+                            $available_key->save();
+                        }else{
+                            $commande->order_status = 0; // no keys in stock
+                            $commande->save();
+                            break;
+                        }
+                    }
                 }
                 $user->balance -= $sales->price;
                 $user->save();
@@ -378,7 +394,7 @@ class userController extends Controller
                 Session::forget('price');
                 Session::forget('orderCounter');
                 //dd( $r->session());
-                return redirect()->route('user.cart');
+                return redirect()->route('user.settings','orderHistory');
             }else{ // balance not enough
                 $r->session()->flash('message', 'Not enough balance');
                 return redirect()->route('user.cart');
@@ -649,7 +665,7 @@ class userController extends Controller
 
 
     public function getDepositHistory($id){
-        $depositHistory = Deposit::where('user_id',$id)->orderBy('created_at','DESC')->get();
+        $depositHistory = Deposit::where('user_id',$id)->latest()->get();
         return $depositHistory;
     }
 }

@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <table class="table table-striped table-bordered mydatatable" id="historyTable">
                 <thead>
-                    <th style="width: 10px">ID</th>
+                    <th>Order ID</th>
                     <th>Name</th>
                     <th>Quanity</th>
                     <th>Total</th>
@@ -18,12 +18,12 @@
                 <tbody>
                     @foreach($sale as $s)
 
-                        @foreach($s->commands()->get() as $command)
+                        @foreach($s->commands as $command)
                             @php
                                 $p = App\Product::find($command->product_id);
                             @endphp
                             <tr>
-                            <td style="width: 10px;padding-top:13px;"><b>{{$command->id}}</b></td>
+                            <td style="padding-top:13px;"><b>{{$command->order_id}}</b></td>
                             <td><img src="{{asset('storage/' . $p->image)}}" height="30px" width="30px">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$p->name}}</b></td>
                             <td style="padding-top: 13px;"><span><b>{{$command->quantity}}</b></span></td>
                             <td style="padding-top: 13px;"><span><b>{{$command->subtotal}} TND</b></span></td>

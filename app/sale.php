@@ -1,7 +1,6 @@
 <?php
 
 namespace App;
-use App\command;
 use Illuminate\Database\Eloquent\Model;
 
 class sale extends Model
@@ -18,6 +17,6 @@ class sale extends Model
 
     public function commands()
     {
-    	return $this->hasMany(Command::class);
+    	return $this->hasMany('App\Command', 'sale_id', 'id')->orderBy('created_at','DESC');
     }
 }

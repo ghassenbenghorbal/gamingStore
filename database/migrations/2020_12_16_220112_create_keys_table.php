@@ -21,9 +21,9 @@ class CreateKeysTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')
                 ->references('id')->on('products');
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')
-                ->references('id')->on('users');
+            $table->integer('command_id')->unsigned()->nullable();
+            $table->foreign('command_id')
+                ->references('id')->on('commands');
             $table->timestamps();
         });
     }
