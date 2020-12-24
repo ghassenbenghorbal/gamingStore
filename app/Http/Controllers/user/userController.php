@@ -376,6 +376,7 @@ class userController extends Controller
 
                     }
                     $commande->save();
+                    $unshippedAmount = 0; // if quantity > stock
                     for ($i=0; $i < $commande->quantity; $i++) { // assigning keys to user
                         $available_key = $prod->keys->where('command_id', null)->first();
                         if($available_key != null){
@@ -387,6 +388,10 @@ class userController extends Controller
                             $available_key->save();
                         }else{
                             if($i > 0){ // at least 1 key in stock
+                                if($prod->discount == null)
+                                    $unshippedAmount += ($commande->quantity - $i) * $prod->price;
+                                else
+                                    $unshippedAmount += ($commande->quantity - $i) * $prod->discount;
                                 $commande->quantity = $i;
                                 $commande->order_status = 1; // ship only available keys
                             }else{
@@ -397,7 +402,7 @@ class userController extends Controller
                         }
                     }
                 }
-                $user->balance -= $sales->price;
+                $user->balance -= $sales->price - $unshippedAmount;
                 $user->save();
                 // dd(1);
                 Session::forget('cart');

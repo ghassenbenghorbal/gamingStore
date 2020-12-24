@@ -18,7 +18,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)</div>
+                                            Earnings ({{$months[Carbon\Carbon::now()->month]}})</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{$monthEarnings != null ? $monthEarnings: 0}} TND</div>
                                     </div>
                                     <div class="col-auto">
@@ -36,7 +36,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Earnings (Annual)</div>
+                                            Earnings of {{Carbon\Carbon::now()->year}}</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{$yearEarnings != null ? $yearEarnings: 0}} TND</div>
                                     </div>
                                     <div class="col-auto">
@@ -84,6 +84,7 @@
                 </div>
                 <div class="d-flex flex-row">
                     <div class="w-50 p-3">
+                        <h4 class="text-center">New Users</h4>
                         <div style="width: 80%;margin: 0 auto;">
                             {!! $userChart->container() !!}
                         </div>
@@ -91,12 +92,24 @@
                         {!! $userChart->script() !!}
                     </div>
                     <div class="w-50 p-3">
+                        <h4 class="text-center">Earnings Overview</h4>
                         <div style="width: 80%;margin: 0 auto;">
                             {!! $earningsChart->container() !!}
                         </div>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
                         {!! $earningsChart->script() !!}
                     </div>
+                </div>
+                <div class="d-flex flex-row">
+                    <div class="w-50 p-3">
+                        <h4 class="text-center">Most Sold Products</h4>
+                        <div style="width: 80%;margin: 0 auto;">
+                            {!! $salesChart->container() !!}
+                        </div>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+                        {!! $salesChart->script() !!}
+                    </div>
+                    {{-- last Chart --}}
                 </div>
             </div>
         </div>

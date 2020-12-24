@@ -13,5 +13,8 @@ class Key extends Model
         'buying_price',
         'selling_price'
     ];
-
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
 }
