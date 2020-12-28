@@ -1,7 +1,8 @@
 @extends('admin_panel.adminLayout')
 <script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
-
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <div class="content-wrapper">
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
@@ -10,7 +11,7 @@
                     <h4 class="card-title">Received Deposits <a class="btn btn-lg btn-success" style="float:right;color:white" href="{{route('admin.deposits.create')}}">+ Add Deposit</a></h4>
                     <br><br>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered mydatatable" id="depositsTable">
                             <thead>
                                 <tr>
                                     <th>
@@ -99,4 +100,9 @@
         </div>
     </div>
 </div>
+<script>
+    $('#depositsTable').DataTable({
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]
+    });
+</script>
 @endsection

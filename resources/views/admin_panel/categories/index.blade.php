@@ -9,8 +9,11 @@
 }</style>
 
 
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <div class="content-wrapper">
+
+
     <div class="row">
         <div class="col-12 stretch-card">
             <div class="card">
@@ -52,7 +55,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Categories Table</h4>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered mydatatable" id="categoriesTable">
                             <thead>
                                 <tr>
                                     <th>
@@ -132,5 +135,11 @@
 	});
 	</script>
 <!--/JQUERY Validation-->
+
+<script>
+    $('#categoriesTable').DataTable({
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]
+    });
+</script>
 
 @endsection

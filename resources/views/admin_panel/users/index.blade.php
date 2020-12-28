@@ -2,6 +2,8 @@
 @php
     $filterTrashed = isset($_GET['filter']) && $_GET['filter'] == "trashed";
 @endphp
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <div class="content-wrapper">
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
@@ -16,7 +18,7 @@
                     @endif
                     <br><br>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered mydatatable" id="userTable">
                             <thead>
                                 <tr>
                                     <th>
@@ -82,7 +84,6 @@
                                             <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></a>
                                         @else
                                             <a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-restore-alt"></i></a>
-
                                         @endif
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -122,5 +123,11 @@
         </div>
     </div>
 </div>
+<script>
+    $('#userTable').DataTable({
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]
+    });
+
+</script>
 @endsection
 
