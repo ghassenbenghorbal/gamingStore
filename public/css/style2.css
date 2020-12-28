@@ -1563,12 +1563,25 @@ textarea.input {
   color: #8D99AE;
 }
 
-.product-details .product-available {
-  font-size: 12px;
+.product-details .product-unavailable {
+  font-size: 16px;
   text-transform: uppercase;
   font-weight: 700;
   margin-left: 30px;
   color: #D10024;
+}
+.product-details .product-available {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-left: 30px;
+}
+.product-details .product-savailable {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-left: 30px;
+  color: #d8931c;
 }
 
 .product-details .product-options {
