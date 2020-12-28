@@ -38,8 +38,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style>
         .form-control{
-    border-color: rgb(131, 131, 131);
-}
+            border-color: rgb(131, 131, 131);
+        }
+
+        
+
+
     </style>
     <script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
 
@@ -84,7 +88,7 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <nav class="sidebar sidebar-offcanvas position-fixed" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
                         <div class="nav-link">
@@ -160,7 +164,7 @@
                 </ul>
             </nav>
             <!-- partial -->
-            <div class="main-panel">
+            <div class="main-panel" style="margin-left:250px">
                 @yield('content')
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
@@ -169,6 +173,8 @@
                 </footer>
                 <!-- partial -->
             </div>
+
+
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
