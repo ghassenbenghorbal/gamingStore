@@ -7,9 +7,9 @@
         <div class="col-md-12">
             <table class="table table-striped table-bordered mydatatable" id="historyTable">
                 <thead>
-                    <th>Order ID</th>
+                    <th>ID</th>
                     <th>Name</th>
-                    <th>Quanity</th>
+                    <th>Quantity</th>
                     <th>Total</th>
                     <th>Status</th>
                     <th>Date</th>
@@ -24,9 +24,9 @@
                             @endphp
                             <tr>
                             <td style="padding-top:13px;"><b>{{$command->order_id}}</b></td>
-                            <td><img src="{{asset('storage/' . $p->image)}}" height="30px" width="30px">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$p->name}}</b></td>
+                            <td style="width: 34%"><img src="{{asset('storage/' . $p->image)}}" height="30px" width="30px">&nbsp;<b>{{$p->name}}</b></td>
                             <td style="padding-top: 13px;"><span><b>{{$command->quantity}}</b></span></td>
-                            <td style="padding-top: 13px;"><span><b>{{$command->subtotal}} TND</b></span></td>
+                            <td style="padding-top: 13px;width: 10%;"><span><b>{{$command->subtotal}} TND</b></span></td>
                             <td class="text-center" style="padding-top: 13px;"><span class="@php
                                 switch ($command->order_status) {
                                     case 0:

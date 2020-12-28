@@ -364,9 +364,9 @@ class userController extends Controller
                     $commande->order_status = 1;
                     $latestOrder = Command::orderBy('created_at','DESC')->first();
                     if($latestOrder != null)
-                        $commande->order_id = '#'.str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
+                        $commande->order_id = '#'.str_pad($latestOrder->id + 1, 5, "0", STR_PAD_LEFT);
                     else
-                        $commande->order_id = '#'.str_pad(1, 8, "0", STR_PAD_LEFT);
+                        $commande->order_id = '#'.str_pad(1, 5, "0", STR_PAD_LEFT);
                     $prod = Product::where('id', $key[0])->first();
                     if($prod->discount != null){
                         $commande->subtotal = (int)$key[1] * $prod->discount;

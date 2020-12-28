@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
                 ->onDelete('cascade');
             $table->float('balance')->default(0);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -37,7 +37,10 @@ Route::group(['middleware' => 'admin'], function(){
 
     Route::get('/admin_panel/categories/delete/{id}', 'admin_panel\categoriesController@delete')->name('admin.categories.delete');
     Route::post('/admin_panel/categories/delete/{id}', 'admin_panel\categoriesController@destroy');
-
+    // Users manager
+    Route::get('/admin_panel/users', 'admin_panel\usersController@index')->name('admin.users');
+    Route::get('/admin_panel/users/delete/{id}', 'admin_panel\usersController@destroy')->name('admin.users.delete');
+    Route::get('/admin_panel/users/restore/{id}', 'admin_panel\usersController@restore')->name('admin.users.restore');
 
     //products
     Route::get('/admin_panel/products', 'admin_panel\productsController@index')->name('admin.products');

@@ -21,10 +21,7 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        Image
-                                    </th>
-                                    <th>
-                                        Name
+                                        Product
                                     </th>
                                     <th>
                                         Key
@@ -39,14 +36,12 @@
                             @foreach($keyList as $key)
                                 <tr>
                                     <td>
-                                        <img src="{{asset('storage/' . $productList->find($key->product_id)->image)}}" style="border-radius:10%;" alt="">
-                                    </td>
-                                    <td>
-                                       <a href="{{route('admin.products.edit', ['id' => $productList->find($key->product_id)])}}" class="btn btn-warning">{{$productList->find($key->product_id)->name}}</a>
+                                        <img src="{{asset('storage/' . $productList->find($key->product_id)->image)}}" style="border-radius:10%;" alt="">&nbsp;&nbsp;<b style="font-size: 105%;">{{$key->product->name}}</b>
                                     </td>
                                     <td>{{$key->code}}</td>
                                     <td>{{$key->buying_price}} DT</td>
                                     <td>
+                                        @if($key->command_id == null)
                                         <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></a>
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -67,6 +62,10 @@
                                               </div>
                                             </div>
                                           </div>
+                                          @else
+                                            <span class="badge badge-success">Sold</span>
+                                          @endif
+
                                     </td>
 
                                 </tr>

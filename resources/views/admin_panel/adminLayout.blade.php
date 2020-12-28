@@ -108,6 +108,12 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
+                    <li class="nav-item {{Route::is('admin.users') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('admin.users')}}">
+                            <i class="menu-icon fas fa-users"></i>
+                            <span class="menu-title">Users</span>
+                        </a>
+                    </li>
                     <li class="nav-item {{Route::is('admin.deposits') ? 'active' : ''}}">
                         <a class="nav-link" href="{{route('admin.deposits')}}">
                             <i class="menu-icon mdi mdi-bank"></i>
