@@ -1,4 +1,10 @@
 @extends('admin_panel.adminLayout') @section('content')
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+
 <div class="content-wrapper">
     <div class="row">
         @php
@@ -17,7 +23,7 @@
                     <h4 class="card-title">Products Table <a class="btn btn-lg btn-success" style="float:right;color:white" href="{{route('admin.products.create')}}">+ Add Product</a></h4>
                     <br><br>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered mydatatable" id="productTable">
                             <thead>
                                 <tr>
                                     <th>
@@ -71,5 +77,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#productTable').DataTable({
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]
+    });
+
+</script>
 @endsection
 
