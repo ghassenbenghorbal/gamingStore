@@ -188,11 +188,19 @@
         <!-- /container -->
     </nav>
     <!-- /NAVIGATION -->
+        <div class="row">
+            <div class="col">
+
+                hello
+
+            </div>
+            <div class="col">
+
+                @yield('content')
 
 
-
-    @yield('content')
-
+            </div>
+        </div>
     <!-- /SECTION -->
 
     <div id="newsletter" class="section">
