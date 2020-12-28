@@ -53,7 +53,15 @@ label.error {
                             <del class="product-old-price"> {{$product->price}} TND</del>
                             @endif
                         </h3>
-                        <span class="product-available">In Stock</span>
+                        @php
+                            $stock = $product->keys->where('command_id', null)->count();
+                            if($stock <= 0)
+                                echo "<span class='product-unavailable'>Unavailable</span>";
+                            else if($stock < 5)
+                                echo "<span class='product-available text-warning'>Only $stock left !</span>";
+                            else
+                                echo "<span class='product-available text-success'>In Stock</span>"
+                        @endphp
                     </div>
                     <p>{!!$product->description!!}</p>
                     <form method="post" id="order_form">
@@ -61,22 +69,26 @@ label.error {
                     <div class="product-options" >
                         <input type="hidden" id="discount_price_holder" name="discount_price_holder" value={{$product->discount}}>
                         <label>
-                        
+
                         <div id="field1">Quantity
                         <button type="button" id="sub" class="sub">-</button>
-                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="100"  />
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{$stock}}"  />
                         <button type="button" id="add" class="add">+</button>
                     </div>
-                        
+
                         </label>
-                        
-                        
-                          
+
+
+
                     </div>
                         <div id="for_error"></div>
 
                     <div class="add-to-cart">
-                        <button type="submit" name="myButton" id="myButton" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        @if($stock > 0)
+                            <button type="submit" name="myButton" id="myButton" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        @else
+                            <button class="btn btn-danger" disabled><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        @endif
                     </div>
                     </form>
                     <ul class="product-links">
@@ -96,23 +108,23 @@ label.error {
 
 <!--JQUERY Validation-->
 <script>
-	
+
     //////////////////////////////////////
-    
-	
+
+
     $('.add').click(function () {
-        
+
         $(this).prev().val(+$(this).prev().val() + 1);
-        
+
     });
     $('.sub').click(function () {
             if ($(this).next().val() > 1) {
             $(this).next().val(+$(this).next().val() - 1);
             }
     });
-    
-	
-   
+
+
+
 	</script>
 <!--/JQUERY Validation-->
 <!-- /SECTION -->

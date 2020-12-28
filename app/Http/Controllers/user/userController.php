@@ -92,20 +92,24 @@ class userController extends Controller
 
     public function addToCart($id,orderRequest $r)
     {
-        if(!(Session::has('cart')))
-        {
-            Session::put('orderCounter',1);
-            $c=$id.":".$r->quantity."::".Session::get('orderCounter');
-            Session::put('cart',$c);
+        if($r->quantity < 1 || Product::find($id)->first()->keys->where('command_id', null)->count() < $r->quantity){
+            return redirect(route('user.view',['id'=>$id]));
+        }else{
+            if(!(Session::has('cart')))
+            {
+                Session::put('orderCounter',1);
+                $c=$id.":".$r->quantity."::".Session::get('orderCounter');
+                Session::put('cart',$c);
+            }
+            else
+            {
+                Session::put('orderCounter',Session::get('orderCounter')+1);
+                $cd=$id.":".$r->quantity."::".Session::get('orderCounter');
+                $total=Session::get('cart').",".$cd;
+                Session::put('cart',$total);
+            }
+            return redirect()->route('user.cart');
         }
-        else
-        {
-            Session::put('orderCounter',Session::get('orderCounter')+1);
-            $cd=$id.":".$r->quantity."::".Session::get('orderCounter');
-            $total=Session::get('cart').",".$cd;
-            Session::put('cart',$total);
-        }
-        return redirect()->route('user.cart');
     }
 
     public function cart(Request $r)
@@ -337,13 +341,16 @@ class userController extends Controller
             if(session('price') <= $user->balance){
                 $all = explode(',', session('cart'));
                 $total = 0;
-                foreach ($all as $key) { // double checking if price <= balance in case sm1 manually changed the session price
-                    $prod = Product::where('id', $key[0])->first();
+                foreach ($all as $lignCommande) { // double checking if price <= balance in case sm1 manually changed the session price
+                    $prod = Product::where('id', $lignCommande[0])->first();
+                    $lignCommande = explode(':', $lignCommande);
+                    if($prod->keys->where('command_id', null)->count() < (int)$lignCommande[1]) // quantity > stock
+                        return redirect(route("user.cart"));
                     if($prod->discount != null){
-                        $total += (int)$key[2] * $prod->discount;
+                        $total += (int)$lignCommande[2] * $prod->discount;
                     }
                     else{
-                        $total += (int)$key[2] * $prod->price;
+                        $total += (int)$lignCommande[2] * $prod->price;
                     }
                 }
                 if($total > $user->balance){
@@ -355,28 +362,26 @@ class userController extends Controller
                 $sales->price=session('price');
                 $sales->save();
                 $id = $sales->id;
-                foreach ($all as $key) {
-                    $key = explode(':', $key);
+                foreach ($all as $lignCommande) {
+                    $lignCommande = explode(':', $lignCommande);
                     $commande = new Command();
                     $commande->sale_id = $id;
-                    $commande->product_id = $key[0];
-                    $commande->quantity = $key[1];
+                    $commande->product_id = $lignCommande[0];
+                    $commande->quantity = $lignCommande[1];
                     $commande->order_status = 1;
                     $latestOrder = Command::orderBy('created_at','DESC')->first();
                     if($latestOrder != null)
                         $commande->order_id = '#'.str_pad($latestOrder->id + 1, 5, "0", STR_PAD_LEFT);
                     else
                         $commande->order_id = '#'.str_pad(1, 5, "0", STR_PAD_LEFT);
-                    $prod = Product::where('id', $key[0])->first();
+                    $prod = Product::where('id', $lignCommande[0])->first();
                     if($prod->discount != null){
-                        $commande->subtotal = (int)$key[1] * $prod->discount;
+                        $commande->subtotal = (int)$lignCommande[1] * $prod->discount;
                     }
                     else{
-                        $commande->subtotal = (int)$key[1] * $prod->price;
-
+                        $commande->subtotal = (int)$lignCommande[1] * $prod->price;
                     }
                     $commande->save();
-                    $unshippedAmount = 0; // if quantity > stock
                     for ($i=0; $i < $commande->quantity; $i++) { // assigning keys to user
                         $available_key = $prod->keys->where('command_id', null)->first();
                         if($available_key != null){
@@ -387,22 +392,11 @@ class userController extends Controller
                                 $available_key->selling_price = $prod->discount;
                             $available_key->save();
                         }else{
-                            if($i > 0){ // at least 1 key in stock
-                                if($prod->discount == null)
-                                    $unshippedAmount += ($commande->quantity - $i) * $prod->price;
-                                else
-                                    $unshippedAmount += ($commande->quantity - $i) * $prod->discount;
-                                $commande->quantity = $i;
-                                $commande->order_status = 1; // ship only available keys
-                            }else{
-                                $commande->order_status = 0;
-                            }
-                            $commande->save();
                             break;
                         }
                     }
                 }
-                $user->balance -= $sales->price - $unshippedAmount;
+                $user->balance -= $sales->price;
                 $user->save();
                 // dd(1);
                 Session::forget('cart');
