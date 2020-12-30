@@ -49,13 +49,13 @@
 
                                 @foreach($s->commands as $c)
                                 <tr>
-                                <td>{{$c->id}}</td>
+                                <td><b>{{$c->order_id}}</b></td>
                                     @php
                                         $u = App\User::find($s->user_id);
                                         $p = App\Product::find($c->product_id);
                                         $add = App\Address::find($u->address_id);
                                     @endphp
-                                        <td>{{$u->full_name}}</td>
+                                        <td><b>{{$u->full_name}}</b></td>
                                         <td>{{$add->area}}, {{$add->city}}, {{$add->zip}}</td>
                                 <td>
 
@@ -63,7 +63,7 @@
 
                                 </td>
                                    <td>
-                                        {{$c->quantity}}
+                                        <b>{{$c->quantity}}</b>
                                     </td>
                                     <td>
                                     <div style="height:25px;width:25px;margin:5px;display:inline-block;">{{$p->category->name}}</div>

@@ -24,7 +24,9 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get("admin/receivedDeposits/create", 'admin_panel\depositsController@create')->name('admin.deposits.create');
     Route::post("admin/receivedDeposits/create", 'admin_panel\depositsController@store')->name('admin.deposits.create');
     Route::get("admin/receivedDeposits/delete/{id}", 'admin_panel\depositsController@delete')->name('admin.deposits.delete');
+    // user deposits
 
+    Route::get("admin/userDeposits", 'admin_panel\userDepositsController@index')->name('admin.userdeposits');
     Route::get('admin/logout', 'loginController@adminLogout')->name('admin.logout');
     Route::get('admin/settings', 'loginController@adminSettingsIndex')->name('admin.settings');
     Route::post('admin/settings', 'loginController@adminSettings')->name('admin.settings');
