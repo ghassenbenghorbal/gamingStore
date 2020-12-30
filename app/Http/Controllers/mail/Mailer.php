@@ -8,13 +8,13 @@ use Mail;
 
 class Mailer extends Controller
 {
-    public static function sendOrderConfirmationMail($to_name, $to_email,$body){
-        $data = array("name"=>$to_name, 
-                    "body" => "");
-        Mail::send("emails.mail", $data, function($message) use ($to_name, $to_email) {
-        $message->to($to_email, $to_name)
-        ->subject("Laravel Test Mail");
-        $message->from("no.reply.gaming.store@gmail.com","Ghassen");
+    public static function sendOrderConfirmationMail($to_fullName, $to_email, $commands){
+        $data = array("name"=>$to_fullName, 
+                    "commands" => $commands);
+        Mail::send("emails.mail", $data, function($message) use ($to_fullName, $to_email) {
+        $message->to($to_email, $to_fullName)
+        ->subject("Order confirmation");
+        $message->from("no.reply.gaming.store@gmail.com","Gaming Store");
 });
     }
 }

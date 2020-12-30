@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\mail\Mailer;
 use App\Http\Requests\orderRequest;
 use Illuminate\Support\Facades\DB;
 use App\Product;
@@ -365,6 +366,9 @@ class userController extends Controller
                 $sales->price=session('price');
                 $sales->save();
                 $id = $sales->id;
+
+                $body = [];
+
                 foreach ($all as $lignCommande) {
                     $lignCommande = explode(':', $lignCommande);
                     $commande = new Command();
@@ -398,6 +402,8 @@ class userController extends Controller
                             break;
                         }
                     }
+                    
+                    $body[] = $commande;
                 }
                 $user->balance -= $sales->price;
                 $user->save();
@@ -407,6 +413,10 @@ class userController extends Controller
                 Session::forget('orderCounter');
                 //dd( $r->session());
 
+                $to_fullName = $user->full_name;
+                $to_email = $user->email;
+                
+                Mailer::sendOrderConfirmationMail($to_fullName, $to_email, $body);
                 
                 
 
