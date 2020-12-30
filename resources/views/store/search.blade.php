@@ -10,10 +10,16 @@
             <form class="" action="#">
                 <div class="form-group">
                     <label class="form-label">Price range</label>
-                    <input class="form-range" type="range" oninput="myFunction(this.value)" value="150" min="1" max="300" step="1" />
-                    <div class="container-fluid" style=" font-weight:bold; padding:0">
-                        <span style="float: left;"><span>1</span> DT</span>
-                        <span style="float: right;"><span id="currentValue">150</span> DT</span>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input class="form-control" placeholder="From" type="number">
+                        </div>
+                        <div class="col-sm-1" style="padding-top: 5px;padding-right:0px;padding-left:11px">
+                            <span><b>-</b></span>
+                        </div>
+                        <div class="col-sm-5">
+                            <input class="form-control" placeholder="To" type="number">
+                        </div>
                     </div>
                 </div>
                 <hr style="border-top: 1px solid #ccc;">

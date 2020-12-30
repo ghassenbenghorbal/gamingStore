@@ -72,6 +72,7 @@
             box-shadow: none;
             background: #f3f8ff;
             padding: 1.25rem;
+            width: 19% 
         }
         </style>
         <script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
