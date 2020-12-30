@@ -137,3 +137,5 @@ Route::get('/showcompetition/{id}', 'admin_panel\CompetitionController@show')->n
 Route::get('/liste', 'user\userController@competitions');
 
 });
+
+Route::get('/mail', 'mail\Mailer@sendEmail');
