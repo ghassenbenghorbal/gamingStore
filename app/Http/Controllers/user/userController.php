@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Product;
 use App\Category;
 use App\sale;
+use App\Key;
 use App\User;
 use App\Address;
 use App\Deposit;
@@ -92,7 +93,9 @@ class userController extends Controller
 
     public function addToCart($id,orderRequest $r)
     {
-        if($r->quantity < 1 || Product::find($id)->first()->keys->where('command_id', null)->count() < $r->quantity){
+
+        if((int)$r->quantity < 1 ||
+            Key::where([['product_id', $id], ['command_id', null]])->count() < (int)$r->quantity){
             return redirect(route('user.view',['id'=>$id]));
         }else{
             if(!(Session::has('cart')))
