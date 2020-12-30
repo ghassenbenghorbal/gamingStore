@@ -13,6 +13,9 @@ Hello <strong>{{ $name }}</strong>,
     </thead>
     <tbody>
         @foreach ($commands as $command)
+        @php
+            $p = App\Product::find($command->product_id);
+        @endphp
             
 <tr>
     <td style="padding-top:13px;"><b>{{$command->order_id}}</b></td>
