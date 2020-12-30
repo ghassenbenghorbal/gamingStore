@@ -1,6 +1,8 @@
 @extends('store.storeLayout')
 @section('content')
+
 <script src="{{asset('js/lib/jquery.js')}}"></script>
+<script src="{{asset('js/bootstrap.js')}}"></script>
 <script src="{{asset('js/dist/jquery.validate.js')}}"></script>
 
 <link type="text/css" rel="stylesheet" href="{{asset('css/style_for_quantity.css')}}" />
@@ -11,8 +13,14 @@ label.error {
   border-color: #ebccd1;
   padding:1px 20px 1px 20px;
 }
+.modal-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
-    .rTable {
+.rTable {
 
     display: block;
     width:100%;
@@ -41,7 +49,66 @@ label.error {
     clear: both;
     height: 0;
 }
+.proccessing-message{
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+.loader {
+  display: inline-table;
+  border: 4px solid lightgrey; /* Light grey */
+  border-top: 4px solid #28a745; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/*Huge thanks to @tobiasahlin at http://tobiasahlin.com/spinkit/ */
+.spinner {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+}
 
+.spinner > div {
+  width: 6px;
+  height: 6px;
+  background-color: #333;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
 </style>
 
 <!-- SECTION -->
@@ -123,8 +190,23 @@ label.error {
                     @if($all != null)
                         <form method="post" name="cart" style="display: inline-block;">
                             {{csrf_field()}}
-                            <input type="submit" id="confirm_order"  name="order" class="primary-btn order-submit" value="Confirm order">
+                            <input type="submit" id="confirm_order"  name="order" class="primary-btn order-submit" value="Confirm order"  data-toggle="modal" data-target="#processingModal" data-keyboard="false">
                         </form>
+                        <div class="modal fade modal-center" id="processingModal" tabindex="-1" role="dialog" aria-labelledby="processingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="loader"></div>
+                                    <span class="proccessing-message">Proccessing order please wait</span>
+                                        <div class="spinner">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                         @if(session('message'))
                         <button id="modalToggle" hidden="hidden" data-toggle="modal" data-target="#exampleModal"></button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

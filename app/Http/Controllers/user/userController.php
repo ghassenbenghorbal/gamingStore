@@ -367,7 +367,6 @@ class userController extends Controller
                 $sales->save();
                 $id = $sales->id;
 
-                $body = [];
 
                 foreach ($all as $lignCommande) {
                     $lignCommande = explode(':', $lignCommande);
@@ -402,8 +401,7 @@ class userController extends Controller
                             break;
                         }
                     }
-                    
-                    $body[] = $commande;
+
                 }
                 $user->balance -= $sales->price;
                 $user->save();
@@ -415,10 +413,10 @@ class userController extends Controller
 
                 $to_fullName = $user->full_name;
                 $to_email = $user->email;
-                
-                Mailer::sendOrderConfirmationMail($to_fullName, $to_email, $body);
-                
-                
+
+                Mailer::sendOrderConfirmationMail($to_fullName, $to_email, $sales);
+
+
 
 
                 return redirect()->route('user.settings','orderHistory');
