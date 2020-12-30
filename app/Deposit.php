@@ -14,4 +14,8 @@ class Deposit extends Model
         'created_at',
         'user_id',
     ];
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

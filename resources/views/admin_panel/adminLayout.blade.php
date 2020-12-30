@@ -123,7 +123,13 @@
                     <li class="nav-item {{Route::is('admin.deposits') ? 'active' : ''}}">
                         <a class="nav-link" href="{{route('admin.deposits')}}">
                             <i class="menu-icon mdi mdi-bank"></i>
-                            <span class="menu-title">Deposits</span>
+                            <span class="menu-title">Received Deposits</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{Route::is('admin.userdeposits') ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('admin.userdeposits')}}">
+                            <i class="menu-icon fas fa-money-check-alt"></i>
+                            <span class="menu-title">User Deposits</span>
                         </a>
                     </li>
                     <li class="nav-item {{Route::is('admin.products') ? 'active' : ''}}">
