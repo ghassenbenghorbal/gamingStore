@@ -403,6 +403,11 @@ class userController extends Controller
                 Session::forget('price');
                 Session::forget('orderCounter');
                 //dd( $r->session());
+
+                
+                
+
+
                 return redirect()->route('user.settings','orderHistory');
             }else{ // balance not enough
                 $r->session()->flash('message', 'Not enough balance');
