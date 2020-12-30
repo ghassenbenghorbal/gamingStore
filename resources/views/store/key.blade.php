@@ -1,6 +1,5 @@
 @extends('store.storeLayout')
 @section('content')
-
 <script src="{{asset('js/lib/jquery.js')}}"></script>
 <script src="{{asset('js/dist/jquery.validate.js')}}"></script>
 <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -68,11 +67,11 @@ label.error {
                 </div>
 
             </div>
-            <div class="col-md-6" style="width: 35%">                   
+            <div class="col-md-6" style="width: 35%">
                 <h4 class="text-center text-success">How to redeem a key</h4>
                     @switch($product->category->name)
                     @case("Steam")
-                        
+
                         {{-- Steam redeem key carousel --}}
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -83,10 +82,10 @@ label.error {
                             <li data-target="#myCarousel" data-slide-to="2"></li>
                             <li data-target="#myCarousel" data-slide-to="3"></li>
                         </ol>
-                        
+
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-    
+
                             <div class="item active">
                             <img src="{{asset('storage/uploads/steam_redeem_key_1.png')}}" alt="Chania">
                             <div class="carousel-caption">
@@ -94,7 +93,7 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-                        
+
                             <div class="item">
                             <img src="{{asset('storage/uploads/steam_redeem_key_2.png')}}" alt="Chicago">
                             <div class="carousel-caption">
@@ -102,7 +101,7 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-                        
+
                             <div class="item">
                             <img src="{{asset('storage/uploads/steam_redeem_key_3.png')}}" alt="New York">
                             <div class="carousel-caption">
@@ -117,9 +116,9 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-    
+
                         </div>
-                        
+
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
@@ -133,7 +132,7 @@ label.error {
 
                         @break
                     @case("Battle.net")
-                        
+
                     {{-- Battle.net redeem key carousel --}}
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -142,10 +141,10 @@ label.error {
                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                             <li data-target="#myCarousel" data-slide-to="1"></li>
                         </ol>
-                        
+
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-    
+
                             <div class="item active">
                             <img src="{{asset('storage/uploads/battle_net_redeem_key_1.png')}}" alt="Chania">
                             <div class="carousel-caption">
@@ -153,7 +152,7 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-                        
+
                             <div class="item">
                             <img src="{{asset('storage/uploads/battle_net_redeem_key_2.png')}}" alt="Chicago">
                             <div class="carousel-caption">
@@ -161,9 +160,9 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-    
+
                         </div>
-                        
+
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
@@ -177,7 +176,7 @@ label.error {
 
                         @break
                     @case("Origin")
-                            
+
                         {{-- Origin redeem key carousel --}}
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -186,10 +185,10 @@ label.error {
                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                             <li data-target="#myCarousel" data-slide-to="1"></li>
                         </ol>
-                        
+
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-    
+
                             <div class="item active">
                             <img src="{{asset('storage/uploads/origin_redeem_key_1.png')}}" alt="Chania">
                             <div class="carousel-caption">
@@ -197,7 +196,7 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-                        
+
                             <div class="item">
                             <img src="{{asset('storage/uploads/origin_redeem_key_2.png')}}" alt="Chicago">
                             <div class="carousel-caption">
@@ -205,9 +204,9 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-    
+
                         </div>
-                        
+
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
@@ -231,10 +230,10 @@ label.error {
                             <li data-target="#myCarousel" data-slide-to="1"></li>
                             <li data-target="#myCarousel" data-slide-to="2"></li>
                         </ol>
-                        
+
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-    
+
                             <div class="item active">
                             <img src="{{asset('storage/uploads/uplay_redeem_key_1.png')}}" alt="Chania">
                             <div class="carousel-caption">
@@ -242,7 +241,7 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-                        
+
                             <div class="item">
                             <img src="{{asset('storage/uploads/uplay_redeem_key_2.png')}}" alt="Chicago">
                             <div class="carousel-caption">
@@ -258,9 +257,9 @@ label.error {
                                     <p></p>
                                 </div>
                                 </div>
-    
+
                         </div>
-                        
+
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
@@ -272,10 +271,10 @@ label.error {
                         </a>
                         </div>
 
-                        @break    
+                        @break
 
                     @case("Epic Games")
-                    
+
                         {{-- Epic Games redeem key carousel --}}
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -286,10 +285,10 @@ label.error {
                             <li data-target="#myCarousel" data-slide-to="2"></li>
                             <li data-target="#myCarousel" data-slide-to="3"></li>
                         </ol>
-                        
+
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-    
+
                             <div class="item active">
                             <img src="{{asset('storage/uploads/epic_games_redeem_key_1.png')}}" alt="Chania">
                             <div class="carousel-caption">
@@ -297,7 +296,7 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-                        
+
                             <div class="item">
                             <img src="{{asset('storage/uploads/epic_games_redeem_key_2.png')}}" alt="Chicago">
                             <div class="carousel-caption">
@@ -305,7 +304,7 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-                        
+
                             <div class="item">
                             <img src="{{asset('storage/uploads/epic_games_redeem_key_3.png')}}" alt="New York">
                             <div class="carousel-caption">
@@ -320,9 +319,9 @@ label.error {
                                 <p></p>
                             </div>
                             </div>
-    
+
                         </div>
-                        
+
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
@@ -334,7 +333,7 @@ label.error {
                         </a>
                         </div>
 
-                        @break         
+                        @break
 
                     @endswitch
             </div>

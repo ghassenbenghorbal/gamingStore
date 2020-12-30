@@ -25,6 +25,8 @@ class keyController extends Controller
     public function displayKey(Request $r, $id){
         if(session()->has('user')){
             $command = Command::find($id);
+            if($command->sale->user_id != session('user')->id)
+                return redirect(route('user.home'));
             $keys = $command->keys;
             $res = Product::find($command->product_id);
             $res1 = Product::all();
@@ -34,7 +36,9 @@ class keyController extends Controller
             ->with('products', $res1)
             ->with('cat', $cat)
             ->with('keys', $keys);
-                    
+
+        }else{
+            return redirect(route("user.login"));
         }
     }
 
