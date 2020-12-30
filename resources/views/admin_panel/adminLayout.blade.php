@@ -10,6 +10,8 @@
                 echo "Admin Dashboard";
             else if(Route::is('admin.categories'))
                 echo "Categories";
+            else if(Route::is('admin.users'))
+                echo "Users";
             else if(Route::is('admin.orderManagement'))
                 echo "Orders";
             else if(Route::is('admin.settings'))
@@ -41,7 +43,7 @@
             border-color: rgb(131, 131, 131);
         }
 
-        
+
 
 
     </style>
