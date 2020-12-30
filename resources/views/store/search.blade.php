@@ -2,6 +2,122 @@
 @section('content')
 <div class="section">
     <!-- container -->
+
+    
+
+    <div class="row">
+        <div class="col-sm-2 container-fluid sidebar">
+            <form class="" action="#">
+                <div class="form-group">
+                    <label class="form-label">Price range</label>
+                    <input class="form-range" type="range" oninput="myFunction(this.value)" value="150" min="1" max="300" step="1" />
+                    <div class="container-fluid" style=" font-weight:bold; padding:0">
+                        <span style="float: left;"><span>1</span> DT</span>
+                        <span style="float: right;"><span id="currentValue">150</span> DT</span>
+                    </div>
+                </div>
+                <hr style="border-top: 1px solid #ccc;">
+                <div class="form-group">
+                    <label for="">DRM</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck1">Steam</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Origin</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Battle.Net</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Epic Games</label>
+                      </div>
+                </div>
+                <hr style="border-top: 1px solid #ccc;">
+                <div class="form-group">
+                    <label for="">Categories</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck1">Action</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Adventure</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Indie</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Singleplayer</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Multiplayer</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Battle Royale</label>
+                      </div>
+                </div>
+                <hr style="border-top: 1px solid #ccc;">
+                <div class="form-group">
+                    <label for="">Device</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck1">PC</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">PS5</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Xbox Series X</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Nintendo Switch</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">PS4</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Xbox One</label>
+                      </div>
+                </div>
+                <hr style="border-top: 1px solid #ccc;">
+                <div class="form-group">
+                    <label for="">More Options</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck1">Latest releases</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Pre-orders</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Trending</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                        <label class="form-check-label" for="defaultCheck2">Nintendo Switch</label>
+                      </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-lg-9">
+
+
     <div class="container">
         <!-- row -->
         <div class="row">
@@ -51,6 +167,8 @@
             <!-- /row -->
         </div>
         <!-- /container -->
+    </div>
+</div>
     </div>
 
     @endsection
