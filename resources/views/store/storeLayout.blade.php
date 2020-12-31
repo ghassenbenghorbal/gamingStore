@@ -374,11 +374,11 @@
                         genre:genre, 
                         tag:tag
                     },
-                success:function(products){
-                    console.log(response);
+                success:function(response){
+                    $('.filter_data').html(response);
                     // $('.filter_data').html(data);
                 },
-                error:function(products){
+                error:function(response){
                     console.log(response)
                 }
             });

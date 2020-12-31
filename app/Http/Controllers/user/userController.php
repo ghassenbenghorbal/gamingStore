@@ -709,10 +709,55 @@ class userController extends Controller
         if($request->filled('tag')){
             $products = $products->whereIn('tag',$request->tag);
         }
-        return response()->json([
-            'products'=>$products,
-            'request' =>$request->all()
-            ]);
+        if($request->filled('category')){
+            $categories_id = [];
+            $categories = Category::whereIn('name', $request->category)->get();
+            foreach($categories as $category){
+                $categories_id[] = $category->id;
+            }
+            $products = $products->whereIn('category_id', $categories_id);
+        }
+
+        $products = $products->sortBy('price');
+        foreach($products as $product){
+            echo '<div class="col-md-3">
+            <div class="product">
+                <a class="add-to-cart-btn" href="'.route("user.view",["id"=>$product->id]).'">
+                <div class="product-img">
+                    <img src="storage/'.$product->image.'" width="95px" height="290px" alt="">
+                    <div class="product-label">
+                        <span class="new">'.$product->tag.'</span>
+                    </div>
+                </div>
+            </a>
+                <div class="product-body">
+                    <p class="product-category">'.$product->category->name.'</p>
+                    <h3 class="product-name"><a href="'.route("user.view",["id"=>$product->id]).'">'.$product->name.'</a></h3>
+                    <h4 class="product-price">';
+                    if($product->discount != null)
+                        echo ''.$product->discount; 
+                    else 
+                        echo ''.$product->price;
+                        echo ' TND';
+                    if ($product->discount != null){
+                        echo '   <del class="product-old-price">'.$product->price.' TND</del>';
+                        }
+                    echo '</h4>
+                    <div class="product-rating">
+                    </div>
+
+                </div>
+                <div class="add-to-cart">
+                    <a class="add-to-cart-btn" href="'.route("user.view",["id"=>$product->id]).'"><i class="fa fa-shopping-cart"></i>Purchase</a>
+                </div>
+            </div>
+        </div>';
+        }
+
+        // return response()->json([
+        //     'products'=>$products,
+        //     'request' =>$request->all()
+        //     ]);
         }catch(Exception $e){
             return response()->json([
                 'error' => $e->getMessage()
