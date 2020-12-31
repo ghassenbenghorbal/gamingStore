@@ -17,8 +17,10 @@
                 </thead>
                 <tbody>
                     @foreach($sale as $s)
-
-                        @foreach($s->commands as $command)
+                        @php
+                            $commands = $s->commands
+                        @endphp
+                        @foreach($commands as $command)
                             @php
                                 $p = App\Product::find($command->product_id);
                             @endphp
@@ -68,8 +70,13 @@
 
 </div>
 <script>
-    $('#historyTable').DataTable({
-        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]
+    var table = $('#historyTable').DataTable({
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']],
     });
+    table
+        .column( '0:visible' )
+        .order( 'desc' )
+        .draw();
+
 </script>
 @endsection

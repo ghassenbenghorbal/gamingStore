@@ -3,7 +3,7 @@
     <div class="section">
         <!-- container -->
 
-
+        {{-- Filter --}}
         <div class="row">
             <div class="col-sm-2 container-fluid sidebar">
                 <form class="" action="#">
@@ -24,26 +24,19 @@
                     <hr style="border-top: 1px solid #ccc;">
                     <div class="form-group">
                         <label for="">DRM</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck1">Steam</label>
-                          </div>
+                        @php
+                          $categories = App\Category::all();  
+                        @endphp
+                        @foreach ($categories as $category)
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Origin</label>
+                            <input class="form-check-input" type="checkbox" value="{{ $category->name }}">
+                            <label class="form-check-label" for="defaultCheck1">{{ $category->name }}</label>
                           </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Battle.Net</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Epic Games</label>
-                          </div>
+                        @endforeach
                     </div>
                     <hr style="border-top: 1px solid #ccc;">
                     <div class="form-group">
-                        <label for="">Categories</label>
+                        <label for="">Genre</label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="">
                             <label class="form-check-label" for="defaultCheck1">Action</label>
@@ -68,58 +61,24 @@
                             <input class="form-check-input" type="checkbox" value="">
                             <label class="form-check-label" for="defaultCheck2">Battle Royale</label>
                           </div>
-                    </div>
-                    <hr style="border-top: 1px solid #ccc;">
-                    <div class="form-group">
-                        <label for="">Device</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck1">PC</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">PS5</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Xbox Series X</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Nintendo Switch</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">PS4</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Xbox One</label>
-                          </div>
-                    </div>
+                    </div>                  
                     <hr style="border-top: 1px solid #ccc;">
                     <div class="form-group">
                         <label for="">More Options</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck1">Latest releases</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Pre-orders</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Trending</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Nintendo Switch</label>
-                          </div>
+                        @php
+                            $tags = [];
+                        @endphp
+                        @foreach($products as $product)
+                          $tags[] = $product->tag;
+                        @endforeach
                     </div>
 
                 </form>
             </div>
+
+        {{-- Filter --}}
+
+
             <div class="col-lg-9">
         <div class="container">
             <!-- row -->

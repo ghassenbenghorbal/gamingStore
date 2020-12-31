@@ -42,8 +42,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <!-- JQuery and Validator Plugins -->
-
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -342,6 +340,47 @@
         function myFunction(myValue){
             document.getElementById("currentValue").innerHTML = myValue;
         }
+    </script>
+
+
+<script>
+    $(document).ready(function(){
+    
+        filter_data();
+    
+        function filter_data()
+        {
+            $('.filter_data').html('<div id="loading" style="" ></div>');
+            var action = 'fetch_data';
+            var minimum_price = $('#hidden_minimum_price').val();
+            var maximum_price = $('#hidden_maximum_price').val();
+            var brand = get_filter('brand');
+            var ram = get_filter('ram');
+            var storage = get_filter('storage');
+            $.ajax({
+                url:"fetch_data.php",
+                method:"POST",
+                data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, brand:brand, ram:ram, storage:storage},
+                success:function(data){
+                    $('.filter_data').html(data);
+                }
+            });
+        }
+    
+        function get_filter(class_name)
+        {
+            var filter = [];
+            $('.'+class_name+':checked').each(function(){
+                filter.push($(this).val());
+            });
+            return filter;
+        }
+    
+        $('.common_selector').click(function(){
+            filter_data();
+        });
+    
+    });
     </script>
 
 </body>
