@@ -46,6 +46,7 @@ class productsController extends Controller
             if($request->Discounted_Price != null)
                 $prd->discount = $request->Discounted_Price;
             $prd->tag = $request->Tags;
+            $prd->genre = $request->Genre;
             $prd->save();
         return redirect()->route('admin.products');
         } catch (\Throwable $th) {
@@ -86,6 +87,7 @@ class productsController extends Controller
         $prdToUpdate->category_id = $request->Category;
 
         $prdToUpdate->tag= $request->Tags;
+        $prdToUpdate->genre = $request->Genre;
 
         //NEW FILE UPLOADED
         if($request->image)

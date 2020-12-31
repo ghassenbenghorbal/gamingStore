@@ -6,7 +6,8 @@
         {{-- Filter --}}
         <div class="row">
             <div class="col-sm-2 container-fluid sidebar">
-                <form class="" action="#">
+                <form>
+                    {{csrf_field()}}
                     <div class="form-group">
                         <label class="form-label">Price range</label>
                         <div class="row">
@@ -37,30 +38,25 @@
                     <hr style="border-top: 1px solid #ccc;">
                     <div class="form-group">
                         <label for="">Genre</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck1">Action</label>
-                          </div>
+                        @php
+                            $genres = [];
+                        @endphp
+                        @foreach($products as $product)
+                          @php
+                              $genres[] = $product->genre;
+                          @endphp
+                        @endforeach
+                        @php
+                            $genres = array_unique($genres);
+                        @endphp
+                        @foreach ($genres as $genre)
+                        
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Adventure</label>
+                            <input class="form-check-input" type="checkbox" value="{{ $genre }}">
+                            <label class="form-check-label" for="defaultCheck1">{{ $genre }}</label>
                           </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Indie</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Singleplayer</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Multiplayer</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label" for="defaultCheck2">Battle Royale</label>
-                          </div>
+
+                        @endforeach
                     </div>                  
                     <hr style="border-top: 1px solid #ccc;">
                     <div class="form-group">
@@ -69,7 +65,20 @@
                             $tags = [];
                         @endphp
                         @foreach($products as $product)
-                          $tags[] = $product->tag;
+                          @php
+                              $tags[] = $product->tag;
+                          @endphp
+                        @endforeach
+                        @php
+                            $tags = array_unique($tags);
+                        @endphp
+                        @foreach ($tags as $tag)
+                        
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $tag }}">
+                            <label class="form-check-label" for="defaultCheck1">{{ $tag }}</label>
+                          </div>
+
                         @endforeach
                     </div>
 

@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->integer('price');
             $table->integer('discount')->nullable();
+            $table->string('genre');
             $table->text('tag');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')

@@ -72,6 +72,10 @@
                                             <input type="text" class="form-control" id="Tags" name="Tags" value="">
                                         </div>
                                         <div class="form-group">
+                                            <label >Product Genre<span style="color: red">*</span></label>
+                                            <input type="text" class="form-control" id="Genre" name="Genre" value="">
+                                        </div>
+                                        <div class="form-group">
                                             <input class="form-control" name="Image" type="file">
                                         </div>
                                         <input type="submit" name="saveButton" class="btn btn-success mr-2" id="saveButton" value="Create"  />

@@ -57,6 +57,10 @@
                                             <label >Product Tags</label>
                                             <input type="text" class="form-control" id="exampleInputEmail1" name="Tags" value="{{$product->tag}}" disabled>
                                         </div>
+                                        <div class="form-group">
+                                            <label >Product Genre</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" name="Genre" value="{{$product->genre}}" disabled>
+                                        </div>
                                         <input type="submit" name="saveButton" class="btn btn-danger mr-2" id="updateButton" value="Delete" />
                                     </form>
                                     

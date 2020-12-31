@@ -63,7 +63,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label >Product Tags</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1" name="Tags" value="{{$product->tag}}">
+                                            <input type="text" class="form-control" id="Tags" name="Tags" value="{{$product->tag}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label >Product Genre</label>
+                                            <input type="text" class="form-control" id="Genre" name="Genre" value="{{$product->genre}}">
                                         </div>
                                         <div class="form-group">
                                             <input class="form-control" name="Image" type="file">
