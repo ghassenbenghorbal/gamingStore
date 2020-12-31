@@ -693,4 +693,32 @@ class userController extends Controller
         $depositHistory = Deposit::where('user_id',$id)->latest()->get();
         return $depositHistory;
     }
+    
+    public function getFilteredProducts(Request $request){
+        try{
+
+        $products = Product::all();
+        if($request->filled('min_price') && $request->filled('max_price')){
+
+            $products = $products->where('price', '>=', (int)$request->min_price)
+                     ->where('price', '<=', (int)$request->max_price);
+        }
+        if($request->filled('genre')){
+            $products = $products->whereIn('genre',$request->genre);
+        }
+        if($request->filled('tag')){
+            $products = $products->whereIn('tag',$request->tag);
+        }
+        return response()->json([
+            'products'=>$products,
+            'request' =>$request->all()
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'error' => $e->getMessage()
+                ]);
+        }
+
+    }
+
 }

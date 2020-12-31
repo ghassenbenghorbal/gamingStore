@@ -16,6 +16,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <title>Gkeys</title>
@@ -344,25 +346,40 @@
 
 
 <script>
-    $(document).ready(function(){
     
+    $(document).ready(function(){
+        $.ajaxSetup({
+    data: {
+        _token: $('meta[name="csrf-token"]').attr('content')
+    }
+    });
         filter_data();
     
         function filter_data()
         {
             $('.filter_data').html('<div id="loading" style="" ></div>');
-            var action = 'fetch_data';
-            var minimum_price = $('#hidden_minimum_price').val();
-            var maximum_price = $('#hidden_maximum_price').val();
-            var brand = get_filter('brand');
-            var ram = get_filter('ram');
-            var storage = get_filter('storage');
+            var min_price = $('#min_price').val();
+            var max_price = $('#max_price').val();
+            var category = get_filter('category');
+            var genre = get_filter('genre');
+            var tag = get_filter('tag');
+
             $.ajax({
-                url:"fetch_data.php",
+                url:"filter",
                 method:"POST",
-                data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, brand:brand, ram:ram, storage:storage},
-                success:function(data){
-                    $('.filter_data').html(data);
+                data:{  
+                        min_price:min_price, 
+                        max_price:max_price, 
+                        category:category, 
+                        genre:genre, 
+                        tag:tag
+                    },
+                success:function(products){
+                    console.log(response);
+                    // $('.filter_data').html(data);
+                },
+                error:function(products){
+                    console.log(response)
                 }
             });
         }

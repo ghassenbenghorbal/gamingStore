@@ -98,6 +98,9 @@ Route::get('/search', 'user\userController@search')->name('user.search');
 Route::get('/search?c={id}', 'user\userController@view')->name('user.search.cat');
 
 
+
+Route::post('/filter', 'user\userController@getFilteredProducts');
+
 // Route::get('/settings', 'user\userController@settings')->name('user.settings');
 
 // Route::get('/settings', 'user\userController@settings')->name('user.settings');

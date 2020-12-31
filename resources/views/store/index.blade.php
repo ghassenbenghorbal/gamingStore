@@ -7,30 +7,29 @@
         <div class="row">
             <div class="col-sm-2 container-fluid sidebar">
                 <form>
-                    {{csrf_field()}}
                     <div class="form-group">
                         <label class="form-label">Price range</label>
                         <div class="row">
                             <div class="col-sm-5">
-                                <input class="form-control" placeholder="From" type="number">
+                                <input class="form-control common_selector min_price" placeholder="From" type="number" id="min_price">
                             </div>
                             <div class="col-sm-1" style="padding-top: 5px;padding-right:0px;padding-left:11px">
                                 <span><b>-</b></span>
                             </div>
                             <div class="col-sm-5">
-                                <input class="form-control" placeholder="To" type="number">
+                                <input class="form-control common_selector max_price" placeholder="To" type="number" id="max_price">
                             </div>
                         </div>
                     </div>
                     <hr style="border-top: 1px solid #ccc;">
                     <div class="form-group">
-                        <label for="">DRM</label>
+                        <label for="">Category</label>
                         @php
                           $categories = App\Category::all();  
                         @endphp
                         @foreach ($categories as $category)
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $category->name }}">
+                            <input class="form-check-input common_selector category" type="checkbox" value="{{ $category->name }}">
                             <label class="form-check-label" for="defaultCheck1">{{ $category->name }}</label>
                           </div>
                         @endforeach
@@ -52,7 +51,7 @@
                         @foreach ($genres as $genre)
                         
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $genre }}">
+                            <input class="form-check-input common_selector genre" type="checkbox" value="{{ $genre }}">
                             <label class="form-check-label" for="defaultCheck1">{{ $genre }}</label>
                           </div>
 
@@ -75,7 +74,7 @@
                         @foreach ($tags as $tag)
                         
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $tag }}">
+                            <input class="form-check-input common_selector tag" type="checkbox" value="{{ $tag }}">
                             <label class="form-check-label" for="defaultCheck1">{{ $tag }}</label>
                           </div>
 
@@ -104,7 +103,7 @@
 
                 <!-- Products tab & slick -->
                 <div class="col-md-12">
-                    <div class="row">
+                    <div class="row filter_data">
 
 
                         @foreach($products as $product)

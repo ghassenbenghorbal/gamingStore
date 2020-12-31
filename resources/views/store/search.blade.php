@@ -6,121 +6,85 @@
     
 
     <div class="row">
+
         <div class="col-sm-2 container-fluid sidebar">
-            <form class="" action="#">
-                <div class="form-group">
-                    <label class="form-label">Price range</label>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <input class="form-control" placeholder="From" type="number">
-                        </div>
-                        <div class="col-sm-1" style="padding-top: 5px;padding-right:0px;padding-left:11px">
-                            <span><b>-</b></span>
-                        </div>
-                        <div class="col-sm-5">
-                            <input class="form-control" placeholder="To" type="number">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Price range</label>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <input class="form-control" placeholder="From" type="number">
+                            </div>
+                            <div class="col-sm-1" style="padding-top: 5px;padding-right:0px;padding-left:11px">
+                                <span><b>-</b></span>
+                            </div>
+                            <div class="col-sm-5">
+                                <input class="form-control" placeholder="To" type="number">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr style="border-top: 1px solid #ccc;">
-                <div class="form-group">
-                    <label for="">DRM</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck1">Steam</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Origin</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Battle.Net</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Epic Games</label>
-                      </div>
-                </div>
-                <hr style="border-top: 1px solid #ccc;">
-                <div class="form-group">
-                    <label for="">Categories</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck1">Action</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Adventure</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Indie</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Singleplayer</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Multiplayer</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Battle Royale</label>
-                      </div>
-                </div>
-                <hr style="border-top: 1px solid #ccc;">
-                <div class="form-group">
-                    <label for="">Device</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck1">PC</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">PS5</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Xbox Series X</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Nintendo Switch</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">PS4</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Xbox One</label>
-                      </div>
-                </div>
-                <hr style="border-top: 1px solid #ccc;">
-                <div class="form-group">
-                    <label for="">More Options</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck1">Latest releases</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Pre-orders</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Trending</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                        <label class="form-check-label" for="defaultCheck2">Nintendo Switch</label>
-                      </div>
-                </div>
+                    <hr style="border-top: 1px solid #ccc;">
+                    <div class="form-group">
+                        <label for="">Category</label>
+                        @php
+                          $categories = App\Category::all();  
+                        @endphp
+                        @foreach ($categories as $category)
+                          <div class="form-check">
+                            <input class="form-check-input" id="category" type="checkbox" value="{{ $category->name }}">
+                            <label class="form-check-label" for="defaultCheck1">{{ $category->name }}</label>
+                          </div>
+                        @endforeach
+                    </div>
+                    <hr style="border-top: 1px solid #ccc;">
+                    <div class="form-group">
+                        <label for="">Genre</label>
+                        @php
+                            $genres = [];
+                        @endphp
+                        @foreach($products as $product)
+                          @php
+                              $genres[] = $product->genre;
+                          @endphp
+                        @endforeach
+                        @php
+                            $genres = array_unique($genres);
+                        @endphp
+                        @foreach ($genres as $genre)
+                        
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $genre }}">
+                            <label class="form-check-label" for="defaultCheck1">{{ $genre }}</label>
+                          </div>
 
-            </form>
-        </div>
+                        @endforeach
+                    </div>                  
+                    <hr style="border-top: 1px solid #ccc;">
+                    <div class="form-group">
+                        <label for="">More Options</label>
+                        @php
+                            $tags = [];
+                        @endphp
+                        @foreach($products as $product)
+                          @php
+                              $tags[] = $product->tag;
+                          @endphp
+                        @endforeach
+                        @php
+                            $tags = array_unique($tags);
+                        @endphp
+                        @foreach ($tags as $tag)
+                        
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $tag }}">
+                            <label class="form-check-label" for="defaultCheck1">{{ $tag }}</label>
+                          </div>
+
+                        @endforeach
+                    </div>
+
+                </form>
+            </div>
         <div class="col-lg-9">
 
 
