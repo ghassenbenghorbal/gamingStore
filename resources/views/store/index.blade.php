@@ -23,9 +23,9 @@
                     </div>
                     <hr style="border-top: 1px solid #ccc;">
                     <div class="form-group">
-                        <label for="">Category</label>
+                        <label for="">Platform</label>
                         @php
-                          $categories = App\Category::all();  
+                          $categories = App\Category::all();
                         @endphp
                         @foreach ($categories as $category)
                           <div class="form-check">
@@ -49,14 +49,14 @@
                             $genres = array_unique($genres);
                         @endphp
                         @foreach ($genres as $genre)
-                        
+
                           <div class="form-check">
                             <input class="form-check-input common_selector genre" type="checkbox" value="{{ $genre }}">
                             <label class="form-check-label" for="defaultCheck1">{{ $genre }}</label>
                           </div>
 
                         @endforeach
-                    </div>                  
+                    </div>
                     <hr style="border-top: 1px solid #ccc;">
                     <div class="form-group">
                         <label for="">More Options</label>
@@ -72,7 +72,7 @@
                             $tags = array_unique($tags);
                         @endphp
                         @foreach ($tags as $tag)
-                        
+
                           <div class="form-check">
                             <input class="form-check-input common_selector tag" type="checkbox" value="{{ $tag }}">
                             <label class="form-check-label" for="defaultCheck1">{{ $tag }}</label>

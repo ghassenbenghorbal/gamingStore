@@ -17,6 +17,7 @@ class Product extends Model
         'image',
         'description',
         'price',
+        'genre',
         'discount',
         'tag',
         'category_id'
