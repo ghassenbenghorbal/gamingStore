@@ -1,12 +1,12 @@
 @extends('store.storeLayout')
 @section('content')
-<div class="section">
+<div class="section container-fluid">
     <!-- container -->
 
 
 {{-- Filter --}}
 <div class="row">
-    <div class="col-sm-2 container-fluid sidebar">
+    <div class="col-sm-2 container sidebar">
         <form>
             <div class="form-group">
                 <label class="form-label">Price range</label>

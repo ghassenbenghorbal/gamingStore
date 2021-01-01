@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 @php
-    if(session()->has('user')){ // update user info if changed
-        $user_ = App\User::find(session('user')->id);
-        if($user_ == null){ // disconnect user if account not found
-            session()->forget('user');
-        }
-        else if(session('user') != $user_){
-            session()->forget('user');
-            session()->put('user', $user_);
-        }
-    }
+if(session()->has('user')){ // update user info if changed
+$user_ = App\User::find(session('user')->id);
+if($user_ == null){ // disconnect user if account not found
+session()->forget('user');
+}
+else if(session('user') != $user_){
+session()->forget('user');
+session()->put('user', $user_);
+}
+}
 @endphp
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,8 +41,12 @@
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{asset('css/style2.css')}}" />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
 
     <!-- JQuery and Validator Plugins -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -52,12 +57,13 @@
         <![endif]-->
     {{-- custom css --}}
     <style>
-        @media only screen and (max-width: 767px){
+        @media only screen and (max-width: 767px) {
             #head_links {
                 visibility: hidden;
             }
+
             .custom_search_top {
-                text-align:center;
+                text-align: center;
             }
 
             .header-ctn {
@@ -65,8 +71,8 @@
             }
         }
 
-        .sidebar{
-            margin-left:40px;
+        .sidebar {
+            margin-left: 40px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: none;
@@ -74,8 +80,9 @@
             padding: 1.25rem;
             width: 14%
         }
-        </style>
-        <script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
+
+    </style>
+    <script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -91,9 +98,11 @@
                 </ul>
                 <ul class="header-links pull-right">
                     @if(session()->has('user'))
-                      <li><a href="{{ route('user.settings', 'deposit')}}"><i class="fas fa-credit-card"></i>  <small>{{number_format((float)session()->get('user')->balance, 2, '.', '')}} TND</small>   </a></li>
-                      <li><a href="{{ route('user.settings', 'profile')}}"><i class="fa fa-user-o"></i> Account  </a></li>
-                      <li><a href="{{route('user.logout')}}"> Logout</a></li>
+                    <li><a href="{{ route('user.settings', 'deposit')}}"><i class="fas fa-credit-card"></i>
+                            <small>{{number_format((float)session()->get('user')->balance, 2, '.', '')}} TND</small>
+                        </a></li>
+                    <li><a href="{{ route('user.settings', 'profile')}}"><i class="fa fa-user-o"></i> Account </a></li>
+                    <li><a href="{{route('user.logout')}}"> Logout</a></li>
                     @else
                     <li><a href="{{route('user.login')}}"><i class="fa fa-user-o"></i>Login</a></li>
 
@@ -125,9 +134,10 @@
                     <div class="col-md-6">
                         <div class="header-search">
                             <form action="{{route('user.search')}}" method="get">
-                                <div class="custom_search_top" >
-                                    <input class="input" style="border-radius: 40px 0px 0px 40px;" name="n" placeholder="Search here">
-                                    <button  class="search-btn">Search</button>
+                                <div class="custom_search_top">
+                                    <input class="input" style="border-radius: 40px 0px 0px 40px;" name="n"
+                                        placeholder="Search here">
+                                    <button class="search-btn">Search</button>
                                 </div>
                             </form>
                         </div>
@@ -140,7 +150,7 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Cart -->
-                            <div  class="dropdown">
+                            <div class="dropdown">
                                 <a class="dropdown-toggle " id="custom_shopping_cart" href="{{route('user.cart')}}">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Your Cart</span>
@@ -177,17 +187,19 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li class="{{Route::is('user.home') ? 'active' : ''}}"><a href="{{route('user.home')}}">Home</a></li>
+                    <li class="{{Route::is('user.home') ? 'active' : ''}}"><a href="{{route('user.home')}}">Home</a>
+                    </li>
                     @if(Route::is('user.search'))
-                        @foreach($cat as $c)
-                        <li class="{{$c->id == $a ? 'active' : ''}}"><a href="{{route('user.search.cat',['id'=>$c->id])}}" >{{$c->name}}</a></li>
-                        @endforeach
-                        <li class="{{$a == -1  ? 'active' : ''}}"><a href="search">Browse All</a></li>
+                    @foreach($cat as $c)
+                    <li class="{{$c->id == $a ? 'active' : ''}}"><a
+                            href="{{route('user.search.cat',['id'=>$c->id])}}">{{$c->name}}</a></li>
+                    @endforeach
+                    <li class="{{$a == -1  ? 'active' : ''}}"><a href="search">Browse All</a></li>
                     @else
-                        @foreach($cat as $c)
-                        <li ><a href="{{route('user.search.cat',['id'=>$c->id])}}" >{{$c->name}}</a></li>
-                        @endforeach
-                        <li ><a href="{{route('user.search')}}">Browse All</a></li>
+                    @foreach($cat as $c)
+                    <li><a href="{{route('user.search.cat',['id'=>$c->id])}}">{{$c->name}}</a></li>
+                    @endforeach
+                    <li><a href="{{route('user.search')}}">Browse All</a></li>
                     @endif
 
                 </ul>
@@ -199,7 +211,7 @@
     </nav>
     <!-- /NAVIGATION -->
 
-        @yield('content')
+    @yield('content')
     <!-- /SECTION -->
 
     <div id="newsletter" class="section">
@@ -238,15 +250,15 @@
     <!-- /NEWSLETTER -->
 
     <!-- FOOTER -->
-    <footer id="footer" >
+    <footer id="footer">
         <!-- top footer -->
         <div class="section">
             <!-- container -->
             <div class="container">
                 <!-- row -->
-                <div class="row" >
-                    <div class="col-md-3 col-xs-6" >
-                        <div class="footer" >
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
                             <h3 class="footer-title">About Us</h3>
                             <ul class="footer-links">
                                 <li><a href="#"><i class="fa fa-map-marker"></i>2040 Radès, Ben Arous</a></li>
@@ -339,65 +351,64 @@
     <script src="{{asset('js/dist/jquery.validate.js')}}"></script>
 
     <script>
-        function myFunction(myValue){
+        function myFunction(myValue) {
             document.getElementById("currentValue").innerHTML = myValue;
         }
+
     </script>
 
 
-<script>
-
-    $(document).ready(function(){
-        $.ajaxSetup({
-    data: {
-        _token: $('meta[name="csrf-token"]').attr('content')
-    }
-    });
-        filter_data();
-
-        function filter_data()
-        {
-            $('.filter_data').html('<div id="loading" style="" ></div>');
-            var min_price = $('#min_price').val();
-            var max_price = $('#max_price').val();
-            var category = get_filter('category');
-            var genre = get_filter('genre');
-            var tag = get_filter('tag');
-
-            $.ajax({
-                url:"filter",
-                method:"POST",
-                data:{
-                        min_price:min_price,
-                        max_price:max_price,
-                        category:category,
-                        genre:genre,
-                        tag:tag
-                    },
-                success:function(response){
-                    $('.filter_data').html(response);
-                    // $('.filter_data').html(data);
-                },
-                error:function(response){
-                    console.log(response)
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        }
-
-        function get_filter(class_name)
-        {
-            var filter = [];
-            $('.'+class_name+':checked').each(function(){
-                filter.push($(this).val());
-            });
-            return filter;
-        }
-
-        $('.common_selector').change(function(){
             filter_data();
+
+            function filter_data() {
+                $('.filter_data').html('<div id="loading" style="" ></div>');
+                var min_price = $('#min_price').val();
+                var max_price = $('#max_price').val();
+                var category = get_filter('category');
+                var genre = get_filter('genre');
+                var tag = get_filter('tag');
+
+                $.ajax({
+                    url: "filter",
+                    method: "POST",
+                    data: {
+                        min_price: min_price,
+                        max_price: max_price,
+                        category: category,
+                        genre: genre,
+                        tag: tag
+                    },
+                    success: function (response) {
+                        $('.filter_data').html(response);
+                        // $('.filter_data').html(data);
+                    },
+                    error: function (response) {
+                        console.log(response)
+                    }
+                });
+            }
+
+            function get_filter(class_name) {
+                var filter = [];
+                $('.' + class_name + ':checked').each(function () {
+                    filter.push($(this).val());
+                });
+                return filter;
+            }
+
+            $('.common_selector').change(function () {
+                filter_data();
+            });
+
         });
 
-    });
     </script>
 
 </body>
