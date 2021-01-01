@@ -73,7 +73,7 @@ class ProductsTableSeeder extends Seeder
             4 =>
             array (
                 'id' => 5,
-                'name' => "Tom Clancy's Rainbow Six Siege",
+                'name' => "Rainbow Six Siege",
                 'image' => 'uploads/5.jpg',
                 'description' => 'Tom Clancy\'s Rainbow Six Siege is an online tactical shooter video game developed by Ubisoft Montreal and published by Ubisoft.',
                 'price' => 30,

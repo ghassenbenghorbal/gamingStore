@@ -72,7 +72,7 @@
             box-shadow: none;
             background: #f3f8ff;
             padding: 1.25rem;
-            width: 19% 
+            width: 14%
         }
         </style>
         <script src="https://kit.fontawesome.com/cfee24ab20.js" crossorigin="anonymous"></script>
@@ -198,7 +198,7 @@
         <!-- /container -->
     </nav>
     <!-- /NAVIGATION -->
-    
+
         @yield('content')
     <!-- /SECTION -->
 
@@ -346,7 +346,7 @@
 
 
 <script>
-    
+
     $(document).ready(function(){
         $.ajaxSetup({
     data: {
@@ -354,7 +354,7 @@
     }
     });
         filter_data();
-    
+
         function filter_data()
         {
             $('.filter_data').html('<div id="loading" style="" ></div>');
@@ -367,11 +367,11 @@
             $.ajax({
                 url:"filter",
                 method:"POST",
-                data:{  
-                        min_price:min_price, 
-                        max_price:max_price, 
-                        category:category, 
-                        genre:genre, 
+                data:{
+                        min_price:min_price,
+                        max_price:max_price,
+                        category:category,
+                        genre:genre,
                         tag:tag
                     },
                 success:function(response){
@@ -383,7 +383,7 @@
                 }
             });
         }
-    
+
         function get_filter(class_name)
         {
             var filter = [];
@@ -392,11 +392,11 @@
             });
             return filter;
         }
-    
-        $('.common_selector').click(function(){
+
+        $('.common_selector').change(function(){
             filter_data();
         });
-    
+
     });
     </script>
 

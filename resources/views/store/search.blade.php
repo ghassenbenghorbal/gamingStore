@@ -3,89 +3,92 @@
 <div class="section">
     <!-- container -->
 
-    
+
 
     <div class="row">
-
-      <div class="row">
-        <div class="col-sm-2 container-fluid sidebar">
-            <form>
-                <div class="form-group">
-                    <label class="form-label">Price range</label>
-                    <div class="row">
-                        <div class="col-sm-5">
-                            <input class="form-control common_selector min_price" placeholder="From" type="number" id="min_price">
-                        </div>
-                        <div class="col-sm-1" style="padding-top: 5px;padding-right:0px;padding-left:11px">
-                            <span><b>-</b></span>
-                        </div>
-                        <div class="col-sm-5">
-                            <input class="form-control common_selector max_price" placeholder="To" type="number" id="max_price">
-                        </div>
+{{-- Filter --}}
+<div class="row">
+    <div class="col-sm-2 container-fluid sidebar">
+        <form>
+            <div class="form-group">
+                <label class="form-label">Price range</label>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <input class="form-control common_selector min_price" placeholder="From" type="number" min="0" value="0" id="min_price">
+                    </div>
+                    <div class="col-sm-1" style="padding-top: 5px;padding-right:0px;padding-left:11px">
+                        <span><b>-</b></span>
+                    </div>
+                    <div class="col-sm-5">
+                        <input class="form-control common_selector max_price" placeholder="To" type="number" min="0" value="{{App\Product::max('price')}}" id="max_price">
                     </div>
                 </div>
-                <hr style="border-top: 1px solid #ccc;">
-                <div class="form-group">
-                    <label for="">Category</label>
-                    @php
-                      $categories = App\Category::all();  
-                    @endphp
-                    @foreach ($categories as $category)
-                      <div class="form-check">
-                        <input class="form-check-input common_selector category" type="checkbox" value="{{ $category->name }}">
-                        <label class="form-check-label" for="defaultCheck1">{{ $category->name }}</label>
-                      </div>
-                    @endforeach
-                </div>
-                <hr style="border-top: 1px solid #ccc;">
-                <div class="form-group">
-                    <label for="">Genre</label>
-                    @php
-                        $genres = [];
-                    @endphp
-                    @foreach($products as $product)
-                      @php
-                          $genres[] = $product->genre;
-                      @endphp
-                    @endforeach
-                    @php
-                        $genres = array_unique($genres);
-                    @endphp
-                    @foreach ($genres as $genre)
-                    
-                      <div class="form-check">
-                        <input class="form-check-input common_selector genre" type="checkbox" value="{{ $genre }}">
-                        <label class="form-check-label" for="defaultCheck1">{{ $genre }}</label>
-                      </div>
+            </div>
+            <hr style="border-top: 1px solid #ccc;">
+            <div class="form-group">
+                <label for="">Platform</label>
+                @php
+                  $categories = App\Category::all();
+                @endphp
+                @foreach ($categories as $category)
+                  <div class="form-check">
+                    <input class="form-check-input common_selector category" type="checkbox" value="{{ $category->name }}">
+                    <label class="form-check-label" for="defaultCheck1">{{ $category->name }}</label>
+                  </div>
+                @endforeach
+            </div>
+            <hr style="border-top: 1px solid #ccc;">
+            <div class="form-group">
+                <label for="">Genre</label>
+                @php
+                    $genres = [];
+                @endphp
+                @foreach($products as $product)
+                  @php
+                      $genres[] = $product->genre;
+                  @endphp
+                @endforeach
+                @php
+                    $genres = array_unique($genres);
+                @endphp
+                @foreach ($genres as $genre)
 
-                    @endforeach
-                </div>                  
-                <hr style="border-top: 1px solid #ccc;">
-                <div class="form-group">
-                    <label for="">More Options</label>
-                    @php
-                        $tags = [];
-                    @endphp
-                    @foreach($products as $product)
-                      @php
-                          $tags[] = $product->tag;
-                      @endphp
-                    @endforeach
-                    @php
-                        $tags = array_unique($tags);
-                    @endphp
-                    @foreach ($tags as $tag)
-                    
-                      <div class="form-check">
-                        <input class="form-check-input common_selector tag" type="checkbox" value="{{ $tag }}">
-                        <label class="form-check-label" for="defaultCheck1">{{ $tag }}</label>
-                      </div>
+                  <div class="form-check">
+                    <input class="form-check-input common_selector genre" type="checkbox" value="{{ $genre }}">
+                    <label class="form-check-label" for="defaultCheck1">{{ $genre }}</label>
+                  </div>
 
-                    @endforeach
-                </div>
+                @endforeach
+            </div>
+            <hr style="border-top: 1px solid #ccc;">
+            <div class="form-group">
+                <label for="">More Options</label>
+                @php
+                    $tags = [];
+                @endphp
+                @foreach($products as $product)
+                  @php
+                      $tags[] = $product->tag;
+                  @endphp
+                @endforeach
+                @php
+                    $tags = array_unique($tags);
+                @endphp
+                @foreach ($tags as $tag)
 
-            </form>
-        </div>
+                  <div class="form-check">
+                    <input class="form-check-input common_selector tag" type="checkbox" value="{{ $tag }}">
+                    <label class="form-check-label" for="defaultCheck1">{{ $tag }}</label>
+                  </div>
+
+                @endforeach
+            </div>
+
+        </form>
+    </div>
+
+{{-- Filter --}}
+
         <div class="col-lg-9">
 
 

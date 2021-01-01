@@ -11,13 +11,13 @@
                         <label class="form-label">Price range</label>
                         <div class="row">
                             <div class="col-sm-5">
-                                <input class="form-control common_selector min_price" placeholder="From" type="number" id="min_price">
+                                <input class="form-control common_selector min_price" style="width:110% !important;" placeholder="From" type="number" min="0" value="0" id="min_price">
                             </div>
                             <div class="col-sm-1" style="padding-top: 5px;padding-right:0px;padding-left:11px">
                                 <span><b>-</b></span>
                             </div>
                             <div class="col-sm-5">
-                                <input class="form-control common_selector max_price" placeholder="To" type="number" id="max_price">
+                                <input class="form-control common_selector max_price" style="width:110% !important;" placeholder="To" type="number" min="0" value="{{App\Product::max('price')}}" id="max_price">
                             </div>
                         </div>
                     </div>
