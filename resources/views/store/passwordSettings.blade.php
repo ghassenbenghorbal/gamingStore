@@ -1,6 +1,6 @@
 @extends('store.userSettings')
 @section('password')
-    
+
 <div class="tab-pane active" id="password" role="tabpane2">
 
     <div class="col-sm-4">
@@ -10,6 +10,11 @@
                         @if(Session::has('message'))
                             <div class="alert alert-danger" role="alert" style="font-weight: 500;">
                                 {{Session::get('message')}}
+                            </div>
+                        @endif
+                        @if(Session::has('success'))
+                            <div class="alert alert-success" role="alert" style="font-weight: 500;">
+                                {{Session::get('success')}}
                             </div>
                         @endif
                         @if($errors->any())

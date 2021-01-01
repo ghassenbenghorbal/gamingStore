@@ -558,11 +558,12 @@ class userController extends Controller
             if(session()->has('user')){
                 $user = session()->get('user');
                 if(Hash::check($request->current_password, $user->password)){
-                $user->password = Hash::make($request->password);
-                $user->save();
-                session()->forget('user');
-                session()->put('user', $user);
-                return redirect(route('user.settings', 'password'));
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+                    session()->forget('user');
+                    session()->put('user', $user);
+                    $request->session()->flash('success', 'Password changed successfully');
+                    return redirect(route('user.settings', 'password'));
                 }
                 $request->session()->flash('message', 'Current password incorrect');
                 return redirect(route('user.settings', 'password'));
@@ -693,7 +694,7 @@ class userController extends Controller
         $depositHistory = Deposit::where('user_id',$id)->latest()->get();
         return $depositHistory;
     }
-    
+
     public function getFilteredProducts(Request $request){
         try{
 
@@ -735,8 +736,8 @@ class userController extends Controller
                     <h3 class="product-name"><a href="'.route("user.view",["id"=>$product->id]).'">'.$product->name.'</a></h3>
                     <h4 class="product-price">';
                     if($product->discount != null)
-                        echo ''.$product->discount; 
-                    else 
+                        echo ''.$product->discount;
+                    else
                         echo ''.$product->price;
                         echo ' TND';
                     if ($product->discount != null){
