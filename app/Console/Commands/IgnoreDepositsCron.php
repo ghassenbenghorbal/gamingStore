@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Deposit;
+use App\Http\Controllers\mail\Mailer;
 use Carbon\Carbon;
 class IgnoreDepositsCron extends Command
 {
@@ -45,6 +46,7 @@ class IgnoreDepositsCron extends Command
             if($created->diff($now)->days >= 2){
                 $deposit->status = -1; // ignoring deposit
                 $deposit->save();
+                Mailer::sendDepositIgnoredMail($deposit);
             }
         }
     }
