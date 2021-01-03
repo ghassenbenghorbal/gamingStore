@@ -118,7 +118,7 @@ Route::get('/key/{id}', 'keyController@displayKey')->name('user.key');
 
 //Product
 Route::get('/view/{id}', 'user\userController@view')->name('user.view');
-Route::post('/view/{id}', 'user\userController@addToCart');
+Route::post('/view/{id}', 'user\userController@addToCart')->name('user.add_to_cart');
 
 Route::get('/cart', 'user\userController@cart')->name('user.cart');
 Route::post('/cart', 'user\userController@confirm');
