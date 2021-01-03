@@ -719,9 +719,10 @@ class userController extends Controller
             }
             $products = $products->whereIn('category_id', $categories_id);
         }
-        if($request->filled('c')){
-            $products = $products->where('category_id', $request->c);
+        if($request->filled('availability')){
+                $products = $products->keys->where('command_id', null);
         }
+        
         $products = $products->sortBy('price');
         foreach($products as $product){
             echo '<div class="col-md-3">

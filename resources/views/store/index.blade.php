@@ -81,8 +81,15 @@
                         <input class="form-check-input common_selector tag" type="checkbox" value="{{ $tag }}">
                         <label class="form-check-label" for="defaultCheck1">{{ $tag }}</label>
                     </div>
-
                     @endforeach
+                </div>
+                <hr style="border-top: 1px solid #ccc;">
+                <div class="form-group">
+                    <label for="">Availability</label>
+                    <div class="form-check">
+                        <input class="form-check-input common_selector availability" type="checkbox" value="in_stock">
+                        <label class="form-check-label" for="defaultCheck1">In stock</label>
+                    </div>
                 </div>
 
             </form>

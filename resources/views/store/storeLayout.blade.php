@@ -374,6 +374,7 @@ session()->put('user', $user_);
                 var category = get_filter('category');
                 var genre = get_filter('genre');
                 var tag = get_filter('tag');
+                var availability = get_filter('availability');
 
                 $.ajax({
                     url: "filter",
@@ -383,7 +384,8 @@ session()->put('user', $user_);
                         max_price: max_price,
                         category: category,
                         genre: genre,
-                        tag: tag
+                        tag: tag,
+                        availability: availability
                     },
                     success: function (response) {
                         $('.filter_data').html(response);
