@@ -122,7 +122,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => 50,
                 'genre' => 'Action',
                 'discount' => 30,
-                'tag' => 'Hot',
+                'tag' => 'HOT',
                 'category_id' => 5,
                 'created_at' => Carbon::now()
             ),
