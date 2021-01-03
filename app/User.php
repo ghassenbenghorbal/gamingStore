@@ -5,9 +5,12 @@ use app\Deposit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
+
+class User extends Model implements Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes, AuthenticableTrait;
     /**
      * The attributes that are mass assignable.
      *
