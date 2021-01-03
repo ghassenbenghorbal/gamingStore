@@ -99,7 +99,7 @@ class ProductsTableSeeder extends Seeder
                 'genre' => 'Action',
                 'discount' => 205,
                 'tag' => 'New',
-                'category_id' => 4,
+                'category_id' => 5,
                 'created_at' => Carbon::now()
             ),
             7 =>
@@ -111,7 +111,7 @@ class ProductsTableSeeder extends Seeder
                 'genre' => 'Action',
                 'discount' => null,
                 'tag' => 'Trending',
-                'category_id' => 4,
+                'category_id' => 5,
                 'created_at' => Carbon::now()
             ),
             8 =>
@@ -123,7 +123,7 @@ class ProductsTableSeeder extends Seeder
                 'genre' => 'Action',
                 'discount' => 30,
                 'tag' => 'Hot',
-                'category_id' => 4,
+                'category_id' => 5,
                 'created_at' => Carbon::now()
             ),
             9 =>
@@ -135,7 +135,7 @@ class ProductsTableSeeder extends Seeder
                 'genre' => 'Action',
                 'discount' => 70,
                 'tag' => 'Sale',
-                'category_id' => 5,
+                'category_id' => 4,
                 'created_at' => Carbon::now()
             ),
             10 =>
@@ -147,7 +147,7 @@ class ProductsTableSeeder extends Seeder
                 'genre' => 'Action',
                 'discount' => 200,
                 'tag' => 'Sale',
-                'category_id' => 5,
+                'category_id' => 4,
                 'created_at' => Carbon::now()
             ),
             11 =>
@@ -159,7 +159,7 @@ class ProductsTableSeeder extends Seeder
                 'genre' => 'Action',
                 'discount' => null,
                 'tag' => 'Sale',
-                'category_id' => 5,
+                'category_id' => 4,
                 'created_at' => Carbon::now()
             ),
 
