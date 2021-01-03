@@ -23,6 +23,7 @@
                 </div>
             </div>
             <hr style="border-top: 1px solid #ccc;">
+            @if(!isset($_GET['c']))
             <div class="form-group">
                 <label for="">Platform</label>
                 @php
@@ -34,8 +35,10 @@
                     <label class="form-check-label" for="defaultCheck1">{{ $category->name }}</label>
                   </div>
                 @endforeach
-            </div>
+                </div>
             <hr style="border-top: 1px solid #ccc;">
+            @endif
+
             <div class="form-group">
                 <label for="">Genre</label>
                 @php

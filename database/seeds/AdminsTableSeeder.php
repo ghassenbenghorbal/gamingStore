@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+
 class AdminsTableSeeder extends Seeder
 {
 
@@ -22,8 +24,7 @@ class AdminsTableSeeder extends Seeder
                 'username' => 'admin',
                 'name' => 'Administrator',
                 'password' => Hash::make('admin'),
-                'created_at' => '2018-08-28',
-                'updated_at' => '2018-08-28',
+                'created_at' => Carbon::now(),
             ),
         ));
 

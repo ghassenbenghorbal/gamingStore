@@ -699,6 +699,7 @@ class userController extends Controller
         try{
 
         $products = Product::all();
+
         if($request->filled('min_price') && $request->filled('max_price')){
 
             $products = $products->where('price', '>=', (int)$request->min_price)
@@ -718,7 +719,9 @@ class userController extends Controller
             }
             $products = $products->whereIn('category_id', $categories_id);
         }
-
+        if($request->filled('c')){
+            $products = $products->where('category_id', $request->c);
+        }
         $products = $products->sortBy('price');
         foreach($products as $product){
             echo '<div class="col-md-3">

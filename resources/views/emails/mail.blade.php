@@ -121,7 +121,7 @@
                                                                                 <tr>
                                                                                     <td>
                                                                                     <a style="padding:10px 20px;background-color:#006cff;border-radius:5px;color:#ffffff;font-size:12px;height:34px;line-height:34px;text-align:center;text-decoration:none;margin-bottom:10px;font-weight:bold" href="{{route('user.key', $command->id)}}" target="_blank" >
-                                                                                    Get your key                                                                                                            </a>
+                                                                                    Get your key(s)                                                                                                     </a>
                                                                                     <br>
                                                                                     <br>
                                                                                     </td>

@@ -97,12 +97,12 @@
                 <div class="row">
 
                     <!-- section title -->
-                    <div class="col-md-12">
+                   {{--  <div class="col-md-12">
                         <div class="section-title">
                             <h3 class="title">New Products</h3>
 
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- /section title -->
 
                     <!-- Products tab & slick -->
