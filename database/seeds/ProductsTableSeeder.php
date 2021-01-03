@@ -44,13 +44,13 @@ class ProductsTableSeeder extends Seeder
             ),
             2 =>
             array (
-                'name' => 'Cyberpunk 2077',
+                'name' => 'DayZ',
                 'image' => 'uploads/3.jpg',
-                'description' => 'Cyberpunk 2077 is an upcoming action role-playing video game developed and published by CD Projekt. It is scheduled to be released for Microsoft Windows, PlayStation 4, PlayStation 5, Stadia, Xbox One, and Xbox Series X/S on 10 December 2020.',
-                'price' => 210,
-                'genre' => 'Action',
-                'discount' => 205,
-                'tag' => 'Pre-Order',
+                'description' => 'DayZ is a survival video game developed and published by Bohemia Interactive. It is the standalone successor of the mod of the same name. Following a five-year long early access period for Windows, the game was officially released in December 2018, and was released for the Xbox One and PlayStation 4 in 2019.',
+                'price' => 160,
+                'genre' => 'Survival',
+                'discount' => 120,
+                'tag' => 'Sale',
                 'category_id' => 1,
                 'created_at' => Carbon::now()
             ),
@@ -62,7 +62,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => 25,
                 'genre' => 'Social Deduction',
                 'discount' => 20,
-                'tag' => 'HOT',
+                'tag' => 'Trending',
                 'category_id' => 1,
                 'created_at' => Carbon::now()
             ),
@@ -89,7 +89,80 @@ class ProductsTableSeeder extends Seeder
                 'tag' => 'HOT',
                 'category_id' => 3,
                 'created_at' => Carbon::now()
-            )
+            ),
+            6 =>
+            array (
+                'name' => 'Cyberpunk 2077',
+                'image' => 'uploads/7.jpg',
+                'description' => 'Cyberpunk 2077 is an upcoming action role-playing video game developed and published by CD Projekt. It is scheduled to be released for Microsoft Windows, PlayStation 4, PlayStation 5, Stadia, Xbox One, and Xbox Series X/S on 10 December 2020.',
+                'price' => 210,
+                'genre' => 'Action',
+                'discount' => 205,
+                'tag' => 'New',
+                'category_id' => 4,
+                'created_at' => Carbon::now()
+            ),
+            7 =>
+            array (
+                'name' => 'Watch Dogs 2',
+                'image' => 'uploads/8.jpg',
+                'description' => 'Watch Dogs 2 is a 2016 action-adventure game developed by Ubisoft Montreal and published by Ubisoft. It is the sequel to 2014\'s Watch Dogs and the second installment in the Watch Dogs series. It was released for the PlayStation 4, Xbox One and Microsoft Windows in November 2016, and Stadia in December 2020.',
+                'price' => 30,
+                'genre' => 'Action',
+                'discount' => null,
+                'tag' => 'Trending',
+                'category_id' => 4,
+                'created_at' => Carbon::now()
+            ),
+            8 =>
+            array (
+                'name' => 'The Division 2',
+                'image' => 'uploads/9.jpg',
+                'description' => 'Tom Clancy\'s The Division 2 is an online action role-playing video game developed by Massive Entertainment and published by Ubisoft.',
+                'price' => 50,
+                'genre' => 'Action',
+                'discount' => 30,
+                'tag' => 'Hot',
+                'category_id' => 4,
+                'created_at' => Carbon::now()
+            ),
+            9 =>
+            array (
+                'name' => "Overwatch",
+                'image' => 'uploads/10.jpg',
+                'description' => 'Overwatch is a team-based multiplayer first-person shooter developed and published by Blizzard Entertainment. Described as a "hero shooter", Overwatch assigns players into two teams of six, with each player selecting from a large roster of characters, known as "heroes", with unique abilities.',
+                'price' => 80,
+                'genre' => 'Action',
+                'discount' => 70,
+                'tag' => 'Sale',
+                'category_id' => 5,
+                'created_at' => Carbon::now()
+            ),
+            10 =>
+            array (
+                'name' => "Call of Duty : Modern Warfare",
+                'image' => 'uploads/11.jpg',
+                'description' => 'Call of Duty: Modern Warfare is a 2019 first-person shooter video game developed by Infinity Ward and published by Activision. Serving as the sixteenth overall installment in the Call of Duty series, as well as a reboot of the Modern Warfare sub-series, it was released on October 25, 2019, for Microsoft Windows, PlayStation 4, and Xbox One.',
+                'price' => 220,
+                'genre' => 'Action',
+                'discount' => 200,
+                'tag' => 'Sale',
+                'category_id' => 5,
+                'created_at' => Carbon::now()
+            ),
+            11 =>
+            array (
+                'name' => "World of Warcraft",
+                'image' => 'uploads/12.jpg',
+                'description' => 'World of Warcraft (WoW) is a massively multiplayer online role-playing game (MMORPG) released in 2004 by Blizzard Entertainment. It is the fourth released game that is set in the Warcraft fantasy universe. World of Warcraft takes place within the Warcraft world of Azeroth, approximately four years after the events at the conclusion of Blizzard\'s previous Warcraft release, Warcraft III: The Frozen Throne.',
+                'price' => 60,
+                'genre' => 'Action',
+                'discount' => null,
+                'tag' => 'Sale',
+                'category_id' => 5,
+                'created_at' => Carbon::now()
+            ),
+
         ));
 
 
