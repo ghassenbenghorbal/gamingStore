@@ -7,7 +7,7 @@
 {{-- Filter --}}
 <div class="row">
     <div class="col-sm-2 container sidebar">
-        <form>
+        <form class="sidebar-form">
             <div class="form-group">
                 <label class="form-label">Price range</label>
                 <div class="row">

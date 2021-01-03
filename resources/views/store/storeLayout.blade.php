@@ -359,7 +359,7 @@ session()->put('user', $user_);
 
 
     <script>
-        $(document).ready(function () {
+        $('.sidebar-form').change(function () {
             $.ajaxSetup({
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content')
