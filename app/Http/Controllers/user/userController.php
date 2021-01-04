@@ -720,9 +720,16 @@ class userController extends Controller
             $products = $products->whereIn('category_id', $categories_id);
         }
         if($request->filled('availability')){
-                $products = $products->keys->where('command_id', null);
+            $prods = $products;
+            foreach ($prods as $product) {
+                $keys = Key::where("product_id", $product->id)
+                            ->where("command_id", null)->get();
+                if($keys->isEmpty()){
+                    $products = $products->where('id', '!=', $product->id);
+                }
+            }
         }
-        
+
         $products = $products->sortBy('price');
         foreach($products as $product){
             echo '<div class="col-md-3">
